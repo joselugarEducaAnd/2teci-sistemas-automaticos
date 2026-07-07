@@ -244,3 +244,16 @@ button.toggler:hover, button.toggler:focus,
 .exe-content article.box:has(> .box-content > .idevice_node.bloque-pdf) {
   border-left: 4px solid var(--sem-pdf); background: var(--sem-pdf-bg);
 }
+
+/* ============================================================
+   Ajuste fino 2026-07-07b (petición de Pepe)
+   - Aire a la izquierda en las cabeceras de sección.
+   - Número/pestaña activa del paginador: fondo morado Majuelo + texto blanco
+     (antes el color del tema pisaba el blanco -> texto oscuro sobre fondo oscuro).
+   ============================================================ */
+.exe-content .box-head { padding-left: 20px; padding-right: 20px; }
+.exe-content .exe-paginated .fx-pagination .fx-current a,
+.exe-content .exe-paginated .fx-pagination .fx-current a:hover,
+.exe-content .exe-paginated .fx-pagination .fx-current a:focus {
+  background: var(--chrome); color: #fff;
+}
