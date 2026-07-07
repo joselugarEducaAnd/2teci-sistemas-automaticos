@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es" id="exe-page-pemrgfc2-a1m7npl96">
+<head>
+<meta charset="utf-8">
+<meta name="generator" content="eXeLearning v4.0.1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="license" type="text/html" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+<title>5. Sistemas informáticos emergentes: IA, big data y ciberseguridad | Sistemas automáticos</title>
+<link rel="icon" type="image/x-icon" href="../libs/favicon.ico">
+<meta name="description" content="Sistemas automáticos. Tecnología e Ingeniería II.">
+<script>document.querySelector("html").classList.add("js");</script><script src="../libs/jquery/jquery.min.js"> </script><script src="../libs/common_i18n.js"> </script><script src="../libs/common.js"> </script><script src="../libs/exe_export.js"> </script><script src="../libs/bootstrap/bootstrap.bundle.min.js"> </script><link rel="stylesheet" href="../libs/bootstrap/bootstrap.min.css">
+<script src="../idevices/text/text.js"></script><link rel="stylesheet" href="../idevices/text/text.css">
+<link rel="stylesheet" href="../content/css/base.css"><script src="../theme/style.js"> </script><link rel="stylesheet" href="../theme/style.css"><link rel="stylesheet" href="../theme/zzz-majuelo.css">
+<script src="../libs/exe_math/tex-mml-svg.js"> </script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX", "output/HTML-CSS"],
+    tex2jax: {
+ inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+ displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+ processEscapes: true
+    },
+    "HTML-CSS": { fonts: ["TeX"] }
+  });
+</script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+</script>
+<script type="text/javascript"
+   src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=default">
+</script>
+</head>
+<body class="exe-export exe-web-site">
+<script>document.body.className+=" js"</script>
+<div class="exe-content exe-export pre-js siteNav-hidden"><a href="#page-pemrgfc2-a1m7npl96" id="skipNav">Skip to content</a> <nav id="siteNav">
+<ul>
+<li> <a href="../index.html" class="main-node no-ch">Sistemas automáticos</a>
+</li>
+<li> <a href="../html/1-sistemas-automaticos-y-de-control.html" class="no-ch">1. Sistemas automáticos y de control</a>
+</li>
+<li> <a href="../html/2-sistemas-en-lazo-abierto-y-lazo-cerrado.html" class="no-ch">2. Sistemas en lazo abierto y lazo cerrado</a>
+</li>
+<li> <a href="../html/3-diseno-de-controladores.html" class="daddy">3. Diseño de controladores.</a>
+<ul class="other-section">
+<li> <a href="../html/31-diagramas-funcionales-o-de-bloques.html" class="no-ch">3.1. Diagramas funcionales o de bloques</a>
+</li>
+<li> <a href="../html/32-el-controlador.html" class="no-ch">3.2. El controlador</a>
+</li>
+</ul>
+</li>
+<li> <a href="../html/4-componentes-de-un-sistema-de-control.html" class="no-ch">4. Componentes de un sistema de control</a>
+</li>
+<li class="active"> <a href="../html/5-sistemas-informaticos-emergentes-ia-big-data-y-c.html" class="active no-ch">5. Sistemas informáticos emergentes: IA, big data y ciberseguridad</a>
+</li>
+</ul>
+</nav><main id="page-pemrgfc2-a1m7npl96" class="page"> 
+<header class="main-header">
+<div class="package-header"><p class="package-title">Sistemas automáticos</p></div>
+<div class="page-header"><h1 class="page-title">5. Sistemas informáticos emergentes: IA, big data y ciberseguridad</h1></div>
+</header><div id="page-content-page-pemrgfc2-a1m7npl96" class="page-content">
+<article id="block-pemrgfc2-rg4226ko1" class="box no-header">
+<header class="box-head no-icon">
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="idevice-pemrgfc2-gftxv9km8" class="idevice_node text" data-idevice-path="../idevices/text/" data-idevice-type="text" data-idevice-component-type="json" data-idevice-json-data="{&quot;ideviceId&quot;:&quot;idevice-pemrgfc2-gftxv9km8&quot;}">
+<p>En esta unidad has modelado sistemas de control en <strong>lazo cerrado</strong>: un sensor mide la salida, se compara con la consigna y el regulador corrige. Ese esquema —sensor, controlador, actuador, realimentación— es la base de toda la automatización. El control actual va un paso más allá: los reguladores <em>aprenden</em> del comportamiento del sistema, procesan <em>torrentes de datos</em> de miles de sensores y, al estar conectados a la red, pueden ser <em>atacados</em>.</p>
+<p>Esta píldora presenta tres tecnologías que ya forman parte del control inteligente: la <strong>inteligencia artificial</strong>, el <strong>big data</strong> y la <strong>ciberseguridad</strong>. El objetivo es <strong>conocer</strong> los conceptos, no calcular con ellos.</p>
+<div class="bloque bloque-nota"><p class="bloque-titulo">¿Entra en la PAU?</p><p>El bloque de tecnologías digitales <strong>no puntúa como problema</strong> en la prueba de acceso, pero sí <strong>contextualiza los enunciados</strong>: un problema de estructuras o de control puede ambientarse en una fábrica «inteligente», un sistema domótico o una planta con mantenimiento predictivo. Reconocer estos términos te ayuda a entender el enunciado.</p></div>
+</div>
+</div>
+</article><article id="block-pemrgfc2-m6lmzlind" class="box">
+<header class="box-head no-icon">
+<h1 class="box-title">Inteligencia artificial (IA)</h1>
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="idevice-pemrgfc2-avkqhkmrv" class="idevice_node text" data-idevice-path="../idevices/text/" data-idevice-type="text" data-idevice-component-type="json" data-idevice-json-data="{&quot;ideviceId&quot;:&quot;idevice-pemrgfc2-avkqhkmrv&quot;}">
+<div class="bloque bloque-teoria"><p class="bloque-titulo">Qué es la IA</p><p>La <strong>inteligencia artificial (IA)</strong> es el conjunto de técnicas que permiten a una máquina realizar tareas que, hechas por una persona, requerirían inteligencia: percibir, razonar, aprender de la experiencia o tomar decisiones. En el control inteligente, la IA permite que un sistema <em>mejore su respuesta</em> a medida que acumula datos de funcionamiento.</p></div>
+<p>Una forma habitual de clasificar la IA es según su <strong>capacidad</strong>, en cuatro tipos de complejidad creciente:</p>
+<div class="bloque bloque-teoria"><p class="bloque-titulo">Los cuatro tipos de IA</p>
+<ul>
+<li><strong>Máquinas reactivas.</strong> Responden a la situación presente siguiendo reglas fijas; no guardan memoria ni aprenden. Un ejemplo histórico es <em>Deep Blue</em>, el programa que ganó al ajedrez evaluando solo la posición del tablero en cada momento. En control, la lógica reactiva es la de un termostato clásico que enciende la caldera cuando la temperatura baja de la consigna: puro lazo cerrado, sin aprendizaje.</li>
+<li><strong>Memoria limitada.</strong> Usan datos recientes del pasado para decidir mejor. Es el tipo más extendido hoy. Ejemplo: un <strong>termostato que aprende</strong> tus horarios y ajusta la calefacción anticipándose, o el <strong>mantenimiento predictivo</strong>, que analiza el histórico de vibración de un motor para avisar antes de que se averíe.</li>
+<li><strong>Teoría de la mente.</strong> Nivel aún en investigación: máquinas capaces de interpretar intenciones, emociones o creencias de las personas con las que interactúan, y adaptarse a ellas.</li>
+<li><strong>Autoconciencia.</strong> Nivel <em>hipotético</em>: una máquina con conciencia de sí misma. No existe; pertenece al terreno teórico y de la ciencia ficción.</li>
+</ul></div>
+<div class="bloque bloque-nota"><p class="bloque-titulo">Del lazo cerrado al lazo que aprende</p><p>Los dos primeros tipos ya conviven en muchos hogares: el termostato reactivo apaga y enciende; el de memoria limitada aprende la rutina. Los dos últimos son metas de investigación. Casi toda la IA que se usa hoy en control es de <strong>memoria limitada</strong>.</p></div>
+</div>
+</div>
+</article><article id="block-pemrgfc2-lrteiuimi" class="box">
+<header class="box-head no-icon">
+<h1 class="box-title">Big data: las 7 uves</h1>
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="idevice-pemrgfc2-svjf0k519" class="idevice_node text" data-idevice-path="../idevices/text/" data-idevice-type="text" data-idevice-component-type="json" data-idevice-json-data="{&quot;ideviceId&quot;:&quot;idevice-pemrgfc2-svjf0k519&quot;}">
+<div class="bloque bloque-teoria"><p class="bloque-titulo">Qué es el big data</p><p>Llamamos <strong>big data</strong> al tratamiento de conjuntos de datos tan grandes, rápidos y variados que las herramientas tradicionales no bastan para almacenarlos y analizarlos. Un sistema de control moderno genera big data: miles de sensores enviando medidas cada fracción de segundo. Para que esos datos sirvan, deben cumplir una serie de características que se resumen en las <strong>siete uves</strong>.</p></div>
+<div class="bloque bloque-teoria"><p class="bloque-titulo">Las 7 uves</p>
+<ul>
+<li><strong>Volumen.</strong> La cantidad de datos, de gigabytes a petabytes. Ejemplo: el histórico completo de los sensores de una fábrica.</li>
+<li><strong>Velocidad.</strong> El ritmo al que se generan y deben procesarse, a veces en tiempo real. Ejemplo: la telemetría de una línea de producción.</li>
+<li><strong>Variedad.</strong> Los distintos formatos: números, texto, imágenes, señales… Ejemplo: temperatura, vídeo de una cámara y registros de mantenimiento juntos.</li>
+<li><strong>Veracidad.</strong> La fiabilidad y la calidad de los datos: un sensor mal calibrado ensucia todo el análisis.</li>
+<li><strong>Viabilidad.</strong> La capacidad de usar los datos de forma útil y sostenible con los recursos disponibles.</li>
+<li><strong>Visualización.</strong> La presentación en gráficas y paneles que permiten entender e interpretar los datos.</li>
+<li><strong>Valor.</strong> El beneficio que se obtiene: sin valor, almacenar datos solo cuesta. Ejemplo: predecir una avería y evitar una parada de producción.</li>
+</ul></div>
+<div class="bloque bloque-nota"><p class="bloque-titulo">Bases de datos distribuidas</p><p>Tanto dato no cabe en un solo ordenador: se reparte entre muchos servidores conectados que trabajan como si fueran uno. Es una <strong>base de datos distribuida</strong>. Aporta capacidad y tolerancia a fallos, pero también amplía la superficie que hay que proteger… lo que enlaza con la ciberseguridad.</p></div>
+</div>
+</div>
+</article><article id="block-pemrgfc2-g37e0zb4z" class="box">
+<header class="box-head no-icon">
+<h1 class="box-title">Ciberseguridad</h1>
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="idevice-pemrgfc2-4pgicl3yn" class="idevice_node text" data-idevice-path="../idevices/text/" data-idevice-type="text" data-idevice-component-type="json" data-idevice-json-data="{&quot;ideviceId&quot;:&quot;idevice-pemrgfc2-4pgicl3yn&quot;}">
+<div class="bloque bloque-teoria"><p class="bloque-titulo">Qué es la ciberseguridad</p><p>La <strong>ciberseguridad</strong> es el conjunto de medidas que protegen los sistemas informáticos, las redes y los datos frente a accesos no autorizados, daños o robos. En un sistema de control conectado a la red, un fallo de seguridad no solo compromete datos: puede <strong>alterar el proceso físico</strong> —parar una planta, falsear una medida o abrir una válvula—.</p></div>
+<div class="bloque bloque-teoria"><p class="bloque-titulo">Principales amenazas</p>
+<ul>
+<li><strong>Malware.</strong> Software malicioso (virus, gusanos, troyanos) que se infiltra para dañar o espiar.</li>
+<li><strong>Ransomware.</strong> Malware que cifra los datos y exige un rescate para liberarlos; puede paralizar una organización entera.</li>
+<li><strong>Phishing.</strong> Engaño mediante correos o sitios web falsos que suplantan a una entidad de confianza para robar contraseñas o datos personales.</li>
+<li><strong>Ataques a sistemas de control.</strong> Dirigidos a la automatización industrial (sistemas SCADA) o a la domótica: buscan manipular sensores y actuadores. El caso más conocido, <em>Stuxnet</em>, saboteó centrifugadoras industriales alterando su sistema de control.</li>
+<li><strong>Ataques a dispositivos conectados (IoT).</strong> Cámaras, termostatos o sensores con seguridad débil que se secuestran para atacar otros sistemas.</li>
+</ul></div>
+<div class="bloque bloque-teoria"><p class="bloque-titulo">Medidas básicas de protección</p>
+<ul>
+<li>Usar <strong>contraseñas robustas</strong> y distintas para cada servicio, y verificación en dos pasos.</li>
+<li>Mantener <strong>actualizados</strong> el sistema y las aplicaciones (los parches cierran agujeros ya conocidos).</li>
+<li>Hacer <strong>copias de seguridad</strong> periódicas: la mejor defensa frente al ransomware.</li>
+<li><strong>Cifrar</strong> la información sensible para que, si se roba, no sea legible.</li>
+<li>Instalar solo software de <strong>fuentes fiables</strong> y desconfiar de enlaces y adjuntos inesperados.</li>
+<li>En sistemas de control, <strong>separar la red</strong> industrial de la red general y limitar quién accede a cada parte.</li>
+</ul></div>
+</div>
+</div>
+</article><article id="block-pemrgfc2-mjkhptv75" class="box">
+<header class="box-head no-icon">
+<h1 class="box-title">Para repasar</h1>
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="idevice-pemrgfc2-88lhznrmx" class="idevice_node text" data-idevice-path="../idevices/text/" data-idevice-type="text" data-idevice-component-type="json" data-idevice-json-data="{&quot;ideviceId&quot;:&quot;idevice-pemrgfc2-88lhznrmx&quot;}">
+<div class="bloque bloque-teoria"><p class="bloque-titulo">La idea en una frase</p><p>El control moderno cierra el lazo con <strong>IA</strong> (sistemas que aprenden del histórico), se alimenta de <strong>big data</strong> (torrentes de datos de sensores que deben cumplir las 7 uves) y necesita <strong>ciberseguridad</strong> (porque estar conectado es estar expuesto). Las tres tecnologías convierten un regulador clásico en un sistema inteligente.</p></div>
+<div class="bloque bloque-actividad"><p class="bloque-titulo">Cuestionario evaluable</p><p>Realiza el <strong>cuestionario de sistemas informáticos emergentes</strong> en Moodle. Es <strong>individual y cuenta para la nota</strong> de este apartado. Lo corrige Moodle automáticamente y te da retroalimentación en cada pregunta, de modo que al terminar verás tu resultado y qué conceptos conviene repasar. No hay que calcular nada; se trata de reconocer y distinguir los términos.</p></div>
+</div>
+</div>
+</article>
+</div></main><div class="nav-buttons">
+<a href="../html/4-componentes-de-un-sistema-de-control.html" title="Anterior" class="nav-button nav-button-left"><span>Anterior</span></a>
+<span class="nav-button nav-button-right" aria-hidden="true"><span>Siguiente</span></span>
+</div>
+<footer id="siteFooter"><div id="siteFooterContent"> <div id="packageLicense" class="cc cc-by-nc-sa"> <p> <span class="license-label">Licencia: </span><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="license">Creative Commons: Reconocimiento - no comercial - compartir igual 4.0</a></p>
+</div>
+</div></footer>
+</div>
+
+</body>
+</html>

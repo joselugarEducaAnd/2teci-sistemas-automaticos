@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es" id="exe-page-mrak340c-k0clvuu2p">
+<head>
+<meta charset="utf-8">
+<meta name="generator" content="eXeLearning v4.0.1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="license" type="text/html" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+<title>1. Sistemas automáticos y de control | Sistemas automáticos</title>
+<link rel="icon" type="image/x-icon" href="../libs/favicon.ico">
+<meta name="description" content="Sistemas automáticos. Tecnología e Ingeniería II.">
+<script>document.querySelector("html").classList.add("js");</script><script src="../libs/jquery/jquery.min.js"> </script><script src="../libs/common_i18n.js"> </script><script src="../libs/common.js"> </script><script src="../libs/exe_export.js"> </script><script src="../libs/bootstrap/bootstrap.bundle.min.js"> </script><link rel="stylesheet" href="../libs/bootstrap/bootstrap.min.css">
+<script src="../idevices/udl-content/udl-content.js"></script><link rel="stylesheet" href="../idevices/udl-content/udl-content.css">
+<link rel="stylesheet" href="../content/css/base.css"><script src="../theme/style.js"> </script><link rel="stylesheet" href="../theme/style.css"><link rel="stylesheet" href="../theme/zzz-majuelo.css">
+<script src="../libs/exe_math/tex-mml-svg.js"> </script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX", "output/HTML-CSS"],
+    tex2jax: {
+ inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+ displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+ processEscapes: true
+    },
+    "HTML-CSS": { fonts: ["TeX"] }
+  });
+</script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+</script>
+<script type="text/javascript"
+   src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=default">
+</script>
+</head>
+<body class="exe-export exe-web-site">
+<script>document.body.className+=" js"</script>
+<div class="exe-content exe-export pre-js siteNav-hidden"><a href="#page-mrak340c-k0clvuu2p" id="skipNav">Skip to content</a> <nav id="siteNav">
+<ul>
+<li> <a href="../index.html" class="main-node no-ch">Sistemas automáticos</a>
+</li>
+<li class="active"> <a href="../html/1-sistemas-automaticos-y-de-control.html" class="active no-ch">1. Sistemas automáticos y de control</a>
+</li>
+<li> <a href="../html/2-sistemas-en-lazo-abierto-y-lazo-cerrado.html" class="no-ch">2. Sistemas en lazo abierto y lazo cerrado</a>
+</li>
+<li> <a href="../html/3-diseno-de-controladores.html" class="daddy">3. Diseño de controladores.</a>
+<ul class="other-section">
+<li> <a href="../html/31-diagramas-funcionales-o-de-bloques.html" class="no-ch">3.1. Diagramas funcionales o de bloques</a>
+</li>
+<li> <a href="../html/32-el-controlador.html" class="no-ch">3.2. El controlador</a>
+</li>
+</ul>
+</li>
+<li> <a href="../html/4-componentes-de-un-sistema-de-control.html" class="no-ch">4. Componentes de un sistema de control</a>
+</li>
+<li> <a href="../html/5-sistemas-informaticos-emergentes-ia-big-data-y-c.html" class="no-ch">5. Sistemas informáticos emergentes: IA, big data y ciberseguridad</a>
+</li>
+</ul>
+</nav><main id="page-mrak340c-k0clvuu2p" class="page"> 
+<header class="main-header">
+<div class="package-header"><p class="package-title">Sistemas automáticos</p></div>
+<div class="page-header"><h1 class="page-title">1. Sistemas automáticos y de control</h1></div>
+</header><div id="page-content-page-mrak340c-k0clvuu2p" class="page-content">
+<article id="block-mrak340c-59q3pgccv" class="box no-header">
+<header class="box-head no-icon">
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="idevice-mrak340c-6qdoovcom" class="idevice_node udl-content" data-idevice-path="../idevices/udl-content/" data-idevice-type="udl-content">
+<div class="exe-udlContent exe-udlContent-representation"><section class="exe-udlContent-block"><div class="exe-udlContent-content"><div class="exe-udlContent-content-main"><p>Los sistemas automáticos se basan en sustituir a los operadores humanos por dispositivos mecánicos o electrónicos en un proceso. En todos los ámbitos se incrementa la automatización de los procesos, con objeto de mejorar la calidad de los productos, aumentar la producción, evitar situaciones de riesgo para el ser humano, etc. Así, el control automático es esencial en operaciones industriales como el control de presión, temperatura o humedad en industrias de procesos; el maquinado y armado de piezas en la industria de fabricación, etc.</p>
+<p>Existen muy diversos sistemas de control que pueden ir desde un simple tostador de pan hasta un sistema de defensa antiaéreo, pasando por una lavadora, el control de velocidad de un motor, el control de temperatura de una vivienda, etc.</p>
+<p>La <span style="color: #008000;"><strong>Teoría de Regulación Automática</strong></span> o <span style="color: #008000;"><strong>Teoría de Control</strong> </span>estudia el comportamiento dinámico de un sistema frente a órdenes de mando o perturbaciones.</p>
+<h1><span style="color: #008000;">Definiciones básicas</span></h1>
+<p>Podemos preguntarnos qué son perturbaciones y qué diferencia tienen con una orden de mando. Para fijar conceptos, vamos a ver estas y otras definiciones básicas de la teoría de control:</p>
+<ul>
+<li><span style="color: #008000;"><strong>Señal:</strong> </span>información que representa una determinada magnitud física, así como su evolución, generalmente con el tiempo. Las magnitudes físicas se convierten en señales con la ayuda de unos dispositivos denominados <span style="color: #008000;"><strong>transductores</strong></span>.</li>
+<li><span style="color: #008000;"><strong>Planta</strong></span> o <span style="color: #008000;"><strong>sistema</strong></span> controlado: conjunto de componentes o productos que tienen una determinada función o aplicación. Son componentes aptos para realizar una cierta transferencia de flujo (de material, de energía, de información, etc.) y son objeto de la actuación del sistema de control.</li>
+<li><span style="color: #008000;"><strong>Proceso:</strong> </span>conjunto de operaciones a realizar para conseguir un fin determinado.</li>
+<li><span style="color: #008000;"><strong>Sistema de control:</strong> </span>conjunto de componentes que actúan juntos para realizar el control. Antiguamente eran mecánicos y físicos, pero en la actualidad se suelen implementar mediante la electrónica y la informática.</li>
+<li><span style="color: #008000;"><strong>Mando o selector de entrada:</strong></span> elemento que permite fijar el valor deseado para una variable, una señal o una orden. Por ejemplo, un potenciómetro.</li>
+<li><span style="color: #008000;"><strong> Entrada o señal de mando:</strong> </span>el valor de la variable, señal u orden producida por el mando o selector.</li>
+<li><span style="color: #008000;"><strong>Señal de referencia o consigna:</strong> </span>la generada por un transductor a partir de la señal de mando para que sea capaz de gobernar la unidad de control.</li>
+<li><span style="color: #008000;"><strong>Unidad de control, controlador o regulador:</strong> </span>unidad que genera una acción de gobierno sobre el sistema controlado para producir una salida deseada sin la intervención del operador.</li>
+<li><span style="color: #008000;"><strong>Salida, señal o variable controlada:</strong> </span>es el valor generado a la salida de la planta. Debe mantenerse en un valor fijado de antemano mediante la acción de la unidad de control.</li>
+<li><span style="color: #008000;"><strong>Perturbaciones:</strong> </span>toda señal indeseada que intervenga de forma adversa en el funcionamiento de un sistema. Pueden ser:
+<ul>
+<li><span style="color: #008000;"><strong>Internas:</strong></span> se producen dentro del propio sistema.</li>
+<li><span style="color: #008000;"><strong>Externas:</strong></span> se generan fuera del sistema y constituyen una entrada más.</li>
+</ul>
+</li>
+<li><span style="color: #008000;"><strong>Medidor o captador:</strong></span> elemento transductor que facilita, a partir de la variable de salida, un resultado comparable con la señal de entrada. Mide el valor real alcanzado por una variable. Por ejemplo, la boya que detecta el nivel de agua en una cisterna de baño.</li>
+<li><span style="color: #008000;"><strong>Actuador:</strong> </span>dispositivo que puede intervenir sobre la planta o proceso a controlar, con potencia elevada.</li>
+</ul></div></div></section></div>
+</div>
+</div>
+</article><article id="block-mrak340c-8zxz9t11g" class="box">
+<header class="box-head no-icon">
+<h1 class="box-title">Estructura de un sistema automático</h1>
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="idevice-mrak340c-tsfxd74yv" class="idevice_node udl-content" data-idevice-path="../idevices/udl-content/" data-idevice-type="udl-content">
+<div class="exe-udlContent exe-udlContent-representation"><section class="exe-udlContent-block"><div class="exe-udlContent-content"><div class="exe-udlContent-content-main"><p>Un sistema automático consta básicamente de tres bloques: entrada, proceso y salida.</p>
+<p><img src="../content/resources/est-basica.png" alt="" width="450" height="144" style="display: block; margin-left: auto; margin-right: auto;"></p>
+<ul>
+<li><span style="color: #008000;"><strong>La entrada</strong></span> es una señal que contiene información, generalmente recogida por una magnitud física, y que pone en funcionamiento el proceso.</li>
+<li>El <span style="color: #008000;"><strong>proceso</strong></span> o planta se el conjunto de fases o acciones que leva a cabo el sistema para conseguir una función.</li>
+<li>La <span style="color: #008000;"><strong>salida</strong></span> es la señal de respuesta, generada al final del sistema automático y que generalmente debe mantenerse en un rango gracias al control del propio sistema.</li>
+</ul></div></div></section></div>
+</div>
+</div>
+</article>
+</div></main><div class="nav-buttons">
+<a href="../index.html" title="Anterior" class="nav-button nav-button-left"><span>Anterior</span></a>
+<a href="../html/2-sistemas-en-lazo-abierto-y-lazo-cerrado.html" title="Siguiente" class="nav-button nav-button-right"><span>Siguiente</span></a>
+</div>
+<footer id="siteFooter"><div id="siteFooterContent"> <div id="packageLicense" class="cc cc-by-nc-sa"> <p> <span class="license-label">Licencia: </span><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="license">Creative Commons: Reconocimiento - no comercial - compartir igual 4.0</a></p>
+</div>
+</div></footer>
+</div>
+
+</body>
+</html>

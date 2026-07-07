@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="es" id="exe-page-mrak340c-gdntqrinj">
+<head>
+<meta charset="utf-8">
+<meta name="generator" content="eXeLearning v4.0.1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="license" type="text/html" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+<title>3.1. Diagramas funcionales o de bloques | Sistemas automáticos</title>
+<link rel="icon" type="image/x-icon" href="../libs/favicon.ico">
+<meta name="description" content="Sistemas automáticos. Tecnología e Ingeniería II.">
+<script>document.querySelector("html").classList.add("js");</script><script src="../libs/jquery/jquery.min.js"> </script><script src="../libs/common_i18n.js"> </script><script src="../libs/common.js"> </script><script src="../libs/exe_export.js"> </script><script src="../libs/bootstrap/bootstrap.bundle.min.js"> </script><link rel="stylesheet" href="../libs/bootstrap/bootstrap.min.css">
+<script src="../idevices/udl-content/udl-content.js"></script><link rel="stylesheet" href="../idevices/udl-content/udl-content.css">
+<script src="../idevices/text/text.js"></script><link rel="stylesheet" href="../idevices/text/text.css">
+<script src="../libs/exe_effects/exe_effects.js"> </script>
+<link rel="stylesheet" href="../libs/exe_effects/exe_effects.css">
+<link rel="stylesheet" href="../content/css/base.css"><script src="../theme/style.js"> </script><link rel="stylesheet" href="../theme/style.css"><link rel="stylesheet" href="../theme/zzz-majuelo.css">
+<script src="../libs/exe_math/tex-mml-svg.js"> </script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX", "output/HTML-CSS"],
+    tex2jax: {
+ inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+ displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+ processEscapes: true
+    },
+    "HTML-CSS": { fonts: ["TeX"] }
+  });
+</script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+</script>
+<script type="text/javascript"
+   src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=default">
+</script>
+</head>
+<body class="exe-export exe-web-site">
+<script>document.body.className+=" js"</script>
+<div class="exe-content exe-export pre-js siteNav-hidden"><a href="#page-mrak340c-gdntqrinj" id="skipNav">Skip to content</a> <nav id="siteNav">
+<ul>
+<li> <a href="../index.html" class="main-node no-ch">Sistemas automáticos</a>
+</li>
+<li> <a href="../html/1-sistemas-automaticos-y-de-control.html" class="no-ch">1. Sistemas automáticos y de control</a>
+</li>
+<li> <a href="../html/2-sistemas-en-lazo-abierto-y-lazo-cerrado.html" class="no-ch">2. Sistemas en lazo abierto y lazo cerrado</a>
+</li>
+<li class="current-page-parent"> <a href="../html/3-diseno-de-controladores.html" class="daddy">3. Diseño de controladores.</a>
+<ul class="other-section">
+<li class="active"> <a href="../html/31-diagramas-funcionales-o-de-bloques.html" class="active no-ch">3.1. Diagramas funcionales o de bloques</a>
+</li>
+<li> <a href="../html/32-el-controlador.html" class="no-ch">3.2. El controlador</a>
+</li>
+</ul>
+</li>
+<li> <a href="../html/4-componentes-de-un-sistema-de-control.html" class="no-ch">4. Componentes de un sistema de control</a>
+</li>
+<li> <a href="../html/5-sistemas-informaticos-emergentes-ia-big-data-y-c.html" class="no-ch">5. Sistemas informáticos emergentes: IA, big data y ciberseguridad</a>
+</li>
+</ul>
+</nav><main id="page-mrak340c-gdntqrinj" class="page"> 
+<header class="main-header">
+<div class="package-header"><p class="package-title">Sistemas automáticos</p></div>
+<div class="page-header"><h1 class="page-title">3.1. Diagramas funcionales o de bloques</h1></div>
+</header><div id="page-content-page-mrak340c-gdntqrinj" class="page-content">
+<article id="block-mrak340d-zhvmce69h" class="box no-header">
+<header class="box-head no-icon">
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="idevice-mrak340d-30s3kiqzz" class="idevice_node udl-content" data-idevice-path="../idevices/udl-content/" data-idevice-type="udl-content">
+<div class="exe-udlContent exe-udlContent-representation"><section class="exe-udlContent-block"><div class="exe-udlContent-content"><div class="exe-udlContent-content-main"><p>Un bloque es una representación gráfica de la relación causa-efecto existente entre la entrada y la salida de un sistema físico. El bloque se representa mediante un rectángulo que contiene el nombre o la descripción del elemento, o la operación matemática que se ejecuta sobre la entrada para obtener la salida.</p>
+<p><img src="../content/resources/blq01.png" alt="" width="597" height="79" style="display: block; margin-left: auto; margin-right: auto;"></p>
+<p>En este apartado veremos los <span style="color: #008000;"><strong>elementos básicos</strong> </span>de un diagrama de bloques y aprenderemos a realizar ciertas manipulaciones para simplificar cualquier diagrama de bloques hasta obtener <span style="color: #008000;"><strong>un único bloque equivalente</strong></span>.</p></div></div></section></div>
+</div>
+</div>
+</article><article id="block-mrak340d-m7r62v3lj" class="box">
+<header class="box-head no-icon">
+<h1 class="box-title">Elementos adicionales</h1>
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="idevice-mrak340d-r0oowpzvp" class="idevice_node udl-content" data-idevice-path="../idevices/udl-content/" data-idevice-type="udl-content">
+<div class="exe-udlContent exe-udlContent-representation"><section class="exe-udlContent-block"><div class="exe-udlContent-content"><div class="exe-udlContent-content-main"><p>Además de los bloques propiamente dichos, en un diagrama de bloques podemos encontrar también <span style="color: #008000;"><strong>comparadores</strong></span> de señal y <span style="color: #008000;"><strong>combinaciones</strong></span> entre líneas de actuación:</p>
+<div class="exe-fx exe-tabs">
+<h2>Comparadores</h2>
+<p>Son elementos que permiten hallar <span style="color: #008000;"><strong>diferencias</strong></span> o <span style="color: #008000;"><strong>sumas</strong></span> entre diversas señales. A continuación, se representan distintos símbolos de comparadores, indicando para cada uno de ellos la operación que realizan:</p>
+<p><img src="../content/resources/blq02.png" alt="" width="826" height="374" style="display: block; margin-left: auto; margin-right: auto;"></p>
+<h2>Combinaciones</h2>
+<p>La interacción entre bloques viene representada por <span style="color: #008000;"><strong>líneas de actuación</strong></span> que llevan en su extremo una flecha que indica el sentido del flujo. Estas líneas de actuación pueden combinarse entre sí en diferentes puntos del diagrama. Se representan diferentes ejemplos de combinaciones de líneas de actuación:</p>
+<p><img src="../content/resources/blq03.png" alt="" width="1007" height="463" style="display: block; margin-left: auto; margin-right: auto;"></p>
+</div>
+<p>Como puedes ver, <span style="color: #008000;"><strong>el comparador es un caso particular de combinación</strong></span>, pero es tan importante (aparece obligatoriamente en todos los sistemas de bucle cerrado, por ejemplo), que le dedicamos una categoría propia.</p></div></div></section></div>
+</div>
+</div>
+</article><article id="block-mrak340d-5h211e9h1" class="box">
+<header class="box-head no-icon">
+<h1 class="box-title">Simplificación de diagramas. Bloques equivalentes.</h1>
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="idevice-mrak340d-tkcx413ml" class="idevice_node udl-content" data-idevice-path="../idevices/udl-content/" data-idevice-type="udl-content">
+<div class="exe-udlContent exe-udlContent-representation"><section class="exe-udlContent-block"><div class="exe-udlContent-content"><div class="exe-udlContent-content-main"><p>Los diagramas de bloques pueden simplificarse sustituyendo deferentes partes por <span style="color: #008000;"><strong>bloques equivalentes</strong></span>. Vamos a estudiar los principales agrupamientos de bloques que podemos hacer y la expresión matemática que tendrá la función de transferencia de su bloque equivalente.</p>
+<div class="exe-fx exe-paginated">
+<h2>Conexión en serie</h2>
+<p>La señal de salida de un bloque es la señal de entrada del siguiente. Esto equivale a un solo bloque cuya función de transferencia sea el <span style="color: #008000;"><strong>producto</strong></span> de las funciones de transferencia de cada uno de los bloques originales:</p>
+<p><img src="../content/resources/blq04.png" width="875" height="101" style="display: block; margin-left: auto; margin-right: auto;">Para comprobar el valor de la función de transferencia global (la del bloque equivalente), primero determinamos la función de cada bloque:</p>
+<table border="0" style="width: 0%; margin-left: auto; margin-right: auto;">
+<tbody>
+<tr>
+<td style="width: 100%;">\[V(s)=G_{2}(s)Y(s)\]</td>
+</tr>
+<tr>
+<td style="width: 100%;">\[Y(s)=G_{1}(s)U(s)\]</td>
+</tr>
+</tbody>
+</table>
+<p>Sustituyendo la segunda ecuación en la primera, obtenemos:</p>
+<table border="0" style="width: 0%; margin-left: auto; margin-right: auto;">
+<tbody>
+<tr>
+<td style="width: 100%;">\[V(s)=G_{2}(s)G_{1}(s)U(s)\]</td>
+</tr>
+</tbody>
+</table>
+<p>Por lo tanto, la función de transferencia global será:</p>
+<table border="0" style="width: 0%; margin-left: auto; margin-right: auto;">
+<tbody>
+<tr>
+<td style="width: 100%;">\[\frac{V(s)}{U(s)}=G_{1}(s)G_{2}(s)\]</td>
+</tr>
+</tbody>
+</table>
+<p>Esto se puede comprobar para cualquier cantidad de bloques en serie. Es decir, que <span style="color: #008000;"><strong>la función de transferencia equivalente de varios bloques en serie es el producto de las funciones de transferencia de cada bloque.</strong></span> Para <span style="color: #008000;"><strong>"</strong><strong>n"</strong></span> bloques lo podemos representar así:</p>
+<table border="0" style="width: 0%; margin-left: auto; margin-right: auto;">
+<tbody>
+<tr>
+<td style="width: 100%;">\[G_{SERIE}(s)=\prod_{i=1}^{n}G_{i}(s)\]</td>
+</tr>
+</tbody>
+</table>
+<p>Como el orden de los factores no altera el producto, <span style="color: #008000;"><strong>se pueden cambiar de orden los bloques en serie</strong> </span>sin afectar al circuito final:</p>
+<p><img src="../content/resources/blq05.png" alt="" width="898" height="129" style="display: block; margin-left: auto; margin-right: auto;"></p>
+<h2>Conexión en paralelo</h2>
+<p>Al conectar bloques en paralelo es necesario colocar un nudo sumador a la salida. La función de transferencia equivalente es, en esta ocasión, la <span style="color: #008000;"><strong>suma</strong></span> de las funciones de transferencia de cada bloque:</p>
+<p><img src="../content/resources/blq06.png" alt="" width="873" height="219" style="display: block; margin-left: auto; margin-right: auto;">Para comprobar el valor de la FDT equivalente, volvemos a determinar las FDTs de cada bloque por separado:</p>
+<table border="0" style="width: 0%; margin-left: auto; margin-right: auto;">
+<tbody>
+<tr>
+<td style="width: 100%;">\[V_{1}(s)=G_{1}(s)U(s)\]</td>
+</tr>
+<tr>
+<td style="width: 100%;">\[V_{2}(s)=G_{2}(s)U(s)\]</td>
+</tr>
+</tbody>
+</table>
+<p>La señal de salida V(s) es la suma de V<sub>1</sub> y V<sub>2</sub>, cuyos valores sustituimos:</p>
+<table border="0" style="width: 0%; margin-left: auto; margin-right: auto;">
+<tbody>
+<tr>
+<td style="width: 100%;">\[V(s)=V_{1}(s)+V_{2}(s)=G_{1}(s)U(s)+G_{2}(s)U(s)=[G_{1}(s)+G_{2}(s)]U(s)\]</td>
+</tr>
+</tbody>
+</table>
+<p>Por lo tanto, la función de transferencia global será:</p>
+<table border="0" style="width: 0%; margin-left: auto; margin-right: auto;">
+<tbody>
+<tr>
+<td style="width: 100%;">\[\frac{V(s)}{U(s)}=G_{1}(s)+G_{2}(s)\]</td>
+</tr>
+</tbody>
+</table>
+<p>Esto se puede comprobar para cualquier cantidad de bloques en paralelo. Es decir, que <span style="color: #008000;"><strong>la función de transferencia equivalente de varios bloques en paralelo es la suma de las funciones de transferencia de cada bloque.</strong></span> Para <span style="color: #008000;"><strong>"n"</strong></span> bloques lo podemos representar así:</p>
+<table border="0" style="width: 0%; margin-left: auto; margin-right: auto;">
+<tbody>
+<tr>
+<td style="width: 100%;">\[G_{PARALELO}(s)=\sum_{i=1}^{n}G_{i}(s)\]</td>
+</tr>
+</tbody>
+</table>
+<h2>Realimentación directa</h2>
+<p>El montaje se muestra en la siguiente figura, donde también se indica la FDT equivalente:</p>
+<p><img src="../content/resources/blq07.png" alt="" width="936" height="155" style="display: block; margin-left: auto; margin-right: auto;">Para demostrar el valor de la función de transferencia global, partimos de los valores de R(s) y de V(s) obtenidos mirando la figura:</p>
+<table border="0" style="width: 0%; margin-left: auto; margin-right: auto;">
+<tbody>
+<tr>
+<td style="width: 100%;">\[R(s)=U(s)-V(s)\]</td>
+</tr>
+<tr>
+<td style="width: 100%;">\[V(s)=G(s)R(s)\]</td>
+</tr>
+</tbody>
+</table>
+<p>Sustituyendo R(s) por su valor en la expresión de V(s) y operando, obtenemos:</p>
+<table border="0" style="width: 0%; margin-left: auto; margin-right: auto;">
+<tbody>
+<tr>
+<td style="width: 100%;">\[V(s)=G(s)[U(s)-V(s)]=G(s)U(S)-G(s)V(s)\]</td>
+</tr>
+<tr>
+<td style="width: 100%;">\[V(s)+G(s)V(s)=G(s)U(s)\]</td>
+</tr>
+<tr>
+<td style="width: 100%;">\[[1+G(s)]V(s)=G(s)U(s)\]</td>
+</tr>
+</tbody>
+</table>
+<p>Por lo tanto, la función de transferencia global será:</p>
+<table border="0" style="width: 0%; margin-left: auto; margin-right: auto;">
+<tbody>
+<tr>
+<td style="width: 100%;">\[G_{REALIM}(s)=\frac{V(s)}{U(s)}=\frac{G(s)}{1+G(s)}\]</td>
+</tr>
+</tbody>
+</table>
+<h2>Realimentación a través de un elemento</h2>
+<p>Este montaje se muestra en la siguiente figura, donde se incluye también el bloque equivalente:</p>
+<p><img src="../content/resources/blq08.png" alt="" width="995" height="183" style="display: block; margin-left: auto; margin-right: auto;">Para comprobar la FDT equivalente comenzamos estableciendo las funciones de cada elemento de la figura:</p>
+<table border="0" style="width: 0%; margin-left: auto; margin-right: auto;">
+<tbody>
+<tr>
+<td style="width: 100%;">\[R(s)=U(s)-X(s)\]</td>
+</tr>
+<tr>
+<td style="width: 100%;">\[X(s)=H(s)V(s)\]</td>
+</tr>
+<tr>
+<td style="width: 100%;">\[V(s)=G(s)R(s)\]</td>
+</tr>
+</tbody>
+</table>
+<p>Sustituimos primero R(s) por su valor en la expresión de V(s) y obtenemos:</p>
+<table border="0" style="width: 0%; margin-left: auto; margin-right: auto;">
+<tbody>
+<tr>
+<td style="width: 100%;">\[V(s)=G(s)[U(s)-X(s)]=G(s)U(S)-G(s)X(s)\]</td>
+</tr>
+</tbody>
+</table>
+<p>Ahora sustituimos también la función X(s) por su valor y operamos:</p>
+<table border="0" style="width: 0%; margin-left: auto; margin-right: auto;">
+<tbody>
+<tr>
+<td style="width: 100%;">\[V(s)=G(s)U(S)-G(s)H(s)V(s)\]</td>
+</tr>
+<tr>
+<td style="width: 100%;">\[V(s)+G(s)H(s)V(s)=G(s)U(s)\]</td>
+</tr>
+<tr>
+<td style="width: 100%;">\[[1+G(s)H(s)]V(s)=G(s)U(s)\]</td>
+</tr>
+</tbody>
+</table>
+<p>Por lo tanto, la función de transferencia global será:</p>
+<table border="0" style="width: 0%; margin-left: auto; margin-right: auto;">
+<tbody>
+<tr>
+<td style="width: 100%;">\[G_{REALIM}(s)=\frac{V(s)}{U(s)}=\frac{G(s)}{1+G(s)H(s)}\]</td>
+</tr>
+</tbody>
+</table>
+</div></div></div></section></div>
+</div>
+</div>
+</article><article id="block-mrak340d-4u88k6m1l" class="box">
+<header class="box-head no-icon">
+<h1 class="box-title">Transposición de ramificaciones y nudos</h1>
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="idevice-mrak340d-8qy5l4fss" class="idevice_node udl-content" data-idevice-path="../idevices/udl-content/" data-idevice-type="udl-content">
+<div class="exe-udlContent exe-udlContent-representation"><section class="exe-udlContent-block"><div class="exe-udlContent-content"><div class="exe-udlContent-content-main"><p>Para simplificar diagramas de flujo complicados, a veces interesa <span style="color: #008000;"><strong>transponer los bloques en</strong><strong> un punto de bifurcación o en un punto de suma</strong></span>. Veremos ejemplos para realizar esto, incluyendo la comprobación de que las salidas V<sub>1</sub> y V<sub>2</sub> quedan igual después de realizar la transposición.</p>
+<div class="exe-fx exe-paginated">
+<h2>Transposición en bifurcaciones</h2>
+<p>En primer lugar, vemos la transposición de un bloque hacia <span style="color: #008000;"><strong>"aguas abajo"</strong></span> de la bifurcación:</p>
+<p><img src="../content/resources/blq09.png" alt="" width="851" height="222" style="display: block; margin-left: auto; margin-right: auto;">También podría darse la transposición de un bloque hacia <span style="color: #008000;"><strong>"aguas arriba"</strong></span> de la bifurcación:</p>
+<p><img src="../content/resources/blq10.png" alt="" width="1060" height="265" style="display: block; margin-left: auto; margin-right: auto;">Cualquiera de las dos transformaciones que hemos visto pueden hacerse en cualquier dirección: de izquierda a derecha o de derecha a izquierda. De ahí la flecha de doble sentido.</p>
+<h2>Transposición en puntos de suma</h2>
+<p>Otra forma de simplificar diagramas de flujo mediante transposición puede ser aplicar ésta a los puntos de suma en lugar de a las bifurcaciones. De nuevo se puede hacer siguiendo el sentido hacia<span style="color: #008000;"><strong> "aguas abajo"</strong> </span>del sumador o hacia <span style="color: #008000;"><strong>"aguas arriba"&nbsp;</strong></span>(y de nuevo es válido tanto de izquierda a derecha como de derecha a izquierda).</p>
+<p>A continuación, se ilustran estos casos con la correspondiente justificación:</p>
+<p>Aguas abajo:</p>
+<p><img src="../content/resources/blq11.png" alt="" width="924" height="298" style="display: block; margin-left: auto; margin-right: auto;"></p>
+<p>Aguas arriba:</p>
+<p><img src="../content/resources/blq12.png" alt="" width="872" height="283" style="display: block; margin-left: auto; margin-right: auto;"></p>
+</div></div></div></section></div>
+</div>
+</div>
+</article><article id="block-mrak340d-h1ehr2gnv" class="box">
+<header class="box-head no-icon">
+<h1 class="box-title">Ejemplo resuelto</h1>
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="idevice-mrak340d-kdl4u9wit" class="idevice_node udl-content" data-idevice-path="../idevices/udl-content/" data-idevice-type="udl-content">
+<div class="exe-udlContent exe-udlContent-expression"><section class="exe-udlContent-block"><div class="exe-udlContent-content"><div class="exe-udlContent-content-main"><p>A continuación, veremos un ejemplo de aplicación de las técnicas ya comentadas para simplificar un diagrama de flujo complicado y reducirlo a un solo bloque equivalente, cuya función de transferencia será conocida.</p>
+<p>El circuito para simplificar será el siguiente:</p>
+<p><img src="../content/resources/blqEj01.png" alt="" width="1075" height="417" style="display: block; margin-left: auto; margin-right: auto;">En primer lugar, aplicamos al bloque <span style="color: #008000;"><strong>G<sub>2</sub></strong></span> la&nbsp;<span style="color: #008000;"><strong>transposición de sumadores aguas arriba</strong></span>&nbsp;que hemos visto, y el diagrama queda así:</p>
+<p><img src="../content/resources/blqEj02.png" width="1050" height="411" style="display: block; margin-left: auto; margin-right: auto;">Se puede observar que podemos <span style="color: #008000;"><strong>agrupar en serie G<sub>1</sub> con G<sub>2</sub></strong></span> y, por otro lado, <span style="color: #008000;"><strong>G<sub>2</sub> con H<sub>2</sub></strong></span>. Además, los comparadores <span style="color: #008000;"><strong>E<sub>2</sub> y E<sub>3</sub> pueden intercambiar su orden</strong></span> y el resultado no varía (sólo cambiamos de orden los elementos de una suma y resta). Por consiguiente, podemos poner:</p>
+<p><img src="../content/resources/blqEj03.png" alt="" width="1039" height="413" style="display: block; margin-left: auto; margin-right: auto;">Ahora se puede observar que hay un <span style="color: #008000;"><strong>bucle cerrado</strong></span> compuesto por el comparador<span style="color: #008000;"><strong> E<sub>2</sub></strong></span>, el bloque <span style="color: #008000;"><strong>G<sub>3</sub></strong></span> y el bloque de realimentación <span style="color: #008000;"><strong>G<sub>2</sub>·H<sub>2</sub></strong></span>. Sustituyendo este bucle por su bloque equivalente nos queda:</p>
+<p><img src="../content/resources/blqEj04.png" alt="" width="1055" height="309" style="display: block; margin-left: auto; margin-right: auto;">Ahora tenemos dos <span style="color: #008000;"><strong>bloques en serie: e</strong><strong>l que acabamos de calcular y el G<sub>4</sub></strong></span>. Sustituyéndolos por su equivalente (producto de las funciones de transferencia) nos queda:</p>
+<p><img src="../content/resources/blqEj05.png" width="935" height="317" style="display: block; margin-left: auto; margin-right: auto;">Lo siguiente que se observa es que volvemos a tener un <span style="color: #008000;"><strong>bucle cerrado</strong> </span>formado por el <span style="color: #008000;"><strong>bloque recién calculado</strong></span>, el comparador <span style="color: #008000;"><strong>E<sub>3</sub></strong></span> y la realimentación <span style="color: #008000;"><strong>H<sub>3</sub></strong></span>.</p>
+<p>Por claridad, calculamos previamente la función de transferencia equivalente y la simplificamos al máximo para escribirla en el bloque. La función de transferencia equivalente será:</p>
+<table border="0" style="width: 0%; margin-left: auto; margin-right: auto;">
+<tbody>
+<tr>
+<td style="width: 100%;">\[\frac{\frac{G_{3}(s)G_{4}(s)}{1+G_{3}(s)G_{2}(s)H_{2}(s)}}{1+H_{3}(s)\frac{G_{3}(s)G_{4}(s)}{1+G_{3}(s)G_{2}(s)H_{2}(s)}}=\frac{G_{3}(s)G_{4}(s)}{1+G_{3}(s)G_{2}(s)H_{2}(s)+G_{3}(s)G_{4}(s)H_{3}(s)}\]</td>
+</tr>
+</tbody>
+</table>
+<p>Y el diagrama de bloques quedará de la siguiente manera:</p>
+<p><img src="../content/resources/blqEj06.png" alt="" width="856" height="231" style="display: block; margin-left: auto; margin-right: auto;">El siguiente paso no es más que agrupar los dos bloques que tenemos <span style="color: #008000;"><strong>en serie</strong></span>:</p>
+<p><img src="../content/resources/blqEj07.png" alt="" width="757" height="238" style="display: block; margin-left: auto; margin-right: auto;">Y ya tenemos el diagrama reducido a un sistema en <span style="color: #008000;"><strong>bucle cerrado con elemento de realimentación</strong></span>. La función de transferencia equivalente final quedará, por lo tanto:</p>
+<table border="0" style="width: 0%; margin-left: auto; margin-right: auto;">
+<tbody>
+<tr>
+<td style="width: 100%;">\[\frac{\frac{G_{1}(s)G_{2}(s)G_{3}(s)G_{4}(s)}{1+G_{2}(s)G_{3}(s)H_{2}(s)+G_{3}(s)G_{4}(s)H_{3}(s)}}{1+H_{1}(s)\frac{G_{1}(s)G_{2}(s)G_{3}(s)G_{4}(s)}{1+G_{2}(s)G_{3}(s)H_{2}(s)+G_{3}(s)G_{4}(s)H_{3}(s)}}=\]</td>
+</tr>
+<tr>
+<td style="width: 100%;">\[=\frac{G_{1}(s)G_{2}(s)G_{3}(s)G_{4}(s)}{1+G_{2}(s)G_{3}(s)H_{2}(s)+G_{3}(s)G_{4}(s)H_{3}(s)+G_{1}(s)G_{2}(s)G_{3}(s)G_{4}(s)H_{1}(s)}\]</td>
+</tr>
+</tbody>
+</table>
+<p>Por consiguiente, <span style="color: #008000;"><strong>todo el diagrama de bloques anterior puede sustituirse por un solo bloque con la función de transferencia total que acabamos de calcular:</strong></span></p>
+<p><span style="color: #008000;"><strong><img src="../content/resources/blqEj08.png" alt="" width="879" height="156" style="display: block; margin-left: auto; margin-right: auto;"></strong></span></p></div></div></section></div>
+</div>
+</div>
+</article><article id="block-mrak340d-la6z2fbt9" class="box">
+<header class="box-head">
+<div class="box-icon exe-icon">
+<img src="../theme/icons/assignment.png" alt="">
+</div>
+<h1 class="box-title">Ejercicios de álgebra de bloques</h1>
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="idevice-mrak340d-szp1uvb63" class="idevice_node text" data-idevice-path="../idevices/text/" data-idevice-type="text" data-idevice-component-type="json" data-idevice-json-data="{&quot;ideviceId&quot;:&quot;idevice-mrak340d-szp1uvb63&quot;}">
+<p><a href="../content/resources/EJERCICIOS DIAGRAMAS DE BLOQUES.pdf" target="_blank" download="EJERCICIOS DIAGRAMAS DE BLOQUES.pdf">EJERCICIOS DIAGRAMAS DE BLOQUES.pdf</a></p>
+</div>
+</div>
+</article>
+</div></main><div class="nav-buttons">
+<a href="../html/3-diseno-de-controladores.html" title="Anterior" class="nav-button nav-button-left"><span>Anterior</span></a>
+<a href="../html/32-el-controlador.html" title="Siguiente" class="nav-button nav-button-right"><span>Siguiente</span></a>
+</div>
+<footer id="siteFooter"><div id="siteFooterContent"> <div id="packageLicense" class="cc cc-by-nc-sa"> <p> <span class="license-label">Licencia: </span><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="license">Creative Commons: Reconocimiento - no comercial - compartir igual 4.0</a></p>
+</div>
+</div></footer>
+</div>
+
+</body>
+</html>

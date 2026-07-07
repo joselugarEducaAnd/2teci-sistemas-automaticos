@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="es" id="exe-page-mrak340c-pjyxxenem">
+<head>
+<meta charset="utf-8">
+<meta name="generator" content="eXeLearning v4.0.1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="license" type="text/html" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+<title>4. Componentes de un sistema de control | Sistemas automáticos</title>
+<link rel="icon" type="image/x-icon" href="../libs/favicon.ico">
+<meta name="description" content="Sistemas automáticos. Tecnología e Ingeniería II.">
+<script>document.querySelector("html").classList.add("js");</script><script src="../libs/jquery/jquery.min.js"> </script><script src="../libs/common_i18n.js"> </script><script src="../libs/common.js"> </script><script src="../libs/exe_export.js"> </script><script src="../libs/bootstrap/bootstrap.bundle.min.js"> </script><link rel="stylesheet" href="../libs/bootstrap/bootstrap.min.css">
+<script src="../idevices/udl-content/udl-content.js"></script><link rel="stylesheet" href="../idevices/udl-content/udl-content.css">
+<script src="../libs/exe_effects/exe_effects.js"> </script>
+<link rel="stylesheet" href="../libs/exe_effects/exe_effects.css">
+<script src="../libs/exe_tooltips/exe_tooltips.js"> </script>
+<script src="../libs/exe_tooltips/jquery.qtip.min.js"> </script>
+<script src="../libs/exe_tooltips/imagesloaded.pkg.min.js"> </script>
+<link rel="stylesheet" href="../libs/exe_tooltips/jquery.qtip.min.css">
+<link rel="stylesheet" href="../content/css/base.css"><script src="../theme/style.js"> </script><link rel="stylesheet" href="../theme/style.css"><link rel="stylesheet" href="../theme/zzz-majuelo.css">
+<script src="../libs/exe_math/tex-mml-svg.js"> </script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX", "output/HTML-CSS"],
+    tex2jax: {
+ inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+ displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+ processEscapes: true
+    },
+    "HTML-CSS": { fonts: ["TeX"] }
+  });
+</script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+</script>
+<script type="text/javascript"
+   src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=default">
+</script>
+</head>
+<body class="exe-export exe-web-site">
+<script>document.body.className+=" js"</script>
+<div class="exe-content exe-export pre-js siteNav-hidden"><a href="#page-mrak340c-pjyxxenem" id="skipNav">Skip to content</a> <nav id="siteNav">
+<ul>
+<li> <a href="../index.html" class="main-node no-ch">Sistemas automáticos</a>
+</li>
+<li> <a href="../html/1-sistemas-automaticos-y-de-control.html" class="no-ch">1. Sistemas automáticos y de control</a>
+</li>
+<li> <a href="../html/2-sistemas-en-lazo-abierto-y-lazo-cerrado.html" class="no-ch">2. Sistemas en lazo abierto y lazo cerrado</a>
+</li>
+<li> <a href="../html/3-diseno-de-controladores.html" class="daddy">3. Diseño de controladores.</a>
+<ul class="other-section">
+<li> <a href="../html/31-diagramas-funcionales-o-de-bloques.html" class="no-ch">3.1. Diagramas funcionales o de bloques</a>
+</li>
+<li> <a href="../html/32-el-controlador.html" class="no-ch">3.2. El controlador</a>
+</li>
+</ul>
+</li>
+<li class="active"> <a href="../html/4-componentes-de-un-sistema-de-control.html" class="active no-ch">4. Componentes de un sistema de control</a>
+</li>
+<li> <a href="../html/5-sistemas-informaticos-emergentes-ia-big-data-y-c.html" class="no-ch">5. Sistemas informáticos emergentes: IA, big data y ciberseguridad</a>
+</li>
+</ul>
+</nav><main id="page-mrak340c-pjyxxenem" class="page"> 
+<header class="main-header">
+<div class="package-header"><p class="package-title">Sistemas automáticos</p></div>
+<div class="page-header"><h1 class="page-title">4. Componentes de un sistema de control</h1></div>
+</header><div id="page-content-page-mrak340c-pjyxxenem" class="page-content">
+<article id="block-mrak340d-7smyi8qb9" class="box">
+<header class="box-head no-icon">
+<h1 class="box-title">Principales elementos de un sistema de control</h1>
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="idevice-mrak340d-ee0ix7dvh" class="idevice_node udl-content" data-idevice-path="../idevices/udl-content/" data-idevice-type="udl-content">
+<div class="exe-udlContent exe-udlContent-representation"><section class="exe-udlContent-block"><div class="exe-udlContent-content"><div class="exe-udlContent-content-main"><p>Ya hemos visto que existen dos tipos básicos de sistemas de control: en <span style="color: #008000;"><strong>lazo abierto</strong></span> y en <strong><span style="color: #008000;">lazo cerrado</span></strong>.&nbsp;</p>
+<p>Cuando vimos los esquemas de ambos sistemas aparecían diversos elementos, algunos de ellos comunes a los dos, que pasamos a ver con algo más de detalle aquí:</p>
+<div class="exe-fx exe-accordion">
+<h2>Sensores, transductores y captadores</h2>
+<p>Esto tres elementos están muy relacionados entre sí, hasta el punto de que mucha gente los confunde o los denomina a todos "sensores". Sin embargo, tienen algunas diferencias como veremos:</p>
+<h3><span style="color: #008000;">Sensor</span></h3>
+<p>Un <span style="color: #008000;"><strong>sensor</strong></span> es&nbsp;el dispositivo que detecta una magnitud física y genera una señal eléctrica en respuesta. Está en <span style="color: #008000;"><strong>contacto directo</strong></span> con la magnitud que se va a evaluar y <span style="color: #008000;"><strong>sufre cambios en sus propiedades</strong></span> al interactuar con ella. Un ejemplo de sensor podría ser una resistencia variable con la temperatura.</p>
+<h3><span style="color: #008000;">Transductor y captador</span></h3>
+<p>A la salida de un sensor tenemos en ocasiones una señal que no se puede utilizar directamente en el sistema, por lo que es necesario transformarla en otra, normalmente de tipo <span style="color: #008000;"><strong>eléctrico</strong></span>. El transductor transforma la señal de salida de un sensor en una señal eléctrica adecuada para el sistema de control.</p>
+<p>Siguiendo con el ejemplo de resistencia variable como sensor, la variación de resistencia que se obtiene en el sensor es un valor directo de la temperatura. Pero los sistemas de control no trabajan con estas señales, sino con tensión o intensidad, por lo que <span style="color: #008000;"><strong>con ayuda de un transductor, esta variación de resistencia se asocia a una variación de voltaje.</strong></span>&nbsp;<span style="color: #008000;"><strong>El transductor, por tanto, suele incluir al sensor, pero es algo más completo</strong></span>.</p>
+<p>Otra parte importante de un transductor es el&nbsp;<span style="color: #008000;"><strong>amplificador</strong></span>; la variación de tensión que se registra a consecuencia de la variación de la temperatura es demasiado pequeña para ser digitalizada, es por eso que se hace necesario amplificarla.</p>
+<p>El&nbsp;<span style="color: #008000;"><strong>captador</strong></span>&nbsp;es básicamente un transductor incorporado en un lazo de control realimentado y su función es recoger o captar un tipo de información en la salida del sistema para realimentarla.</p>
+<h2>Comparador</h2>
+<p>Un comparador compara las señales de referencia y entrada. Cuando la diferencia supera un determinado valor, avisa al controlador.</p>
+<p>Los comparadores, llamados también detectores de errores, proporcionan una señal que indica la <span style="color: #008000;"><strong>diferencia</strong></span> que existe entre dos valores: el valor obtenido a la salida y el valor deseado. Esta señal se conoce como <span style="color: #008000;"><strong>señal de error.</strong></span></p>
+<h2>Controlador o regulador</h2>
+<p>El controlador debe actuar de manera que la variable controlada siga las varia­ciones de la variable de referencia o corrija los efectos de las perturbaciones con la máxima rapidez, la máxima exactitud y el mínimo de oscilaciones posible.</p>
+<p>En este elemento se deben ajustar óptimamente una serie de parámetros para obtener una respuesta deseada. Por ello, este elemento se considera el <span style="color: #008000;"><strong>núcleo del sistema</strong></span> controlador. A la salida del controlador se obtiene la señal manipulada, precisa para conseguir un control óptimo del sistema.</p>
+<h2>Actuador</h2>
+<p>Los actuadores son los elementos que llevan a cabo la acción para la que ha sido diseñado le sistema. Reciben la orden del controlador y actúan sobre el proceso con el fin de eliminar el error.</p>
+<p>Los actuadores ejecutan la acción calculada por el controlador, que modifica las variables de control. Pueden ser eléctricos (como los relés o los motores de corriente continua y alterna) y neumáticos o hidráulicos (como los cilindros y las válvulas).</p>
+</div></div></div></section></div>
+</div>
+</div>
+</article><article id="block-mrak340d-qzogf3slg" class="box">
+<header class="box-head no-icon">
+<h1 class="box-title">Sensores, transductores y captadores</h1>
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="idevice-mrak340d-37lq4scmp" class="idevice_node udl-content" data-idevice-path="../idevices/udl-content/" data-idevice-type="udl-content">
+<div class="exe-udlContent exe-udlContent-representation"><section class="exe-udlContent-block"><div class="exe-udlContent-content"><div class="exe-udlContent-content-main"><p>Hemos visto que dentro de un sistema de control encontramos siempre sensores y actuadores. En lo que a los sensores (trans-ductores y captadores) se refiere, habrá tantos como variables a medir. <span style="color: #008000;"><strong>Existe un sensor para cada tipo de magnitud que se tenga que medir</strong></span>. La siguiente tabla recoge algunos de los más utilizados:</p>
+<table border="1" style="width: 80%;" class="exe-table">
+<thead>
+<tr>
+<td style="width: 50%; text-align: center;"><span style="color: #008000;"><strong>Magnitud que se mide</strong></span></td>
+<td style="width: 50%; text-align: center;"><span style="color: #008000;"><strong>Sensores</strong></span></td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="width: 50%;">Posición y proximidad</td>
+<td style="width: 50%;">
+<ul>
+<li>Final de carrera</li>
+<li>Sensor inductivo</li>
+<li>Sensor capacitivo</li>
+<li>Sensor fotoeléctrico (fotocélula)</li>
+<li>Sensor de ultrasonidos</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td style="width: 50%;">Luminosidad</td>
+<td style="width: 50%;">
+<ul>
+<li>Fotodiodo</li>
+<li>Fotorresistencia (LDR)</li>
+<li>Fototransistor</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td style="width: 50%;">Temperatura</td>
+<td style="width: 50%;">
+<ul>
+<li>Termistor (NTC, PTC)</li>
+<li>Termopar</li>
+<li>Detector de temperatura resistivo (RTD)</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td style="width: 50%;">Humedad</td>
+<td style="width: 50%;">
+<ul>
+<li>Detector de humedad del suelo</li>
+<li>Detector de temperatura ambiente y humedad relativa</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td style="width: 50%;">Posición lineal y angular</td>
+<td style="width: 50%;">
+<ul>
+<li>Potenciómetro</li>
+<li>Encoder o codificador rotatorio</li>
+<li>Sensor Hall</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td style="width: 50%;">Velocidad lineal y angular</td>
+<td style="width: 50%;">
+<ul>
+<li>Dinamo tacométrica</li>
+<li>Encoder</li>
+<li>Giróscopo</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td style="width: 50%;">Fuerza y presión</td>
+<td style="width: 50%;">
+<ul>
+<li>Galga extensiométrica</li>
+<li>Sensor piezoeléctrico</li>
+<li>Manómetro de tubo de Bourdon</li>
+</ul>
+</td>
+</tr>
+<tr>
+<td style="width: 50%;">Movimiento</td>
+<td style="width: 50%;">
+<ul>
+<li>Radar</li>
+<li>Sensor de presencia por infrarrojos (PIR)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>A continuación tienes una breve explicación del principio de funcionamiento de algunos de estos sensores:</p>
+<h1><span style="color: #008000;">Posición y proximidad</span></h1>
+<div class="exe-fx exe-paginated">
+<h2>Final de carrera</h2>
+<p>Son dispositivos&nbsp;electrónicos,&nbsp;neumáticos&nbsp;o&nbsp;mecánicos&nbsp;situados al final del recorrido o de un elemento móvil, como por ejemplo una&nbsp;cinta transportadora, con el objetivo de enviar señales que puedan modificar el estado de un&nbsp;circuito.</p>
+<p>Internamente pueden contener <span style="color: #008000;"><strong>interruptores normalmente abiertos (NA)</strong></span>, <span style="color: #008000;"><strong>interruptores</strong></span>&nbsp;<span style="color: #008000;"><strong>normalmente</strong></span>&nbsp;<span style="color: #008000;"><strong>cerrados (NC)&nbsp;</strong></span>o&nbsp;<span style="color: #008000;"><strong>conmutadores</strong></span>&nbsp;dependiendo de la operación que cumplan al ser accionados. Además, externamente puede variar el elemento que se utiliza para hacer contacto, de ahí la gran variedad de finales de carrera que existen en mercado.&nbsp;</p>
+<p><img src="../content/resources/finales-carrera.png" width="400" height="188" style="display: block; margin-left: auto; margin-right: auto;"></p>
+<p>Podemos imaginar un final de carrera como un interruptor (o conmutador) que es accionado por algún elemento móvil al llegar al límite de su movimiento, en vez de accionarlo nosotros manualmente.</p>
+<h2>Sensores inductivos y capacitivos</h2>
+<p>Estos sensores <span style="color: #008000;"><strong>pueden detectar la presencia de objetos sin necesidad de tener contacto físico con ellos,</strong></span> como ocurría con los finales de carrera.</p>
+<p>Físicamente, estos sensores son similares. Aquí tienes una imagen de un sensor inductivo comercial:</p>
+<p><img src="../content/resources/Sensores-Inductivos.jpg" width="300" height="203" style="display: block; margin-left: auto; margin-right: auto;"></p>
+<p>Y aquí tienes una imagen de un sensor capacitivo:</p>
+<p><img src="../content/resources/sensor-capacitivo.jpg" alt="" width="300" height="300" style="display: block; margin-left: auto; margin-right: auto;"></p>
+<h3><span style="color: #008000;">Inductivos</span></h3>
+<p>Son una clase especial de sensores que sirve para detectar <span style="color: #008000;"><strong>materiales metálicos, en especial ferromagnéticos</strong></span>.</p>
+<p>Estos sensores contienen un&nbsp;devanado (bobina) interno. Cuando una corriente circula por el mismo, se genera un campo magnético. Cuando se acerca un metal al campo magnético generado por el sensor de proximidad, se inducen <span style="color: #008000;"><strong>corrientes de Foucault</strong></span>&nbsp;en él. Estas corrientes, a su vez, generan un campo magnético que se opone al de la bobina del sensor, causando una reducción en la&nbsp;inductancia&nbsp;de la misma. Esta reducción en la inductancia de la bobina interna del sensor trae aparejado una disminución en la&nbsp;<span style="color: #008000;"><strong>impedancia</strong></span>&nbsp;de esta, lo que puede detectarse fácilmente mediante un circuito eléctrico.</p>
+<p>Son muy usados en la industria (por ejemplo, en las fábricas de automóviles, ya que la mayoría de sus piezas son metálicas).</p>
+<h3><span style="color: #008000;">Capacitivos</span></h3>
+<p>Los sensores capacitivos tienen la ventaja sobre los inductivos de que pueden detectar <span style="color: #008000;"><strong>cualquier tipo de material</strong></span>, no solo materiales metálicos. También son muy usados para detectar el <span style="color: #008000;"><strong>nivel de un líquido</strong></span> en un recipiente.</p>
+<p>Se basa en la variación del campo eléctrico entre las placas de un <span style="color: #008000;"><strong>condensador</strong></span>, al cambiar su <span style="color: #008000;"><strong>capacidad</strong></span>. Dicho condensador está formado por un electrodo interno (parte del propio sensor) y otro externo (constituido por una pieza conectada a masa).</p>
+<p>La capacidad de un condensador puede cambiar por la <span style="color: #008000;"><strong>distancia</strong></span> entre sus placas, o al modificar el <span style="color: #008000;"><strong>material dieléctrico</strong></span> que está entre ellas. Por ello, hay dos tipos básicos de configuración de estos sensores:</p>
+<ul>
+<li>En algunas aplicaciones el electrodo externo es el propio objeto a detectar, previamente conectado a masa; entonces la capacidad en cuestión variará en función de la <span style="color: #008000;"><strong>distancia</strong></span> que hay entre el sensor y el objeto.</li>
+<li>En otras aplicaciones el electrodo externo es una masa fija y, entonces, el cuerpo a detectar se utiliza como <span style="color: #008000;"><strong>dieléctrico</strong></span>&nbsp;que se introduce entre la masa y la placa activa, modificando así las características del condensador equivalente.</li>
+</ul>
+<p>En este vídeo tienes más información de estos tipos de detectores:</p>
+<p style="text-align: center;"><iframe width="560" height="314" src="https://www.youtube.com/embed/YUouJVotGs4" allowfullscreen="allowfullscreen"></iframe></p>
+<h2>Sensor fotoeléctrico</h2>
+<p>Estos&nbsp;sensores&nbsp;requieren de un componente <span style="color: #008000;"><strong>emisor</strong></span> que genera la luz, normalmente en frecuencia <span style="color: #008000;"><strong>infrarroja</strong></span> para que no sea visible, y un componente <span style="color: #008000;"><strong>receptor</strong></span> que percibe la luz generada por el emisor. Este receptor puede ser, por ejemplo una resistencia dependiente de la luz (LDR), que veremos con más detalle en los sensores de luminosidad.</p>
+<p>Existen <span style="color: #008000;"><strong>tres tipos</strong> </span>distintos de fotocélulas, según se realice la detección:</p>
+<ul>
+<li><span style="color: #008000;"><strong>Barrera de luz:</strong></span>&nbsp;están compuestas de dos partes, el componente que emite el haz de luz y el que lo recibe están situados uno en frente del otro. Se establece un área de detección donde el objeto a detectar es reconocido cuando <span style="color: #008000;"><strong>interrumpe</strong> <strong>el haz de luz</strong></span>. Debido a que el modo de operación de esta clase de sensores se basa en la interrupción del haz de luz, la detección no se ve afectada por el color, la textura o el brillo del objeto a detectar. Estos sensores operan de una manera precisa cuando el emisor y el receptor se encuentran alineados.</li>
+</ul>
+<p style="padding-left: 30px;"><img src="../content/resources/Barrera_de_luz.jpg" alt="" width="251" height="116" style="display: block; margin-left: auto; margin-right: auto;"></p>
+<ul>
+<li><span style="color: #008000;"><strong>Reflexión sobre espejo:</strong> </span>tienen el componente emisor y el componente receptor en un solo cuerpo, lo que lo hace mucho más sencillo de instalar que las de barrera de luz. El haz de luz se establece mediante la utilización de un <span style="color: #008000;"><strong>reflector <a href="#t4ee9a7a6-979c-18a1-9995-3e837c8d9a3a" id="link4ee9a7a6-979c-18a1-9995-3e837c8d9a3a" class="exe-tooltip definition-tt">catadióptrico</a></strong></span>. El objeto es detectado cuando el haz formado entre el componente emisor, el reflector y el componente receptor es interrumpido. Debido a esto, la detección no es afectada por el color del mismo.</li>
+</ul>
+<p style="padding-left: 30px;"><img src="../content/resources/Reflectivo.jpg" alt="" width="251" height="116" style="display: block; margin-left: auto; margin-right: auto;"></p>
+<ul>
+<li><span style="color: #008000;"><strong>Reflexión sobre objeto:</strong></span> la luz infrarroja viaja en línea recta, en el momento en que un objeto se interpone el haz de luz rebota contra este y cambia de dirección, permitiendo que la luz sea enviada al receptor y el elemento sea detectado. Un objeto de color negro no es detectado ya que absorbe toda la luz y el sensor no experimenta cambios. Hay dos tipos de fotocélulas de reflexión sobre objeto, las de reflexión difusa y las de reflexión definida:
+<ul>
+<li><span style="color: #008000;"><strong>Reflexión difusa:</strong></span> el emisor lanza un haz de luz; los rayos del haz se pierden en el espacio si no hay objeto, pero cuando hay presencia de objeto, la superficie de este produce una reflexión difusa de la luz (los rayos salen sin una trayectoria determinada), parte de la cual incide sobre el receptor y se cambia así la señal de salida de la fotocélula.</li>
+<li><span style="color: #008000;"><strong>Reflexión definida:</strong></span> la reflexión en la superficie del objeto a detectar por las fotocélulas de reflexión definida normalmente es también de carácter difuso, como en los sensores de reflexión difusa. La diferencia está en que en las fotocélulas de reflexión definida la fuente de luz está a una distancia mayor que la distancia focal, por lo que el haz converge a un punto del eje óptico.</li>
+</ul>
+</li>
+</ul>
+<p style="padding-left: 30px;"><img src="../content/resources/Difuso.jpg" alt="" width="250" height="237" style="display: block; margin-left: auto; margin-right: auto;"></p>
+<h2>Sensor de ultrasonidos</h2>
+<p>Utiliza ondas acústicas de alta frecuencia (para que sean inaudibles por los humanos) y mide el tiempo que tarda la onda en regresar para calcular al distancia a un objeto. Consta de dos partes: un <span style="color: #008000;"><strong>altavoz emisor</strong></span> (que emite la señal) y un <span style="color: #008000;"><strong>micrófono receptor</strong></span> (que recibe al señal si ésta rebota sobre algún obstáculo cercano).</p>
+<p><img src="../content/resources/sensor-ultrasonidos-hc-sr04.jpg" alt="" width="300" height="300" style="display: block; margin-left: auto; margin-right: auto;">Sus principales ventajas frente a los sensores ópticos son:</p>
+<ul>
+<li><span style="color: #008000;"><strong>Detección de objetos transparentes:</strong></span> dado que las ondas ultrasónicas pueden reflejarse en una superficie de vidrio o líquido, y retornar al cabezal, incluso los objetos transparentes pueden ser detectados.</li>
+<li><span style="color: #008000;"><strong>Resistencia a niebla y suciedad:</strong></span> la detección no se ve afectada por la acumulación de polvo o suciedad.</li>
+<li><span style="color: #008000;"><strong>Detección de objetos de forma compleja:</strong></span> la detección de presencia es estable, incluso para objetos tales como bandejas de malla o resortes, que pueden verse atravesados por los rayos infrarrojos a través de sus orificios.</li>
+</ul>
+</div>
+<div id="t4ee9a7a6-979c-18a1-9995-3e837c8d9a3a" class="exe-tooltip-text">
+<p>Elemento que refleja la luz de vuelta hacia la fuente, no importando el ángulo de incidencia. Este comportamiento no equivale al de un espejo, ya que este último únicamente refleja los rayos de luz en la dirección de incidencia cuando ésta es perpendicular a la superficie (el ángulo de incidencia es 0).<img src="../content/resources/catadioptrico.png" alt="" width="249" height="217"></p>
+</div>
+<h1><span style="color: #008000;">Luminosidad</span></h1>
+<div class="exe-fx exe-paginated">
+<h2>Fotodiodo</h2>
+<p>Un&nbsp;fotodiodo&nbsp;es un&nbsp;semiconductor&nbsp;construido con una&nbsp;<span style="color: #008000;"><strong>unión PN</strong></span>, sensible a la incidencia de la&nbsp;luz visible&nbsp;o&nbsp;infrarroja.</p>
+<table border="0" style="width: 500px; margin-left: auto; margin-right: auto;">
+<tbody>
+<tr>
+<td style="width: 50%; text-align: center;"><img src="../content/resources/Fotodiode.jpg" alt="" width="300" height="229" style="display: block; margin-left: auto; margin-right: auto;"></td>
+<td style="width: 50%;"><img src="../content/resources/2560px-Photo-diode.svg.png" width="151" height="101" style="display: block; margin-left: auto; margin-right: auto;"></td>
+</tr>
+</tbody>
+</table>
+<p>Para que su funcionamiento sea correcto <span style="color: #008000;"><strong>se polariza inversamente,</strong></span> con lo que se producirá una cierta circulación de corriente solo&nbsp;<span style="color: #008000;"><strong>cuando sea excitado por la luz</strong></span>. Debido a su construcción, los fotodiodos se comportan como&nbsp;células fotovoltaicas, es decir, iluminados en ausencia de una fuente exterior de energía generan una corriente muy pequeña con el positivo en el&nbsp;ánodo&nbsp;y el negativo en el&nbsp;cátodo.</p>
+<p>Los fotodiodos se utilizan en sensores científicos e industriales para medir la intensidad de la luz, ya sea por sí misma o como medida de alguna otra propiedad que la interfiera (densidad del humo, por ejemplo).</p>
+<h2>Fotorresistencia (LDR)</h2>
+<p>Es un&nbsp;componente electrónico&nbsp;cuya&nbsp;<span style="color: #008000;"><strong>resistencia</strong></span>&nbsp;se modifica (<span style="color: #008000;"><strong>normalmente disminuye</strong></span>) con el aumento de intensidad de&nbsp;luz&nbsp;incidente.​ Puede también ser llamado fotoconductor, célula fotoeléctrica o resistor dependiente de la luz, cuyas siglas, LDR, se originan de su nombre en inglés&nbsp;light-dependent resistor.</p>
+<p>Su cuerpo está formado por una célula fotorreceptora y dos patillas:</p>
+<p><img src="../content/resources/LDR-5528-01.jpg" width="268" height="188" style="display: block; margin-left: auto; margin-right: auto;"></p>
+<p>Su símbolo eléctrico es el siguiente:</p>
+<p><img src="../content/resources/2880px-Light-dependent_resistor_schematic_symbol.svg.png" alt="" width="300" height="100" style="display: block; margin-left: auto; margin-right: auto;"></p>
+<h2>Fototransistor</h2>
+<p>Es un transistor que permite el paso de corriente del colector al emisor, cuando recibe luz en su base.</p>
+<p>En el fototransistor, <span style="color: #008000;"><strong>la luz actúa como corriente de base</strong></span>. Las patillas que se usan son el colector y el emisor, por lo que es habitual encontrarlo encapsulado solo con esos dos terminales, <span style="color: #008000;"><strong>sin terminal de base</strong></span>, aunque también pueden encontrarse con el terminal de base accesible por si se quiere utilizar también como transistor convencional.&nbsp;</p>
+<p><img src="../content/resources/fototrans.png" alt="" width="350" height="248" style="display: block; margin-left: auto; margin-right: auto;"></p>
+<p>Cuando utilizamos uno de tres patillas como fototransistor, normalmente se deja la base sin conectar.</p>
+<p>Su símbolo eléctrico es este:</p>
+<p><img src="../content/resources/Phototransistor.symbol.npn.svg.png" width="200" height="200" style="display: block; margin-left: auto; margin-right: auto;"></p>
+</div>
+<h1><span style="color: #008000;">Temperatura</span></h1>
+<div class="exe-fx exe-paginated">
+<h2>Termistor (NTC, PTC)</h2>
+<p>Un&nbsp;termistor&nbsp;es un tipo de&nbsp;<span style="color: #008000;"><strong>resistencia</strong></span>&nbsp;cuyo valor varía en función de la&nbsp;temperatura&nbsp;de una forma más acusada que una resistencia común. Su funcionamiento se basa en la <span style="color: #008000;"><strong>variación de la&nbsp;resistividad&nbsp;que presenta un&nbsp;semiconductor&nbsp;con la temperatura</strong></span>.</p>
+<p>Existen dos tipos fundamentales de termistores: NTC y PTC.</p>
+<ul>
+<li><strong><span style="color: #008000;">NTC:&nbsp;</span></strong>tienen un&nbsp;<span style="color: #008000;"><strong>coeficiente de temperatura&nbsp;negativo</strong></span>&nbsp;(en inglés&nbsp;Negative Temperature Coefficient&nbsp;o&nbsp;<span style="color: #008000;"><strong>NTC</strong></span>). Estos termistores&nbsp;<span style="color: #008000;"><strong>disminuyen su resistencia a medida que aumenta la temperatura</strong></span>.</li>
+<li><span style="color: #008000;"><strong>PTC:</strong></span> tienen un&nbsp;<span style="color: #008000;"><strong>coeficiente de temperatura positivo</strong></span>&nbsp;(en inglés&nbsp;Positive Temperature Coefficient&nbsp;o&nbsp;<span style="color: #008000;"><strong>PTC</strong></span>). Estos <span style="color: #008000;"><strong>incrementan su resistencia a medida que aumenta la temperatura.</strong></span></li>
+</ul>
+<p>Aquí puedes ver sus símbolos eléctricos y cómo varían su resistencia con la temperatura cada uno de los dos tipos:</p>
+<p><img src="../content/resources/termistores.jpg" width="801" height="231" style="display: block; margin-left: auto; margin-right: auto;"></p>
+<h2>Termopar</h2>
+<p>Un&nbsp;<span style="color: #008000;"><strong>termopar</strong></span>&nbsp;es un&nbsp;transductor&nbsp;formado por la <span style="color: #008000;"><strong>unión de dos&nbsp;metales&nbsp;distintos</strong></span> que produce una&nbsp;<span style="color: #008000;"><strong>diferencia de potencial&nbsp;</strong></span>muy pequeña (del orden de los milivoltios) que es <span style="color: #008000;"><strong>función de la diferencia de&nbsp;temperatura</strong></span>&nbsp;entre uno de los extremos (denominado "punto caliente" o "de medida") y el otro (llamado "punto frío" o "de referencia")</p>
+<p>Su funcionamiento se basa en el fenómeno físico llamado "efecto Seebeck": si se unen dos metales por un extremo y se calienta la unión, se produce una diferencia de potencial entre los extremos libres que es proporcional a la diferencia de temperaturas.</p>
+<p>Normalmente los termopares industriales están compuestos por un tubo de&nbsp;acero inoxidable&nbsp;u otro material. En un extremo del tubo está la unión, y en el otro el terminal eléctrico de los cables, protegido dentro de una caja redonda de aluminio (cabezal).</p>
+<p><img src="../content/resources/Termopar_PROTHERM.jpg" alt="" width="401" height="224" style="display: block; margin-left: auto; margin-right: auto;"></p>
+<p>En&nbsp;instrumentación industrial, los termopares son usados como&nbsp;sensores de temperatura. Son económicos, intercambiables, tienen conectores estándar y son capaces de medir un amplio rango de temperaturas. Su principal limitación está en la exactitud, pues es fácil obtener errores del sistema cuando se trabaja con precisiones inferiores a un&nbsp;grado Celsius.</p>
+<p>A veces se conecta un grupo de termopares en serie para sumar sus voltajes y obtener una mayor respuesta. Este motaje recibe el nombre de&nbsp;<span style="color: #008000;"><strong>termopila</strong></span>.&nbsp;</p>
+<h2>Detector de temperatura resistivo (RTD)</h2>
+<p>Un <span style="color: #008000;"><strong>RTD</strong></span>&nbsp;(del inglés:&nbsp;resistance temperature detector) es un&nbsp;<span style="color: #008000;"><strong>detector de temperatura resistivo</strong></span>, es decir, un sensor de temperatura basado en la variación de la resistencia de un conductor con la temperatura.&nbsp; En ese sentido, sería como un termistor PTC (pues aumenta su resistencia con la temperatura), pero existen algunas diferencias importantes:</p>
+<ul>
+<li>La <span style="color: #008000;"><strong>variación</strong></span> de la resistencia con la temperatura de un RTD es prácticamente <span style="color: #008000;"><strong>lineal</strong></span>, mientras que en una PTC la curva de variación no es recta.</li>
+<li>Los RTD pueden medir temperaturas de <span style="color: #008000;"><strong>hasta 600 ºC</strong></span>, mientras que los termistores no suelen pasar de unos <span style="color: #008000;"><strong>130 ºC</strong></span>.</li>
+<li>Los RTD suelen ser <span style="color: #008000;"><strong>más caros</strong></span> que los termistores convencionales (aunque hay algunos termistores especiales, aptos para mayores rangos de temperaturas, que terminan siendo más caros que las RTD)</li>
+<li>Si bien los mejores RTD presentan una <span style="color: #008000;"><strong>precisión</strong></span> similar a la de los termistores, los RTD aumentan la resistencia del sistema. El uso de cables largos puede alterar las lecturas, disminuyendo la precisión de los RTD.</li>
+</ul>
+<p>El símbolo eléctrico de un RTD es parecido al de un termistor, indicando una variación lineal con&nbsp;coeficiente de temperatura&nbsp;positivo:</p>
+<p><img src="../content/resources/rtd-simb.png" width="200" height="117" style="display: block; margin-left: auto; margin-right: auto;"></p>
+</div>
+<h1><span style="color: #008000;">Humedad</span></h1>
+<div class="exe-fx exe-paginated">
+<h2>Detector de humedad del suelo</h2>
+<p>Miden la cantidad de humedad que hay en un terreno, por lo que son ampliamente utilizados en sistemas de riego automático que deben mantener la humedad en un rango determinado dependiendo del cultivo.&nbsp;</p>
+<p><img src="../content/resources/sensorHumedadSuelo.png" alt="" width="250" height="283" style="display: block; margin-left: auto; margin-right: auto;"></p>
+<p>Para medir la humedad del suelo, detectan cambios en las propiedades eléctricas del terreno, que varían sensiblemente con la humedad. Las técnicas más empleadas son estas:</p>
+<ul>
+<li><span style="color: #008000;"><strong>Técnica de sensor de resistividad del suelo:</strong></span> mientras menos humedad esté presente en un suelo, su resistencia eléctrica aumenta, por ello este tipo de dispositivos son muy prácticos a la hora de determinar la cantidad de agua que hace falta aplicar en un suelo determinado o un área en específico. Se utilizan unos sensores entre los que se aplica un voltaje y se mide la corriente que circula entre ellos, obteniéndose un valor inversamente proporcional a la resistividad del terreno (ley de Ohm).</li>
+<li><span style="color: #008000;"><strong>Técnica de reflectometría en el dominio del tiempo:</strong></span> se basa en la relación entre las propiedades dieléctricas del suelo y su contenido de agua, debido a la diferencia entre la constante dieléctrica del suelo seco (≈2.9) y la del agua pura (≈81). Se mide el tiempo de ida y vuelta de un pulso electromagnético que se propaga a lo largo de una guía, en forma de sonda insertada en el suelo. La velocidad del pulso es inversamente proporcional al contenido de humedad del suelo.</li>
+<li><span style="color: #008000;"><strong>Técnica de reflectometría en el dominio de la frecuencia (método capacitivo):</strong></span>&nbsp;esta técnica considera al suelo como el dieléctrico de un condensador, la constante dieléctrica del suelo varía en función de su contenido en agua, variando la capacidad del condensador. La humedad se puede calcular midiendo esta capacidad y se puede hacer de dos formas:
+<ul>
+<li>Midiendo el tiempo de carga del condensador.</li>
+<li>Probando diferentes frecuencias hasta encontrar la frecuencia de resonancia del circuito.</li>
+</ul>
+</li>
+</ul>
+<h2>Detector de temperatura ambiente y humedad relativa</h2>
+<p>Estos dispositivos, también llamados <span style="color: #008000;"><strong>termohigrómetros</strong></span>, se utilizan para medir la temperatura y la humedad del aire de un determinado ambiente. Usan la&nbsp;temperatura de condensación&nbsp;(el&nbsp;punto de rocío), o cambios en la&nbsp;capacitancia&nbsp;o en la&nbsp;resistencia eléctrica&nbsp;para medir las diferencias de humedad.</p>
+<p><img src="../content/resources/dht11.png" alt="" width="400" height="367" style="display: block; margin-left: auto; margin-right: auto;"></p>
+</div>
+<h1><span style="color: #008000;">Posición lineal y angular</span></h1>
+<div class="exe-fx exe-paginated">
+<h2>Potenciómetro</h2>
+<p>Un potenciómetro es un dispositivo electrónico compuesto por una resistencia interna y un cursor móvil. Tiene tres terminales en total, los de los extremos de la resistencia interna y otro más conectado al cursor móvil.</p>
+<p>Entre los terminales de los extremos se establece una diferencia de potencial y, entre cada uno de ellos y el terminal del cursor móvil se obtiene una fracción de esa diferencia de potencial. Se utiliza, por lo tanto, como divisor de tensión o voltaje.</p>
+<p>Como el voltaje obtenido entre un extremo y el cursor va a ser proporcional a la <span style="color: #008000;"><strong>posición</strong></span> de este último, podemos usar el potenciómetro como un detector de posición. Una manera típica de utilizarlo consiste en acoplar el potenciómetro a un eje roscado, por lo que el giro del eje fijará la posición del elemento móvil, cuya posición se desea conocer:</p>
+<p><img src="../content/resources/potenciometro.jpg" alt="" width="255" height="312" style="display: block; margin-left: auto; margin-right: auto;"></p>
+<h2>Codificador rotativo o "encoder"</h2>
+<p>Los <span style="color: #008000;"><strong>encoders</strong></span> transforman la posición angular de un eje en una señal electrónica. Para generar esta señal, utilizan diferentes tipos de tecnologías, como mecánica, magnética, óptica y de resistencia. La óptica es la más común.</p>
+<p><img src="../content/resources/Encoders-opticos.jpg" alt="" width="366" height="302" style="display: block; margin-left: auto; margin-right: auto;"></p>
+<p>En detección óptica, el encoder está compuesto por una&nbsp;fuente emisora de luz (usualmente un LED), un disco giratorio y una detector de luz (usualmente un fototransistor). El disco está montado sobre un&nbsp;eje giratorio&nbsp;y dispone de&nbsp;secciones <span style="color: #008000;"><strong>opacas</strong></span> y <span style="color: #008000;"><strong>transparentes</strong></span>&nbsp;sobre la cara del disco. La luz que emite la fuente es recibida por el&nbsp;fotodetector&nbsp;o interrumpida por el patrón de secciones opacas produciendo como resultado&nbsp;señales de pulso (luz: 1, oscuridad: 0) que pueden ser leídas por un dispositivo controlador para determinar el&nbsp;ángulo exacto del eje.</p>
+<p>Existen dos tipos de encoders: absolutos y relativos.</p>
+<ul>
+<li><span style="color: #008000;"><strong>Encoders absolutos:</strong></span> los códigos perforados en el disco son únicos para cada ángulo del mismo. De esa forma, para una combinación dada, podemos saber el ángulo exacto en el que se encuentra el encoder. Podemos usar cualquier código binario, aunque se suele usar el código Gray porque sólo cambia un bit entre cada una de sus posiciones consecutivas, evitando posibles imprecisiones.&nbsp;Si necesitamos mucha precisión, utilizar un encoder absoluto requeriría muchos "bits", por lo que el disco debería ser muy grande. Una posible solución es usar los encoders relativos.</li>
+</ul>
+<p style="padding-left: 30px;"><img src="../content/resources/Binary_encoder.gif" alt="" width="400" height="231" style="display: block; margin-left: auto; margin-right: auto;"></p>
+<ul>
+<li><span style="color: #008000;"><strong>Encoders relativos:</strong> </span>en estos el disco es mucho más pequeño y está marcado con una gran cantidad de líneas en forma radial (como los radios de una rueda). Se genera un pulso eléctrico cada vez que una de las líneas pasa a través del haz de luz. Un circuito de control electrónico (circuito secuencial contador) <span style="color: #008000;"><strong>cuenta los pulsos</strong></span> para determinar el ángulo que se ha girado. No se puede saber la posición absoluta, pero sí cuánto se ha girado desde la última vez que se midió la posición.</li>
+</ul>
+<h2>Sensor Hall</h2>
+<p>Un <span style="color: #008000;"><strong>sensor de efecto Hall</strong></span> aprovecha, como su nombre indica, el <span style="color: #008000;"><strong>efecto Hall</strong></span>, que puede producirse en un metal o en un semiconductor. Este efecto se basa en la interacción básica entre un electrón y un campo magnético. Cualquier objeto cargado eléctricamente que se mueva perpendicularmente a un campo magnético experimenta la&nbsp;<span style="color: #008000;"><strong>fuerza de Lorentz.</strong></span> Esta fuerza es la responsable de producir la señal eléctrica que se mediría a través del cuerpo del dispositivo.</p>
+<p>Esta “tensión Hall”, cuando se amplifica de manera adecuada, la puede leer un&nbsp;microcontrolador. Los sensores de efecto Hall modernos normalmente incluyen un&nbsp;amplificador&nbsp;y otros componentes electrónicos en el paquete de la unidad.</p>
+<p>Según la manera en que se configuren, estos sensores pueden emitir una&nbsp;señal <span style="color: #008000;"><strong>digital</strong></span> o <span style="color: #008000;"><strong>analógica</strong></span>.</p>
+</div>
+<h1><span style="color: #008000;">Velocidad</span></h1>
+<div class="exe-fx exe-paginated">
+<h2>&nbsp;Tacómetro</h2>
+<p>El tacómetro (del griego táchos, "rapidez" y metron, "medida"), también llamado cuentarrevoluciones o cuentavueltas, es un dispositivo que mide la velocidad de giro de un eje, normalmente expresada en revoluciones por minuto (RPM).</p>
+<p><img src="../content/resources/tacometro.png" width="200" height="171" style="display: block; margin-left: auto; margin-right: auto;"></p>
+<p>Un tacómetro básico está formado por un dial, una aguja para indicar la lectura en tiempo real y unas marcas para identificar los niveles seguros de velocidad.&nbsp;Los tacómetros modernos suelen ser digitales, proporcionando mayor precisión.</p>
+<p><span style="color: #008000;"><strong>Tipos de tacómetros</strong></span></p>
+<ul>
+<li>Tacómetro <span style="color: #008000;"><strong>de contacto:</strong></span> mide directamente al estar en contacto con el eje giratorio</li>
+<li>Tacómetro <span style="color: #008000;"><strong>sin contacto:</strong> </span>utiliza métodos ópticos (láser o infrarrojos)</li>
+<li>Tacómetro <span style="color: #008000;"><strong>de medición de tiempo:</strong> </span>calcula las RPM midiendo el tiempo entre pulsos</li>
+<li>Tacómetro <span style="color: #008000;"><strong>de medición de frecuencia:</strong></span> analiza la frecuencia de las señales generadas</li>
+</ul>
+<p><span style="color: #008000;"><strong>Aplicaciones</strong></span></p>
+<ul>
+<li>Instrumentación en vehículos</li>
+<li>Control de velocidad en motores industriales</li>
+<li>Mantenimiento preventivo de máquinas rotativas</li>
+<li>Mediciones en ventiladores, bombas y compresores</li>
+</ul>
+<h2>Dinamo tacométrica</h2>
+<p>La&nbsp;dinamo tacométrica&nbsp;(también llamada tacodinamo) es un sensor eléctrico rotativo que funciona como un pequeño generador. Es un caso particular de tecómetro muy utilizado en control automático. Se acopla al eje de un motor o máquina rotativa para medir la velocidad angular (número de revoluciones por minuto, RPM) y convertirla en una señal eléctrica proporcional, normalmente una tensión continua.</p>
+<p>Su funcionamiento se basa en el principio de la&nbsp;inducción electromagnética: cuando una bobina gira dentro de un campo magnético (producido por imanes permanentes), se genera una tensión en los extremos de la bobina. Esta tensión es proporcional a la velocidad de giro del eje.</p>
+<p><span style="color: #008000;"><strong>Características Principales</strong></span></p>
+<ul>
+<li><span style="color: #008000;"><strong>Salida lineal:</strong> </span>La tensión generada es proporcional a la velocidad de giro (V<sub>salida&nbsp;</sub>= K⋅ω), donde&nbsp;K es la constante de la dinamo (por ejemplo, 10 mV/rpm).</li>
+<li><span style="color: #008000;"><strong>Sentido de giro:</strong></span> La polaridad de la tensión indica el sentido de rotación.</li>
+<li><span style="color: #008000;"><strong>Alta precisión:</strong></span> Especialmente en modelos de calidad, con errores de calibración entre ±1% y ±2%.</li>
+<li><span style="color: #008000;"><strong>Elevada fiabilidad y estabilidad:</strong></span> Son robustas y duraderas, con una vida útil que puede superar los 8 años en aplicaciones industriales.</li>
+<li><span style="color: #008000;"><strong>Buen nivel de señal:</strong> </span>Proporcionan una señal eléctrica fácilmente procesable por sistemas de control o instrumentación.</li>
+</ul>
+<p><span style="color: #008000;"><strong>Ventajas</strong></span></p>
+<ul>
+<li>Sencillez y robustez mecánica.</li>
+<li>Medición directa y precisa de la velocidad angular.</li>
+<li>Fácil integración en sistemas de control automático (realimentación).</li>
+<li>Permiten detectar tanto la magnitud como el sentido de giro.</li>
+</ul>
+<p><span style="color: #008000;"><strong>Aplicaciones</strong></span></p>
+<ul>
+<li>Regulación y control de la velocidad en motores eléctricos industriales.</li>
+<li>Sistemas de retroalimentación (feedback) en la automatización.</li>
+<li>Medida de velocidad en anemómetros y otros instrumentos rotativos.</li>
+<li>Control de procesos industriales donde es crítico mantener la velocidad constante (por ejemplo, industria textil, papelera, laminación).</li>
+</ul>
+<h2>Giróscopo</h2>
+<p>El giróscopo o giroscopio (del griego skopeo, "ver" y giros, "giro") es un dispositivo mecánico que sirve para medir, mantener o cambiar la orientación en el espacio.</p>
+<p>Está formado esencialmente por un cuerpo con simetría de rotación que gira alrededor del eje de dicha simetría. Cuando está en rotación, el giróscopo presenta dos propiedades fundamentales:</p>
+<ul>
+<li><span style="color: #008000;"><strong>Inercia giroscópica</strong></span>&nbsp;o "rigidez en el espacio": tendencia a mantener constante la orientación de su eje de rotación</li>
+<li><span style="color: #008000;"><strong>Precesión:</strong> </span>respuesta perpendicular a una fuerza externa (cuando se le aplica una fuerza, el giróscopo responde con un movimiento perpendicular a la dirección de la fuerza)</li>
+</ul>
+<p><span style="color: #008000;"><strong>Funcionamiento</strong></span><br>Cuando un giróscopo gira a alta velocidad, conserva la orientación de su eje de rotación a pesar de las fuerzas externas que actúen sobre él. Si se le aplica una fuerza para cambiar su orientación, el giróscopo responde con un movimiento de precesión, girando en una dirección perpendicular a la fuerza aplicada.</p>
+<p><span style="color: #008000;"><strong>Aplicaciones</strong></span></p>
+<ul>
+<li>Sistemas de navegación inercial en aviones y barcos</li>
+<li>Estabilizadores de imagen en cámaras</li>
+<li>Sensores de orientación en smartphones y drones</li>
+<li>Control de estabilidad en vehículos</li>
+</ul>
+</div>
+<h1><span style="color: #008000;">Fuerza y presión</span></h1>
+<div class="exe-fx exe-paginated">
+<h2>Galgas extensiométricas</h2>
+<p>Las galgas extensiométricas se basan en la variación de la resistencia eléctrica sufrida por un con-<br>ductor al deformarse cuando se le aplica una fuerza. En su forma más común, la galga consiste en una lámina metálica muy fina dispuesta en forma de rejilla, fijada sobre una base flexible y aislante. Esta configuración permite maximizar la cantidad de material sensible a la tensión a lo largo del eje principal</p>
+<p><img src="../content/resources/galga.jpg" alt="" width="355" height="212" style="display: block; margin-left: auto; margin-right: auto;"><span style="color: #008000;"><strong>Funcionamiento</strong></span></p>
+<ol>
+<li>La galga se adhiere firmemente al objeto cuya deformación se desea medir mediante un adhesivo especial</li>
+<li>Cuando el objeto se deforma, la lámina metálica también lo hace</li>
+<li>Esta deformación provoca un cambio en la resistencia eléctrica de la lámina</li>
+<li>La variación de resistencia se mide mediante un circuito electrónico, generalmente un puente de Wheatstone</li>
+<li>El cambio de resistencia es proporcional a la deformación del objeto</li>
+</ol>
+<p><span style="color: #008000;"><strong>Aplicaciones</strong></span></p>
+<ul>
+<li>Medición de tensiones en estructuras metálicas y de hormigón</li>
+<li>Sensores de presión y fuerza</li>
+<li>Células de carga para básculas y sistemas de pesaje</li>
+<li>Análisis de esfuerzos en componentes mecánicos</li>
+<li>Monitorización estructural en ingeniería civil</li>
+</ul>
+<h2>Sensor piezoeléctrico</h2>
+<p>Los sensores piezoeléctricos se basan en el fenómeno de la <span style="color: #008000;"><strong>piezoelectricidad</strong></span>, descubierto en 1880. La piezoelectricidad (del griego piezo, "estrujar o apretar") es la propiedad que tienen ciertos materiales cristalinos de generar un voltaje eléctrico cuando se les somete a tensiones mecánicas.</p>
+<p><img src="../content/resources/SchemaPiezo.gif" alt="" width="256" height="256" style="display: block; margin-left: auto; margin-right: auto;"></p>
+<p>Lo más interesante es que <span style="color: #008000;"><strong>el efecto es reversible</strong></span>: estos materiales también se deforman cuando se les aplica un campo eléctrico, lo que <span style="color: #008000;"><strong>permite utilizarlos tanto como sensores como actuadores</strong></span>.</p>
+<p><span style="color: #008000;"><strong>Funcionamiento</strong></span></p>
+<ol>
+<li>Al aplicar una fuerza sobre el material piezoeléctrico, los centros de gravedad de las cargas eléctricas se desplazan</li>
+<li>Esta disociación genera dipolos elementales en la masa del material</li>
+<li>Como resultado, aparecen cargas de signo opuesto en las superficies enfrentadas</li>
+<li>Estas cargas producen una diferencia de potencial (voltaje) medible</li>
+</ol>
+<p><span style="color: #008000;"><strong>Materiales piezoeléctricos</strong></span></p>
+<ul>
+<li>Naturales: cuarzo, turmalina</li>
+<li>Ferroeléctricos: tantalato de litio, nitrato de litio, cerámicas polarizadas</li>
+</ul>
+<p><span style="color: #008000;"><strong>Aplicaciones</strong></span></p>
+<ul>
+<li>Micrófonos</li>
+<li>Sensores de impacto y vibración</li>
+<li>Generadores de ultrasonido</li>
+<li>Encendedores (chispa)</li>
+<li>Sensores de rotación para sistemas de control de estabilidad</li>
+</ul>
+<h2>Tubo Bourdon</h2>
+<p>El <span style="color: #008000;"><strong>manómetro o tubo de Bourdon</strong> </span>es un dispositivo desarrollado y patentado en 1849 por el ingeniero francés Eugène Bourdon, diseñado específicamente para medir <span style="color: #008000;"><strong>presión</strong></span>.</p>
+<p>En su forma más simple, consiste en un tubo metálico aplanado que forma una sección circular de aproximadamente 270°. Un extremo del tubo está sellado y libre para desplazarse, mientras que el otro extremo está fijo y conectado a la cámara o conducto donde se debe medir la presión.</p>
+<p><span style="color: #008000;"><strong>Funcionamiento</strong></span></p>
+<ul>
+<li>Cuando la presión en el sistema aumenta, el tubo tiende a desenrollarse</li>
+<li>Cuando la presión disminuye, el tubo tiende a curvarse más</li>
+<li>Este movimiento se transmite mediante una conexión mecánica a un <span style="color: #008000;"><strong>sistema de engranajes</strong></span></li>
+<li>Los engranajes están conectados a una <span style="color: #008000;"><strong>aguja indicadora</strong></span> que señala el valor de presión en una <span style="color: #008000;"><strong>escala calibrada</strong></span></li>
+</ul>
+<p><img src="../content/resources/bourdon.png" alt="" width="850" height="330" style="display: block; margin-left: auto; margin-right: auto;"></p>
+<p><span style="color: #008000;"><strong>Aplicaciones</strong></span></p>
+<ul>
+<li>Manómetros industriales</li>
+<li>Medición de presión en sistemas hidráulicos y neumáticos</li>
+<li>Instrumentación para calderas y compresores</li>
+<li>Equipos médicos (tensiómetros mecánicos)</li>
+</ul>
+</div>
+<h1><span style="color: #008000;">Movimiento</span></h1>
+<div class="exe-fx exe-paginated">
+<h2>Radar</h2>
+<p>RADAR es un acrónimo de Radio (Aim) Detecting And Ranging, que podría traducirse como "detección y medición de distancia por radio". Se trata de un sistema que utiliza <span style="color: #008000;"><strong>pulsos de energía electromagnética</strong></span> para detectar objetos y determinar su <span style="color: #008000;"><strong>posición y velocidad</strong></span>.</p>
+<p>El principio del radar es similar al de la reflexión de ondas sonoras (eco), pero utilizando ondas electromagnéticas:</p>
+<ol>
+<li>El transmisor emite pulsos de energía electromagnética de radiofrecuencia (RF)</li>
+<li>Esta energía se propaga en el espacio</li>
+<li>Cuando encuentra un objeto, parte de la energía es <span style="color: #008000;"><strong>reflejada</strong></span> hacia la fuente</li>
+<li>Un receptor capta esta energía reflejada (llamada "eco")</li>
+<li>Analizando el <span style="color: #008000;"><strong>tiempo entre la emisión y la recepción</strong></span>, se puede determinar la distancia al objeto</li>
+</ol>
+<p><span style="color: #008000;"><strong>Aplicaciones</strong></span></p>
+<ul>
+<li>Control de tráfico aéreo</li>
+<li>Navegación marítima</li>
+<li>Meteorología (detección de precipitaciones)</li>
+<li>Sistemas de seguridad y vigilancia</li>
+<li>Control de velocidad en carreteras</li>
+</ul>
+<h2>Sensor de presencia por infrarrojos (PIR)</h2>
+<p>El sensor PIR (Passive Infrared - infrarrojo pasivo) es un dispositivo electrónico diseñado para detectar movimiento basándose en la medición de radiación infrarroja.</p>
+<p><span style="color: #008000;"><strong>Principio físico</strong></span><br>Todos los cuerpos, vivos o no, emiten una cierta cantidad de energía infrarroja, mayor cuanto más alta es su temperatura. Los dispositivos PIR son capaces de detectar cambios en los patrones de esta radiación infrarroja.</p>
+<p>El sensor PIR consta de:</p>
+<ul>
+<li>Un <span style="color: #008000;"><strong>elemento sensor piroeléctrico</strong></span> dividido en dos campos</li>
+<li>Un <span style="color: #008000;"><strong>circuito comparador</strong></span> que mide la <span style="color: #008000;"><strong>diferencia</strong></span> entre ambos campos</li>
+<li>Una <span style="color: #008000;"><strong>óptica</strong></span> especial (lente de Fresnel) que divide el espacio en zonas</li>
+</ul>
+<p>Cuando los dos campos reciben la misma cantidad de radiación, la señal eléctrica resultante es nula. Pero cuando un objeto en movimiento atraviesa el campo de visión, se genera una <span style="color: #008000;"><strong>diferencia en la radiación</strong></span> detectada por cada campo, produciendo una señal eléctrica que el circuito interpreta como movimiento.</p>
+<p><span style="color: #008000;"><strong>Aplicaciones</strong></span></p>
+<ul>
+<li>Sistemas de seguridad y alarmas</li>
+<li>Iluminación automática</li>
+<li>Ahorro energético en edificios</li>
+<li>Domótica (automatización del hogar)</li>
+<li>Juguetes y aplicaciones interactivas</li>
+</ul>
+</div></div></div></section></div>
+</div>
+</div>
+</article>
+</div></main><div class="nav-buttons">
+<a href="../html/32-el-controlador.html" title="Anterior" class="nav-button nav-button-left"><span>Anterior</span></a>
+<a href="../html/5-sistemas-informaticos-emergentes-ia-big-data-y-c.html" title="Siguiente" class="nav-button nav-button-right"><span>Siguiente</span></a>
+</div>
+<footer id="siteFooter"><div id="siteFooterContent"> <div id="packageLicense" class="cc cc-by-nc-sa"> <p> <span class="license-label">Licencia: </span><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="license">Creative Commons: Reconocimiento - no comercial - compartir igual 4.0</a></p>
+</div>
+</div></footer>
+</div>
+
+</body>
+</html>

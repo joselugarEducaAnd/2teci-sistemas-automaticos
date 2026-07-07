@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="es" id="exe-page-mrak340c-86xd27wpn">
+<head>
+<meta charset="utf-8">
+<meta name="generator" content="eXeLearning v4.0.1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="license" type="text/html" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+<title>3. Diseño de controladores. | Sistemas automáticos</title>
+<link rel="icon" type="image/x-icon" href="../libs/favicon.ico">
+<meta name="description" content="Sistemas automáticos. Tecnología e Ingeniería II.">
+<script>document.querySelector("html").classList.add("js");</script><script src="../libs/jquery/jquery.min.js"> </script><script src="../libs/common_i18n.js"> </script><script src="../libs/common.js"> </script><script src="../libs/exe_export.js"> </script><script src="../libs/bootstrap/bootstrap.bundle.min.js"> </script><link rel="stylesheet" href="../libs/bootstrap/bootstrap.min.css">
+<script src="../idevices/udl-content/udl-content.js"></script><link rel="stylesheet" href="../idevices/udl-content/udl-content.css">
+<script src="../libs/exe_effects/exe_effects.js"> </script>
+<link rel="stylesheet" href="../libs/exe_effects/exe_effects.css">
+<script src="../libs/exe_tooltips/exe_tooltips.js"> </script>
+<script src="../libs/exe_tooltips/jquery.qtip.min.js"> </script>
+<script src="../libs/exe_tooltips/imagesloaded.pkg.min.js"> </script>
+<link rel="stylesheet" href="../libs/exe_tooltips/jquery.qtip.min.css">
+<link rel="stylesheet" href="../content/css/base.css"><script src="../theme/style.js"> </script><link rel="stylesheet" href="../theme/style.css"><link rel="stylesheet" href="../theme/zzz-majuelo.css">
+<script src="../libs/exe_math/tex-mml-svg.js"> </script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX", "output/HTML-CSS"],
+    tex2jax: {
+ inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+ displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+ processEscapes: true
+    },
+    "HTML-CSS": { fonts: ["TeX"] }
+  });
+</script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+</script>
+<script type="text/javascript"
+   src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=default">
+</script>
+</head>
+<body class="exe-export exe-web-site">
+<script>document.body.className+=" js"</script>
+<div class="exe-content exe-export pre-js siteNav-hidden"><a href="#page-mrak340c-86xd27wpn" id="skipNav">Skip to content</a> <nav id="siteNav">
+<ul>
+<li> <a href="../index.html" class="main-node no-ch">Sistemas automáticos</a>
+</li>
+<li> <a href="../html/1-sistemas-automaticos-y-de-control.html" class="no-ch">1. Sistemas automáticos y de control</a>
+</li>
+<li> <a href="../html/2-sistemas-en-lazo-abierto-y-lazo-cerrado.html" class="no-ch">2. Sistemas en lazo abierto y lazo cerrado</a>
+</li>
+<li class="active"> <a href="../html/3-diseno-de-controladores.html" class="active daddy">3. Diseño de controladores.</a>
+<ul class="other-section">
+<li> <a href="../html/31-diagramas-funcionales-o-de-bloques.html" class="no-ch">3.1. Diagramas funcionales o de bloques</a>
+</li>
+<li> <a href="../html/32-el-controlador.html" class="no-ch">3.2. El controlador</a>
+</li>
+</ul>
+</li>
+<li> <a href="../html/4-componentes-de-un-sistema-de-control.html" class="no-ch">4. Componentes de un sistema de control</a>
+</li>
+<li> <a href="../html/5-sistemas-informaticos-emergentes-ia-big-data-y-c.html" class="no-ch">5. Sistemas informáticos emergentes: IA, big data y ciberseguridad</a>
+</li>
+</ul>
+</nav><main id="page-mrak340c-86xd27wpn" class="page"> 
+<header class="main-header">
+<div class="package-header"><p class="package-title">Sistemas automáticos</p></div>
+<div class="page-header"><h1 class="page-title">3. Diseño de controladores.</h1></div>
+</header><div id="page-content-page-mrak340c-86xd27wpn" class="page-content">
+<article id="block-mrak340d-5lcwan4nc" class="box">
+<header class="box-head no-icon">
+<h1 class="box-title">Especificaciones de diseño</h1>
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="idevice-mrak340d-np7tgyfou" class="idevice_node udl-content" data-idevice-path="../idevices/udl-content/" data-idevice-type="udl-content">
+<div class="exe-udlContent exe-udlContent-representation"><section class="exe-udlContent-block"><div class="exe-udlContent-content"><div class="exe-udlContent-content-main"><p>Cuando diseñamos un sistema de control hay <span style="color: #008000;"><strong>tres especificaciones básicas</strong></span> que debemos establecer:</p>
+<div class="exe-fx exe-tabs">
+<h2>Respuesta transitoria</h2>
+<p>Es la respuesta que da el sistema <span style="color: #008000;"><strong>cuando inicia su funcionamiento en los primeros instantes de tiempo</strong></span>. Como ya hemos comentado, la salida del sistema deberá seguir lo más fielmente posible a la señal de referencia. Esta señal de referencia puede modelarse matemáticamente mediante diversas<span style="color: #008000;"><strong> funciones ideales:</strong></span></p>
+<ul>
+<li><span style="color: #008000;"><strong>Función escalón:</strong></span> representa una <span style="color: #008000;"><strong>puesta en marcha brusca.</strong></span> Por ejemplo, al dar a un interruptor o al botón inicio.</li>
+<li><span style="color: #008000;"><strong>Función rampa:</strong></span> representa un <span style="color: #008000;"><strong>cambio gradual</strong> </span>del valor de la referencia. En concreto, sería una variación <span style="color: #008000;"><strong>lineal</strong></span>. Si se esperara una variación diferente, habría que utilizar funciones cuadráticas, cúbicas, etc.</li>
+<li><span style="color: #008000;"><strong>Función impulso unitario:</strong></span> sirve para modelar una <span style="color: #008000;"><strong>perturbación breve,</strong></span> como un <span style="color: #008000;"><strong>impacto</strong></span>. También llamada delta de Dirac. El área encerrada entre la función y el eje de tiempos es 1, de ahí el nombre de unitario.</li>
+</ul>
+<p>A continuación, se representan estas tres funciones básicas:</p>
+<p><img src="../content/resources/entradas.png" alt="" width="798" height="167" style="display: block; margin-left: auto; margin-right: auto;"></p>
+<p>La respuesta transitoria de un sistema real <span style="color: #008000;"><strong>nunca puede ser idéntica a la referencia</strong></span> que debe seguir, pues necesitaría reaccionar de forma instantánea, sin ningún tipo de retardo o inercia, lo que es imposible. El estudio de esta respuesta es complejo y queda fuera del alcance de bachillerato. Aquí simplemente vamos a exponer los dos tipos de respuesta transitoria que se pueden obtener al someter a un sistema a una <span style="color: #008000;"><strong>entrada en escalón:</strong></span></p>
+<p>Sistemas de primer orden: el sistema va subiendo poco a poco hasta acercarse a la referencia:</p>
+<p><img src="../content/resources/escalonprimerorden.png" width="400" height="192" style="display: block; margin-left: auto; margin-right: auto;"></p>
+<p>Otros sistemas de control: el sistema sube rápidamente pero se pasa, teniendo que volver y repitiendo varias oscilaciones hasta estabilizarse en el valor de referencia:</p>
+<p><img src="../content/resources/escalonsegundoorden.png" alt="" width="401" height="213" style="display: block; margin-left: auto; margin-right: auto;"></p>
+<h2>Error en régimen permanente</h2>
+<p>Se define como la <span style="color: #008000;"><strong>diferencia</strong></span> o discrepancia entre el <span style="color: #008000;"><strong>valor de referencia</strong> </span>y el <span style="color: #008000;"><strong>valor de la salida</strong></span> una vez alcanzado el equilibrio, es decir, cuando ha transcurrido un tiempo suficiente para que la respuesta transitoria haya variado.</p>
+<p>Este error, en un sistema en lazo cerrado, lo obtenemos a la salida del comparador. En un sistema de lazo abierto, no podemos conocerlo en tiempo real.</p>
+<p>Lo que queremos al regular el sistema es conseguir que el <span style="color: #008000;"><strong>error valga cero</strong></span>. En este momento la acción de control habrá llegado a su fin.&nbsp;En la realidad, hay sistemas en los que nunca vamos a obtener un error completamente nulo, por lo que definiremos un error máximo aceptable y, cuando lo hayamos alcanzado, ya podremos cesar la acción de control. Este error máximo aceptable es el <span style="color: #008000;"><strong>error en régimen permanente</strong></span>&nbsp;del sistema de control.</p>
+<h2>Estabilidad</h2>
+<p>Muchas veces, si queremos reducir el tiempo de respuesta, podemos llevar a la variable controlada a una variación de tipo oscilatorio en torno a un valor concreto, ya que sobre-reaccionamos. Si este fenómeno oscilatorio desaparece pasado un tiempo, el sistema será estable. Si no es así (si existe una oscilación mantenida de amplitud creciente), el sistema será<br>inestable. Estas dos posibilidades se ilustran en las siguientes imágenes:</p>
+<p><img src="../content/resources/estable-inestable.png" width="501" height="250" style="display: block; margin-left: auto; margin-right: auto;"></p>
+<p>Habría un tercer caso, en que la oscilación ni desaparece ni se amplifica, sino que se mantiene todo el tiempo igual. En ese caso diríamos que el sistema es <span style="color: #008000;"><strong>críticamente estable,</strong></span> aunque es un comportamiento que habitualmente tampoco es deseado.</p>
+<p>La estabilidad es <span style="color: #008000;"><strong>la especificación más importante</strong></span> que debe cumplirse entre los requerimientos a la hora de diseñar un sistema de control.&nbsp;Sin estabilidad, las otras dos especificaciones, respuesta transitoria y error en estado estable, son irrelevantes.</p>
+<p>El estudio de la estabilidad de los sistemas de control se realiza matemáticamente a partir de la <span style="color: #008000;"><strong>función de transferencia</strong></span> del sistema, pero queda fuera del alcance de este curso.</p>
+</div></div></div></section></div>
+</div>
+</div>
+</article><article id="block-mrak340d-n5pkhq82x" class="box">
+<header class="box-head no-icon">
+<h1 class="box-title">Función de transferencia</h1>
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="idevice-mrak340d-frd2tkwyn" class="idevice_node udl-content" data-idevice-path="../idevices/udl-content/" data-idevice-type="udl-content">
+<div class="exe-udlContent exe-udlContent-representation"><section class="exe-udlContent-block"><div class="exe-udlContent-content"><div class="exe-udlContent-content-main"><p>En los sistemas de regulación resulta fundamental conocer cuál va a ser su respuesta ante una entrada determinada. El problema es que, los sistemas físicos, evolucionan variando sus magnitudes con el tiempo, por lo que las ecuaciones matemáticas que utilizamos para modelarlos son <span style="color: #008000;"><strong>ecuaciones diferenciales</strong></span> o integrales. Muchas veces es prácticamente imposible resolver estas ecuaciones para obtener una relación que permita conocer en función del tiempo como va a responder el sistema ante un<br>estímulo determinado.</p>
+<p>Para unificar el tratamiento teórico de sistemas tan dispares como pueden ser un vehículo espacial, una central térmica, etc, se utilizan unas herramientas matemáticas que nos simplifican los cálculos. Una de esas herramientas se basa en reemplazar funciones de una variable real (tiempo, distancia...) por otras funciones que dependen de una <span style="color: #008000;"><strong>variable compleja (s = σ + ωj, donde \(j=\sqrt{-1}\)).</strong></span>&nbsp;Al hacer esta transformación, <a href="#t5a562a64-50b3-036e-82f6-3267a49885ab" id="link5a562a64-50b3-036e-82f6-3267a49885ab" class="exe-tooltip definition-tt">las derivadas y las integrales se convierten en polinomios</a>, por lo que las ecuaciones son mucho más fáciles de resolver. Esta herramienta se denomina <span style="color: #008000;"><strong>transformada de Laplace,</strong></span> y es básica en el diseño de sistemas de control, aunque queda fuera del alcance de este curso. Solo por si tienes curiosidad, te dejo la expresión matemática para calcular la transformada de Laplace de una función temporal f(t) cualquiera:</p>
+<table border="0" style="width: 0%; margin-left: auto; margin-right: auto;">
+<tbody>
+<tr>
+<td style="width: 100%;">\[\mathcal{L}[f(t)]=F(s)=\int_{0}^{\infty }e^{-st}f(t)dt\]</td>
+</tr>
+</tbody>
+</table>
+<p>Una vez conocido el comportamiento del sistema en el dominio complejo, se puede pasar de nuevo al dominio del tiempo usando la antitransformada de Laplace y de esta manera establecer cuál va a ser la respuesta real en cualquier situación.</p>
+<p><img src="../content/resources/dominio-temp-compl.png" width="800" height="119" style="display: block; margin-left: auto; margin-right: auto;">Según el método de Laplace, si son conocidas las relaciones reales entrada-salida de cada uno de los bloques, pueden deducirse otras relaciones entrada-salida para los mismos en el <span style="color: #008000;"><strong>dominio de Laplace</strong></span>, denominadas <span style="color: #008000;"><strong>funciones de transferencia (FDT)</strong></span>.</p>
+<p>Podemos definir la función de transferencia como la relación entre la salida de un sistema y su entrada, expresadas en el dominio de la variable compleja de Laplace. Por lo tanto, podemos establecer una definición matemática:</p>
+<table border="1" style="width: 80%; border-style: none; margin-left: auto; margin-right: auto;">
+<tbody>
+<tr>
+<td style="width: 100%; background-color: #ffe3c2; border-color: #db6600; border-style: solid; border-radius: 8px; -moz-border-radius: 8px; -webkit-border-radius: 8px; box-shadow: 5px 5px 5px gray; padding: 5px;">Entendemos por <span style="color: #008000;"><strong>función de transferencia, G(s),</strong></span> de un sistema o componente al cociente entre la <span style="color: #008000;"><strong>transformada de Laplace de la señal de salida C(s)</strong> </span>y la <span style="color: #008000;"><strong>transformada de Laplace de la señal de entrada R(s).</strong></span></td>
+</tr>
+</tbody>
+</table>
+<p>Así pues, la FDT será:</p>
+<table border="0" style="width: 0%; margin-left: auto; margin-right: auto;">
+<tbody>
+<tr>
+<td style="width: 100%;">\[G(s)=\frac{C(s)}{R(s)}\]</td>
+</tr>
+</tbody>
+</table>
+<p>Aunque definimos la FDT como cociente entre la salida y la entrada, <span style="color: #008000;"><strong>la FDT de un sistema depende únicamente de las propiedades físicas de los componentes del sistema,</strong></span> no de la señal de entrada aplicada.</p>
+<p>Si se conoce la función de transferencia de un sistema, G(s), es posible calcular la transformada de Laplace de la salida C(s) para cada entrada R(s):</p>
+<table border="0" style="width: 0%; margin-left: auto; margin-right: auto;">
+<tbody>
+<tr>
+<td style="width: 100%;">\[C(s)=G(s)·R(s)\]</td>
+</tr>
+</tbody>
+</table>
+<p>Una vez conocida C(s), sólo quedaría obtener la respuesta en el dominio temporal calculando la inversa de la transformada de Laplace:</p>
+<table border="0" style="width: 0%; margin-left: auto; margin-right: auto;">
+<tbody>
+<tr>
+<td style="width: 100%;">\[c(t)=\mathcal{L}^{-1}[C(s)]\]</td>
+</tr>
+</tbody>
+</table>
+<p>La función de transferencia de un sistema físico se puede obtener aplicando la transformada de Laplace a la ecuación diferencial que gobierne a dicho sistema. Como ya hemos visto que derivar equivale a multiplicar por s en el dominio complejo, y suponiendo las condiciones iniciales nulas, <span style="color: #008000;"><strong>la función de transferencia de cualquier sistema será de esta forma</strong></span>:</p>
+<table border="0" style="width: 0%; margin-left: auto; margin-right: auto;">
+<tbody>
+<tr>
+<td style="width: 100%;">\[𝐺(𝑠) =\frac{𝑏_{0}s^{𝑚} + 𝑏_{1}𝑠^{𝑚-1} + ⋯ + 𝑏_{m−1}s + 𝑏_{m}}{𝑎_{0}𝑠^{n} + 𝑎_{1}𝑠^{n-1} + ⋯ + 𝑎_{n-1}𝑠 + 𝑎_{n}} \ \ 𝑑𝑜𝑛𝑑𝑒 \ \ 𝑛 ≥ 𝑚\]</td>
+</tr>
+</tbody>
+</table>
+<p>Cuando no nos es posible calcular directamente la FDT de un sistema, podemos someterlo a entradas conocidas r(t) y observar detenidamente las salidas producidas c(t). Realizando el cociente de las transformadas de Laplace de r(t) y c(t), se puede obtener la función de transferencia, como ya hemos visto por su definición.</p>
+<h1><span style="color: #008000;">Estudio de la estabilidad de un sistema según su FDT</span></h1>
+<p>El denominador de la función de transferencia incluye, a través de sus coeficientes, todas las características físicas de los elementos que componen el sistema. Es por eso por lo que se le da el nombre de <span style="color: #008000;"><strong>polinomio característico.</strong></span> Si se iguala este polinomio a cero, para calcular sus raíces, obtenemos la llamada <span style="color: #008000;"><strong>ecuación característica del sistema:</strong></span></p>
+<table border="0" style="width: 0%; margin-left: auto; margin-right: auto;">
+<tbody>
+<tr>
+<td style="width: 100%;">\[𝑎_{0}𝑠^{n} + 𝑎_{1}𝑠^{n-1} + ⋯ + 𝑎_{n-1}𝑠 + 𝑎_{n}=0\]</td>
+</tr>
+</tbody>
+</table>
+<p>A las raíces del polinomio característico se les llama también <span style="color: #008000;"><strong>polos de la función de transferencia.</strong> </span>Son los puntos en los que la FDT tendría valor infinito.</p>
+<p>La ecuación característica nos dará <span style="color: #008000;"><strong>n</strong></span> soluciones en el dominio complejo. Viendo cómo es <span style="color: #008000;"><strong>la parte real</strong> </span>de esas soluciones, podemos saber cómo es la estabilidad del sistema:</p>
+<ul>
+<li>Si <span style="color: #008000;"><strong>todos los polos</strong></span> de la función de transferencia tienen <span style="color: #008000;"><strong>parte real negativa</strong></span>, el sistema es <span style="color: #008000;"><strong>estable</strong></span>.</li>
+<li>Si hay <span style="color: #008000;"><strong>algún polo</strong></span> con <span style="color: #008000;"><strong>parte real cero</strong></span>, el sistema es <span style="color: #008000;"><strong>críticamente estable</strong></span>.</li>
+<li>Si hay <span style="color: #008000;"><strong>algún polo</strong></span> con <span style="color: #008000;"><strong>parte real positiva</strong></span>, el sistema es <span style="color: #008000;"><strong>inestable</strong></span>.</li>
+</ul>
+<p><img src="../content/resources/polosfdt.png" width="400" height="386" style="display: block; margin-left: auto; margin-right: auto;"></p>
+<p>Si el polinomio característico es de grado 1, 2 o incuso 3, es fácil obtener sus raíces. Sin embargo, si es de un orden mayor, calcular sus raíces podría ser prácticamente imposible. Existe, sin embargo, un método sencillo para saber si las raíces tendrán parte real positiva, negativa o nula aunque no las calculemos. Se llama <span style="color: #008000;"><strong>método de Routh</strong></span>, aunque su estudio queda fuera del alcance de este curso.</p>
+<div id="t5a562a64-50b3-036e-82f6-3267a49885ab" class="exe-tooltip-text">
+<p>En efecto, para condiciones iniciales nulas, <span style="color: #008000;"><strong>derivar</strong></span> una función en el dominio temporal equivale a <span style="color: #008000;"><strong>multiplicarla por s</strong></span> en el dominio de Laplace. Análogamente, <span style="color: #008000;"><strong>integrar</strong></span> una función en el tiempo equivale simplemente a <span style="color: #008000;"><strong>dividir entre s</strong></span> en el dominio de la frecuencia compleja.</p>
+</div></div></div></section></div>
+</div>
+</div>
+</article>
+</div></main><div class="nav-buttons">
+<a href="../html/2-sistemas-en-lazo-abierto-y-lazo-cerrado.html" title="Anterior" class="nav-button nav-button-left"><span>Anterior</span></a>
+<a href="../html/31-diagramas-funcionales-o-de-bloques.html" title="Siguiente" class="nav-button nav-button-right"><span>Siguiente</span></a>
+</div>
+<footer id="siteFooter"><div id="siteFooterContent"> <div id="packageLicense" class="cc cc-by-nc-sa"> <p> <span class="license-label">Licencia: </span><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="license">Creative Commons: Reconocimiento - no comercial - compartir igual 4.0</a></p>
+</div>
+</div></footer>
+</div>
+
+</body>
+</html>

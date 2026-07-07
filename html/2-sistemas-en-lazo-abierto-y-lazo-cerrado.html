@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es" id="exe-page-mrak340c-3ys0u5hhv">
+<head>
+<meta charset="utf-8">
+<meta name="generator" content="eXeLearning v4.0.1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="license" type="text/html" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+<title>2. Sistemas en lazo abierto y lazo cerrado | Sistemas automáticos</title>
+<link rel="icon" type="image/x-icon" href="../libs/favicon.ico">
+<meta name="description" content="Sistemas automáticos. Tecnología e Ingeniería II.">
+<script>document.querySelector("html").classList.add("js");</script><script src="../libs/jquery/jquery.min.js"> </script><script src="../libs/common_i18n.js"> </script><script src="../libs/common.js"> </script><script src="../libs/exe_export.js"> </script><script src="../libs/bootstrap/bootstrap.bundle.min.js"> </script><link rel="stylesheet" href="../libs/bootstrap/bootstrap.min.css">
+<script src="../idevices/udl-content/udl-content.js"></script><link rel="stylesheet" href="../idevices/udl-content/udl-content.css">
+<link rel="stylesheet" href="../content/css/base.css"><script src="../theme/style.js"> </script><link rel="stylesheet" href="../theme/style.css"><link rel="stylesheet" href="../theme/zzz-majuelo.css">
+<script src="../libs/exe_math/tex-mml-svg.js"> </script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX", "output/HTML-CSS"],
+    tex2jax: {
+ inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+ displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+ processEscapes: true
+    },
+    "HTML-CSS": { fonts: ["TeX"] }
+  });
+</script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+});
+</script>
+<script type="text/javascript"
+   src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=default">
+</script>
+</head>
+<body class="exe-export exe-web-site">
+<script>document.body.className+=" js"</script>
+<div class="exe-content exe-export pre-js siteNav-hidden"><a href="#page-mrak340c-3ys0u5hhv" id="skipNav">Skip to content</a> <nav id="siteNav">
+<ul>
+<li> <a href="../index.html" class="main-node no-ch">Sistemas automáticos</a>
+</li>
+<li> <a href="../html/1-sistemas-automaticos-y-de-control.html" class="no-ch">1. Sistemas automáticos y de control</a>
+</li>
+<li class="active"> <a href="../html/2-sistemas-en-lazo-abierto-y-lazo-cerrado.html" class="active no-ch">2. Sistemas en lazo abierto y lazo cerrado</a>
+</li>
+<li> <a href="../html/3-diseno-de-controladores.html" class="daddy">3. Diseño de controladores.</a>
+<ul class="other-section">
+<li> <a href="../html/31-diagramas-funcionales-o-de-bloques.html" class="no-ch">3.1. Diagramas funcionales o de bloques</a>
+</li>
+<li> <a href="../html/32-el-controlador.html" class="no-ch">3.2. El controlador</a>
+</li>
+</ul>
+</li>
+<li> <a href="../html/4-componentes-de-un-sistema-de-control.html" class="no-ch">4. Componentes de un sistema de control</a>
+</li>
+<li> <a href="../html/5-sistemas-informaticos-emergentes-ia-big-data-y-c.html" class="no-ch">5. Sistemas informáticos emergentes: IA, big data y ciberseguridad</a>
+</li>
+</ul>
+</nav><main id="page-mrak340c-3ys0u5hhv" class="page"> 
+<header class="main-header">
+<div class="package-header"><p class="package-title">Sistemas automáticos</p></div>
+<div class="page-header"><h1 class="page-title">2. Sistemas en lazo abierto y lazo cerrado</h1></div>
+</header><div id="page-content-page-mrak340c-3ys0u5hhv" class="page-content">
+<article id="block-mrak340c-96nro2ohb" class="box">
+<header class="box-head no-icon">
+<h1 class="box-title">Sistemas en lazo abierto</h1>
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="idevice-mrak340c-t1aj211il" class="idevice_node udl-content" data-idevice-path="../idevices/udl-content/" data-idevice-type="udl-content">
+<div class="exe-udlContent exe-udlContent-representation"><section class="exe-udlContent-block"><div class="exe-udlContent-content"><div class="exe-udlContent-content-main"><p>Los sistemas de control en lazo (o bucle) abierto son aquellos en los que <span style="color: #008000;"><strong>la señal de salida no tiene influencia sobre la señal de entrada</strong></span>.</p>
+<p>Estos sistemas son muy sensibles a cualquier perturbación no prevista en su ajuste. En efecto, si algo perturba al sistema, alejando su salida del valor deseado, el sistema no puede darse cuenta (pues la salida no influye sobre la entrada).</p>
+<p>Un sistema de control en lazo abierto tiene esta estructura simple:</p>
+<p><img src="../content/resources/lazo-ab-1.png" alt="" width="601" height="113" style="display: block; margin-left: auto; margin-right: auto;"></p>
+<p>Los elementos de control pueden diferir, pero una de las formas más comunes de controlar este tipo de sistemas es la que se representa a continuación:</p>
+<p><img src="../content/resources/lazo-ab-2.png" alt="" width="800" height="118" style="display: block; margin-left: auto; margin-right: auto;"></p>
+<p>El operador actúa sobre la <span style="color: #008000;"><strong>señal de mando (a)</strong></span>. Un componente del sistema de control denominado <em>transductor</em> se encarga de transformar esta señal de mando en una magnitud de salida apta para su manipulación, denominada <span style="color: #008000;"><strong>señal de referencia (b)</strong></span>. Esta señal de referencia, una vez amplificada por el <span style="color: #008000;"><strong>actuador (c)</strong></span>, actúa sobre el proceso para obtener la <span style="color: #008000;"><strong>señal controlada (d)</strong></span>.&nbsp;Ls flechas marcadas con <span style="color: #008000;"><strong>(e)</strong></span> en la figura anterior representan las posibles <span style="color: #008000;"><strong>perturbaciones</strong></span> que pueden aparecer en el sistema. Se verán con más detalle en la sección final de este apartado.</p>
+<p>Como ejemplos de sistemas en bucle abierto tenemos una tostadora, una lavadora automática, un sistema de iluminación viaria (sin sensor crepuscular, sólo por tiempo), un sistema de calefacción sin termostato (por tiempo), etc.</p></div></div></section></div>
+</div>
+</div>
+</article><article id="block-mrak340c-9jlidriy2" class="box">
+<header class="box-head no-icon">
+<h1 class="box-title">Sistemas en lazo cerrado</h1>
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="idevice-mrak340c-qgidr9zlx" class="idevice_node udl-content" data-idevice-path="../idevices/udl-content/" data-idevice-type="udl-content">
+<div class="exe-udlContent exe-udlContent-representation"><section class="exe-udlContent-block"><div class="exe-udlContent-content"><div class="exe-udlContent-content-main"><p>Los sistemas de control en lazo cerrado se definen como aquellos en los que existe una <span style="color: #008000;"><strong>realimentación</strong></span> de la señal de salida o, dicho de otra forma, aquellos en los que <span style="color: #008000;"><strong>la señal de salida tiene efecto sobre la acción de control</strong></span>. El esquema&nbsp;básico de un sistema en lazo cerrado es como el que se indica a continuación:</p>
+<p><img src="../content/resources/lazo-cer-1.png" width="802" height="207" style="display: block; margin-left: auto; margin-right: auto;"></p>
+<p>Al hecho de comparar el valor de la salida del sistema con la referencia de entrada se le denomina <span style="color: #008000;"><strong>realimentación</strong></span> (feedback). Así, los sistemas en bucle cerrado también se denominan <span style="color: #008000;"><strong>sistemas realimentados</strong></span>. Otra forma de representar un sistema de control en bucle cerrado, con algo más de detalle, es la siguiente:</p>
+<p><img src="../content/resources/lazo-cer-2.png" alt="" width="850" height="191" style="display: block; margin-left: auto; margin-right: auto;"></p>
+<p>En general, se intentará que <span style="color: #008000;"><strong>la salida del sistema (señal controlada) sea lo más parecida posible a la señal de referencia.</strong></span> Según la variación de esta señal de referencia con el tiempo, se pueden distinguir dos tipos de sistemas:</p>
+<ul>
+<li><span style="color: #008000;"><strong>Sistemas seguidores:</strong></span>&nbsp;la señal referencia <span style="color: #008000;"><strong>cambia de valor frecuentemente</strong></span>. Ejemplo: servomecanismos (sistemas de control realimentado en el cual la salida es alguna posición, velocidad o aceleración mecánica), como el sistema de posicionamiento de los cañones de una batería de tiro antiaérea.</li>
+<li><span style="color: #008000;"><strong>Sistemas de regulación automática:</strong></span>&nbsp;la señal de referencia es o bien <span style="color: #008000;"><strong>constante</strong></span> o bien <span style="color: #008000;"><strong>varía lentamente</strong></span> con el tiempo, y la tarea fundamental consiste en mantener la salida en el valor deseado a pesar de las perturbaciones presentes. Ejemplos: el sistema de calefacción de una casa con sensor de temperatura, un regulador de voltaje, un regulador de presión de suministro de agua a una comunidad de vecinos.</li>
+</ul>
+<p>Esta señal realimentada que proporciona el captador se compara con la señal de referencia para determinar cuál es la diferencia existente entre ambas. Esta operación se realiza mediante un <span style="color: #008000;"><strong>comparador</strong></span> que proporciona a su salida la <span style="color: #008000;"><strong>señal de error</strong></span>, que es la diferencia entre la salida y la referencia. Esta señal de error se denomina <span style="color: #008000;"><strong>señal activa</strong></span> y es la que entra al regulador o controlador.</p></div></div></section></div>
+</div>
+</div>
+</article><article id="block-mrak340c-0gypi99aw" class="box">
+<header class="box-head no-icon">
+<h1 class="box-title">¿Por qué usar realimentación? Las perturbaciones</h1>
+<button class="box-toggle box-toggle-on" title="Toggle content">
+<span>Toggle content</span>
+</button></header>
+<div class="box-content">
+<div id="idevice-mrak340d-01akqvkah" class="idevice_node udl-content" data-idevice-path="../idevices/udl-content/" data-idevice-type="udl-content">
+<div class="exe-udlContent exe-udlContent-representation"><section class="exe-udlContent-block"><div class="exe-udlContent-content"><div class="exe-udlContent-content-main"><p>Los procesos reales están expuestos a <span style="color: #008000;"><strong>cambios en las condiciones de su entorno</strong></span>, que pueden provocar variaciones en su salida. Por ejemplo, si nuestro sistema se usa para abastecer de agua una red determinada, y está funcionando al caudal que estimamos que se consume, un aumento inesperado de la demanda de agua resultará en que nuestro sistema estará dando un caudal equivocado y, lo que es peor, no tendrá forma de saberlo si no lo descubre un operario y cambia la señal de mando para aumentar el suministro. Estos cambios inesperados en las condiciones de funcionamiento de un sistema se conocen como <span style="color: #008000;"><strong>perturbaciones externas al sistema</strong></span>.&nbsp;</p>
+<p>También es posible que los propios <span style="color: #008000;"><strong>parámetros del sistema varíen</strong> </span>con el tiempo, por ejemplo, por piezas que se desgastan y sufren holguras, o juntas que pierden lubricación y aumentan su rozamiento, etc. Esto también hace que la salida del sistema para una misma señal de entrada sea ahora distinta a como se esperaba teóricamente. Estas variaciones se denominan&nbsp;<span style="color: #008000;"><strong>perturbaciones internas del sistema</strong></span>.</p>
+<p>Es fácil comprobar que, <span style="color: #008000;"><strong>si en un sistema en bucle abierto aparecen perturbaciones, la salida dejará de ser la deseada sin que el sistema pueda detectarlo. </strong></span>Este es el principal inconveniente de estos sistemas de control. Sin embargo, su ventaja esencial es que son los sistemas de control <span style="color: #008000;"><strong>más simples y económicos</strong> </span>que existen, por lo que tienen muchas aplicaciones.</p>
+<p>La <span style="color: #008000;"><strong>ventaja</strong></span> principal del control en<span style="color: #008000;"><strong> lazo cerrado</strong> </span>frente al control en lazo abierto es que la respuesta del sistema se hace relativamente<span style="color: #008000;"><strong> insensible a perturbaciones</strong> <strong>externas</strong></span> y a variaciones de los parámetros del sistema (<span style="color: #008000;"><strong>perturbaciones internas</strong></span>). Se puede detectar a tiempo que la salida del sistema está variando y realizar las modificaciones necesarias a la entrada para que el sistema se comporte correctamente y la salida se corrija.</p></div></div></section></div>
+</div>
+</div>
+</article>
+</div></main><div class="nav-buttons">
+<a href="../html/1-sistemas-automaticos-y-de-control.html" title="Anterior" class="nav-button nav-button-left"><span>Anterior</span></a>
+<a href="../html/3-diseno-de-controladores.html" title="Siguiente" class="nav-button nav-button-right"><span>Siguiente</span></a>
+</div>
+<footer id="siteFooter"><div id="siteFooterContent"> <div id="packageLicense" class="cc cc-by-nc-sa"> <p> <span class="license-label">Licencia: </span><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="license">Creative Commons: Reconocimiento - no comercial - compartir igual 4.0</a></p>
+</div>
+</div></footer>
+</div>
+
+</body>
+</html>
