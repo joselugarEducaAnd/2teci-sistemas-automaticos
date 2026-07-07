@@ -213,3 +213,34 @@ button.toggler:hover, button.toggler:focus,
 
 /* ---------- Accesibilidad / movimiento ---------- */
 @media (prefers-reduced-motion: reduce) { .exe-content * { transition: none !important; } }
+
+/* ============================================================
+   Ajustes 2026-07-07 (petición de Pepe)
+   1) Centrado por defecto de imágenes y recuadros.
+   2) Si una clase semántica (.bloque-*) va sobre un iDevice DENTRO de una caja,
+      el acento se lleva a la CAJA exterior (no un marco anidado).
+   3) Teoría: solo borde, sin fondo (para no cargar).
+   ============================================================ */
+
+/* 1) Centrado por defecto de imágenes y recuadros */
+.exe-content .box-content img,
+.exe-content .page-content img { display: block; margin-left: auto; margin-right: auto; }
+.exe-content .bloque, .exe-content .marco,
+.exe-content [class*="bloque-"]:not([class*="titulo"]),
+.exe-content [class*="marco-"]:not([class*="titulo"]) { margin-left: auto; margin-right: auto; }
+
+/* 2) Marco semántico sobre un iDevice de caja -> se neutraliza el marco interno
+      y el acento pasa a la caja exterior (.box). Los marcos "de contenido"
+      (p. ej. cap 5, dentro del texto) van más adentro y NO se ven afectados. */
+.exe-content .box-content > .idevice_node.bloque {
+  background: none; border: none; border-radius: 0; padding: 0; margin: 0; max-width: none;
+}
+.exe-content article.box:has(> .box-content > .idevice_node.bloque-teoria) {
+  border-left: 4px solid var(--sem-teoria);         /* 3) teoría: solo borde, sin fondo */
+}
+.exe-content article.box:has(> .box-content > .idevice_node.bloque-resuelto) {
+  border-left: 4px solid var(--sem-resuelto); background: var(--sem-resuelto-bg);
+}
+.exe-content article.box:has(> .box-content > .idevice_node.bloque-pdf) {
+  border-left: 4px solid var(--sem-pdf); background: var(--sem-pdf-bg);
+}
