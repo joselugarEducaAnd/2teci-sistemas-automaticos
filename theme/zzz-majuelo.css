@@ -177,7 +177,7 @@ button.toggler:hover, button.toggler:focus,
   border: var(--blk-bw) solid var(--c);
   border-radius: var(--blk-radio);
   padding: var(--blk-pad);
-  margin: 1.5em 0;
+  margin: 1.5em auto;   /* centrado: ancho de lectura pero centrado en la columna */
   max-width: var(--maj-medida);
 }
 .exe-content .bloque > :last-child,
