@@ -18,7 +18,7 @@
   </odeResource>
   <odeResource>
     <key>exe_version</key>
-    <value>4.0.1</value>
+    <value>4.0.2</value>
   </odeResource>
 </odeResources>
 <odeProperties>
@@ -52,11 +52,11 @@
   </odeProperty>
   <odeProperty>
     <key>pp_exelearning_version</key>
-    <value>v4.0.1</value>
+    <value>v4.0.2</value>
   </odeProperty>
   <odeProperty>
     <key>pp_modified</key>
-    <value>1783425707400</value>
+    <value>1783625723651</value>
   </odeProperty>
   <odeProperty>
     <key>pp_addExeLink</key>
@@ -197,7 +197,7 @@ MathJax.Hub.Config({
 <p style="padding-left: 30px;"><a href="html/31-diagramas-funcionales-o-de-bloques.html">3.1. Diagramas funcionales o de bloques</a></p>
 <p style="padding-left: 30px;"><a href="html/32-el-controlador.html">3.2. El controlador</a></p>
 <p><a href="html/4-componentes-de-un-sistema-de-control.html">4. Componentes de un sistema de control</a></p>
-<p><a href="html/5-sistemas-informaticos-emergentes.html">5. Sistemas informáticos emergentes: IA, big data y ciberseguridad</a></p>
+<p><a href="html/5-sistemas-informaticos-emergentes-ia-big-data-y-c.html">5. Sistemas informáticos emergentes: IA, big data y ciberseguridad</a></p>
 <p></p>
 </td>
 </tr>
@@ -208,7 +208,7 @@ MathJax.Hub.Config({
 </table>
 <p style="text-align: center;"></p>
 <p style="text-align: center;"><span style="color: #000000;">IES EL MAJUELO. DEPARTAMENTO DE TECNOLOGÍA.</span></p>]]></htmlView>
-          <jsonProperties><![CDATA[{"textTextarea":"<h1 style=\"text-align: center;\"><span style=\"color: #0000ff;\"><strong>SISTEMAS AUTOMÁTICOS</strong></span></h1>\n<p style=\"text-align: center;\"><span style=\"color: #000000;\"><strong>CONTENIDO:</strong></span></p>\n<table border=\"1\" style=\"width: 500px; border-style: none; margin-left: auto; margin-right: auto;\">\n<tbody>\n<tr>\n<td style=\"width: 0%; border-style: none;\">\n<p><a href=\"exe-node:page-mrak340c-k0clvuu2p\">1. Sistemas automáticos y de control</a></p>\n<p><a href=\"exe-node:page-mrak340c-3ys0u5hhv\">2. Sistemas en lazo abierto y lazo cerrado</a></p>\n<p><a href=\"exe-node:page-mrak340c-86xd27wpn\">3. Diseño de controladores</a></p>\n<p style=\"padding-left: 30px;\"><a href=\"exe-node:page-mrak340c-gdntqrinj\">3.1. Diagramas funcionales o de bloques</a></p>\n<p style=\"padding-left: 30px;\"><a href=\"exe-node:page-mrak340c-gb1zz1gf5\">3.2. El controlador</a></p>\n<p><a href=\"exe-node:page-mrak340c-pjyxxenem\">4. Componentes de un sistema de control</a></p>\n<p><a href=\"exe-node:page-pemrgfc2-a1m7npl96\">5. Sistemas informáticos emergentes: IA, big data y ciberseguridad</a></p>\n<p></p>\n</td>\n</tr>\n<tr>\n<td style=\"width: 0%; border-style: none;\"></td>\n</tr>\n</tbody>\n</table>\n<p style=\"text-align: center;\"></p>\n<p style=\"text-align: center;\"><span style=\"color: #000000;\">IES EL MAJUELO. DEPARTAMENTO DE TECNOLOGÍA.</span></p>"}]]></jsonProperties>
+          <jsonProperties><![CDATA[{"textTextarea":"<h1 style=\"text-align: center;\"><span style=\"color: #0000ff;\"><strong>SISTEMAS AUTOMÁTICOS</strong></span></h1>\n<p style=\"text-align: center;\"><span style=\"color: #000000;\"><strong>CONTENIDO:</strong></span></p>\n<table border=\"1\" style=\"width: 500px; border-style: none; margin-left: auto; margin-right: auto;\">\n<tbody>\n<tr>\n<td style=\"width: 0%; border-style: none;\">\n<p><a href=\"exe-node:page-mrak340c-k0clvuu2p\">1. Sistemas automáticos y de control</a></p>\n<p><a href=\"exe-node:page-mrak340c-3ys0u5hhv\">2. Sistemas en lazo abierto y lazo cerrado</a></p>\n<p><a href=\"exe-node:page-mrak340c-86xd27wpn\">3. Diseño de controladores</a></p>\n<p style=\"padding-left: 30px;\"><a href=\"exe-node:page-mrak340c-gdntqrinj\">3.1. Diagramas funcionales o de bloques</a></p>\n<p style=\"padding-left: 30px;\"><a href=\"exe-node:page-mrak340c-gb1zz1gf5\">3.2. El controlador</a></p>\n<p><a href=\"exe-node:page-mrak340c-pjyxxenem\">4. Componentes de un sistema de control</a></p>\n<p><a href=\"html/5-sistemas-informaticos-emergentes-ia-big-data-y-c.html\">5. Sistemas informáticos emergentes: IA, big data y ciberseguridad</a></p>\n<p></p>\n</td>\n</tr>\n<tr>\n<td style=\"width: 0%; border-style: none;\"></td>\n</tr>\n</tbody>\n</table>\n<p style=\"text-align: center;\"></p>\n<p style=\"text-align: center;\"><span style=\"color: #000000;\">IES EL MAJUELO. DEPARTAMENTO DE TECNOLOGÍA.</span></p>"}]]></jsonProperties>
           <odeComponentsOrder>0</odeComponentsOrder>
           <odeComponentsProperties>
             <odeComponentsProperty>
@@ -231,7 +231,7 @@ MathJax.Hub.Config({
       <odePageId>page-mrak340c-48vbbquie</odePageId>
       <odeBlockId>block-mrak340c-ojozbebs9</odeBlockId>
       <blockName>Cueationes PAU desde 2014</blockName>
-      <iconName>assignment</iconName>
+      <iconName>download</iconName>
       <odePagStructureOrder>1</odePagStructureOrder>
       <odePagStructureProperties>
         <odePagStructureProperty>
@@ -275,7 +275,7 @@ MathJax.Hub.Config({
             </odeComponentsProperty>
             <odeComponentsProperty>
               <key>cssClass</key>
-              <value></value>
+              <value>bloque bloque-pdf</value>
             </odeComponentsProperty>
           </odeComponentsProperties>
         </odeComponent>
@@ -285,7 +285,7 @@ MathJax.Hub.Config({
       <odePageId>page-mrak340c-48vbbquie</odePageId>
       <odeBlockId>block-mrak340c-u01893rps</odeBlockId>
       <blockName>Versión PDF</blockName>
-      <iconName>assignment</iconName>
+      <iconName>download</iconName>
       <odePagStructureOrder>2</odePagStructureOrder>
       <odePagStructureProperties>
         <odePagStructureProperty>
@@ -329,7 +329,7 @@ MathJax.Hub.Config({
             </odeComponentsProperty>
             <odeComponentsProperty>
               <key>cssClass</key>
-              <value></value>
+              <value>bloque bloque-pdf</value>
             </odeComponentsProperty>
           </odeComponentsProperties>
         </odeComponent>
@@ -444,7 +444,7 @@ MathJax.Hub.Config({
             </odeComponentsProperty>
             <odeComponentsProperty>
               <key>cssClass</key>
-              <value></value>
+              <value>bloque bloque-teoria</value>
             </odeComponentsProperty>
           </odeComponentsProperties>
         </odeComponent>
@@ -504,7 +504,7 @@ MathJax.Hub.Config({
             </odeComponentsProperty>
             <odeComponentsProperty>
               <key>cssClass</key>
-              <value></value>
+              <value>bloque bloque-teoria</value>
             </odeComponentsProperty>
           </odeComponentsProperties>
         </odeComponent>
@@ -603,7 +603,7 @@ MathJax.Hub.Config({
             </odeComponentsProperty>
             <odeComponentsProperty>
               <key>cssClass</key>
-              <value></value>
+              <value>bloque bloque-teoria</value>
             </odeComponentsProperty>
           </odeComponentsProperties>
         </odeComponent>
@@ -666,7 +666,7 @@ MathJax.Hub.Config({
             </odeComponentsProperty>
             <odeComponentsProperty>
               <key>cssClass</key>
-              <value></value>
+              <value>bloque bloque-teoria</value>
             </odeComponentsProperty>
           </odeComponentsProperties>
         </odeComponent>
@@ -723,7 +723,7 @@ MathJax.Hub.Config({
             </odeComponentsProperty>
             <odeComponentsProperty>
               <key>cssClass</key>
-              <value></value>
+              <value>bloque bloque-teoria</value>
             </odeComponentsProperty>
           </odeComponentsProperties>
         </odeComponent>
@@ -841,7 +841,7 @@ MathJax.Hub.Config({
             </odeComponentsProperty>
             <odeComponentsProperty>
               <key>cssClass</key>
-              <value></value>
+              <value>bloque bloque-teoria</value>
             </odeComponentsProperty>
           </odeComponentsProperties>
         </odeComponent>
@@ -968,7 +968,7 @@ MathJax.Hub.Config({
             </odeComponentsProperty>
             <odeComponentsProperty>
               <key>cssClass</key>
-              <value></value>
+              <value>bloque bloque-teoria</value>
             </odeComponentsProperty>
           </odeComponentsProperties>
         </odeComponent>
@@ -1062,7 +1062,7 @@ MathJax.Hub.Config({
             </odeComponentsProperty>
             <odeComponentsProperty>
               <key>cssClass</key>
-              <value></value>
+              <value>bloque bloque-teoria</value>
             </odeComponentsProperty>
           </odeComponentsProperties>
         </odeComponent>
@@ -1125,7 +1125,7 @@ MathJax.Hub.Config({
             </odeComponentsProperty>
             <odeComponentsProperty>
               <key>cssClass</key>
-              <value></value>
+              <value>bloque bloque-teoria</value>
             </odeComponentsProperty>
           </odeComponentsProperties>
         </odeComponent>
@@ -1338,7 +1338,7 @@ MathJax.Hub.Config({
             </odeComponentsProperty>
             <odeComponentsProperty>
               <key>cssClass</key>
-              <value></value>
+              <value>bloque bloque-teoria</value>
             </odeComponentsProperty>
           </odeComponentsProperties>
         </odeComponent>
@@ -1405,7 +1405,7 @@ MathJax.Hub.Config({
             </odeComponentsProperty>
             <odeComponentsProperty>
               <key>cssClass</key>
-              <value></value>
+              <value>bloque bloque-teoria</value>
             </odeComponentsProperty>
           </odeComponentsProperties>
         </odeComponent>
@@ -1488,7 +1488,7 @@ MathJax.Hub.Config({
             </odeComponentsProperty>
             <odeComponentsProperty>
               <key>cssClass</key>
-              <value></value>
+              <value>bloque bloque-resuelto</value>
             </odeComponentsProperty>
           </odeComponentsProperties>
         </odeComponent>
@@ -1498,7 +1498,7 @@ MathJax.Hub.Config({
       <odePageId>page-mrak340c-gdntqrinj</odePageId>
       <odeBlockId>block-mrak340d-la6z2fbt9</odeBlockId>
       <blockName>Ejercicios de álgebra de bloques</blockName>
-      <iconName>assignment</iconName>
+      <iconName>download</iconName>
       <odePagStructureOrder>5</odePagStructureOrder>
       <odePagStructureProperties>
         <odePagStructureProperty>
@@ -1542,7 +1542,7 @@ MathJax.Hub.Config({
             </odeComponentsProperty>
             <odeComponentsProperty>
               <key>cssClass</key>
-              <value></value>
+              <value>bloque bloque-pdf</value>
             </odeComponentsProperty>
           </odeComponentsProperties>
         </odeComponent>
@@ -1642,7 +1642,7 @@ MathJax.Hub.Config({
             </odeComponentsProperty>
             <odeComponentsProperty>
               <key>cssClass</key>
-              <value></value>
+              <value>bloque bloque-teoria</value>
             </odeComponentsProperty>
           </odeComponentsProperties>
         </odeComponent>
@@ -1720,7 +1720,7 @@ MathJax.Hub.Config({
             </odeComponentsProperty>
             <odeComponentsProperty>
               <key>cssClass</key>
-              <value></value>
+              <value>bloque bloque-teoria</value>
             </odeComponentsProperty>
           </odeComponentsProperties>
         </odeComponent>
@@ -1812,7 +1812,7 @@ MathJax.Hub.Config({
             </odeComponentsProperty>
             <odeComponentsProperty>
               <key>cssClass</key>
-              <value></value>
+              <value>bloque bloque-teoria</value>
             </odeComponentsProperty>
           </odeComponentsProperties>
         </odeComponent>
@@ -1911,7 +1911,7 @@ MathJax.Hub.Config({
             </odeComponentsProperty>
             <odeComponentsProperty>
               <key>cssClass</key>
-              <value></value>
+              <value>bloque bloque-teoria</value>
             </odeComponentsProperty>
           </odeComponentsProperties>
         </odeComponent>
@@ -2006,7 +2006,7 @@ MathJax.Hub.Config({
             </odeComponentsProperty>
             <odeComponentsProperty>
               <key>cssClass</key>
-              <value></value>
+              <value>bloque bloque-teoria</value>
             </odeComponentsProperty>
           </odeComponentsProperties>
         </odeComponent>
@@ -2119,7 +2119,7 @@ MathJax.Hub.Config({
             </odeComponentsProperty>
             <odeComponentsProperty>
               <key>cssClass</key>
-              <value></value>
+              <value>bloque bloque-teoria</value>
             </odeComponentsProperty>
           </odeComponentsProperties>
         </odeComponent>
@@ -2587,7 +2587,7 @@ MathJax.Hub.Config({
             </odeComponentsProperty>
             <odeComponentsProperty>
               <key>cssClass</key>
-              <value></value>
+              <value>bloque bloque-teoria</value>
             </odeComponentsProperty>
           </odeComponentsProperties>
         </odeComponent>
@@ -2730,8 +2730,70 @@ MathJax.Hub.Config({
 <li><strong>Teoría de la mente.</strong> Nivel aún en investigación: máquinas capaces de interpretar intenciones, emociones o creencias de las personas con las que interactúan, y adaptarse a ellas.</li>
 <li><strong>Autoconciencia.</strong> Nivel <em>hipotético</em>: una máquina con conciencia de sí misma. No existe; pertenece al terreno teórico y de la ciencia ficción.</li>
 </ul></div>
-<div class="bloque bloque-nota"><p class="bloque-titulo">Del lazo cerrado al lazo que aprende</p><p>Los dos primeros tipos ya conviven en muchos hogares: el termostato reactivo apaga y enciende; el de memoria limitada aprende la rutina. Los dos últimos son metas de investigación. Casi toda la IA que se usa hoy en control es de <strong>memoria limitada</strong>.</p></div>]]></htmlView>
-          <jsonProperties><![CDATA[{"textTextarea":"<div class=\"bloque bloque-teoria\"><p class=\"bloque-titulo\">Qué es la IA</p><p>La <strong>inteligencia artificial (IA)</strong> es el conjunto de técnicas que permiten a una máquina realizar tareas que, hechas por una persona, requerirían inteligencia: percibir, razonar, aprender de la experiencia o tomar decisiones. En el control inteligente, la IA permite que un sistema <em>mejore su respuesta</em> a medida que acumula datos de funcionamiento.</p></div>\n<p>Una forma habitual de clasificar la IA es según su <strong>capacidad</strong>, en cuatro tipos de complejidad creciente:</p>\n<div class=\"bloque bloque-teoria\"><p class=\"bloque-titulo\">Los cuatro tipos de IA</p>\n<ul>\n<li><strong>Máquinas reactivas.</strong> Responden a la situación presente siguiendo reglas fijas; no guardan memoria ni aprenden. Un ejemplo histórico es <em>Deep Blue</em>, el programa que ganó al ajedrez evaluando solo la posición del tablero en cada momento. En control, la lógica reactiva es la de un termostato clásico que enciende la caldera cuando la temperatura baja de la consigna: puro lazo cerrado, sin aprendizaje.</li>\n<li><strong>Memoria limitada.</strong> Usan datos recientes del pasado para decidir mejor. Es el tipo más extendido hoy. Ejemplo: un <strong>termostato que aprende</strong> tus horarios y ajusta la calefacción anticipándose, o el <strong>mantenimiento predictivo</strong>, que analiza el histórico de vibración de un motor para avisar antes de que se averíe.</li>\n<li><strong>Teoría de la mente.</strong> Nivel aún en investigación: máquinas capaces de interpretar intenciones, emociones o creencias de las personas con las que interactúan, y adaptarse a ellas.</li>\n<li><strong>Autoconciencia.</strong> Nivel <em>hipotético</em>: una máquina con conciencia de sí misma. No existe; pertenece al terreno teórico y de la ciencia ficción.</li>\n</ul></div>\n<div class=\"bloque bloque-nota\"><p class=\"bloque-titulo\">Del lazo cerrado al lazo que aprende</p><p>Los dos primeros tipos ya conviven en muchos hogares: el termostato reactivo apaga y enciende; el de memoria limitada aprende la rutina. Los dos últimos son metas de investigación. Casi toda la IA que se usa hoy en control es de <strong>memoria limitada</strong>.</p></div>"}]]></jsonProperties>
+<div class="bloque bloque-nota"><p class="bloque-titulo">Del lazo cerrado al lazo que aprende</p><p>Los dos primeros tipos ya conviven en muchos hogares: el termostato reactivo apaga y enciende; el de memoria limitada aprende la rutina. Los dos últimos son metas de investigación. Casi toda la IA que se usa hoy en control es de <strong>memoria limitada</strong>.</p></div>
+<div class="bloque bloque-nota"><p class="bloque-titulo">Otra clasificación: ANI, AGI y ASI</p><p>Además de por su capacidad, la IA también se clasifica por su <strong>alcance</strong>: la <strong>IA estrecha o limitada (ANI)</strong> resuelve una sola tarea concreta (traducir, recomendar, conducir) y es la única que existe hoy; la <strong>IA general (AGI)</strong>, de propósito general, abordaría cualquier tarea intelectual humana y aún no se ha logrado; y la <strong>superinteligencia artificial (ASI)</strong> superaría a la inteligencia humana y es, por ahora, hipotética.</p></div>]]></htmlView>
+          <jsonProperties><![CDATA[{"textTextarea":"<div class=\"bloque bloque-teoria\"><p class=\"bloque-titulo\">Qué es la IA</p><p>La <strong>inteligencia artificial (IA)</strong> es el conjunto de técnicas que permiten a una máquina realizar tareas que, hechas por una persona, requerirían inteligencia: percibir, razonar, aprender de la experiencia o tomar decisiones. En el control inteligente, la IA permite que un sistema <em>mejore su respuesta</em> a medida que acumula datos de funcionamiento.</p></div>\n<p>Una forma habitual de clasificar la IA es según su <strong>capacidad</strong>, en cuatro tipos de complejidad creciente:</p>\n<div class=\"bloque bloque-teoria\"><p class=\"bloque-titulo\">Los cuatro tipos de IA</p>\n<ul>\n<li><strong>Máquinas reactivas.</strong> Responden a la situación presente siguiendo reglas fijas; no guardan memoria ni aprenden. Un ejemplo histórico es <em>Deep Blue</em>, el programa que ganó al ajedrez evaluando solo la posición del tablero en cada momento. En control, la lógica reactiva es la de un termostato clásico que enciende la caldera cuando la temperatura baja de la consigna: puro lazo cerrado, sin aprendizaje.</li>\n<li><strong>Memoria limitada.</strong> Usan datos recientes del pasado para decidir mejor. Es el tipo más extendido hoy. Ejemplo: un <strong>termostato que aprende</strong> tus horarios y ajusta la calefacción anticipándose, o el <strong>mantenimiento predictivo</strong>, que analiza el histórico de vibración de un motor para avisar antes de que se averíe.</li>\n<li><strong>Teoría de la mente.</strong> Nivel aún en investigación: máquinas capaces de interpretar intenciones, emociones o creencias de las personas con las que interactúan, y adaptarse a ellas.</li>\n<li><strong>Autoconciencia.</strong> Nivel <em>hipotético</em>: una máquina con conciencia de sí misma. No existe; pertenece al terreno teórico y de la ciencia ficción.</li>\n</ul></div>\n<div class=\"bloque bloque-nota\"><p class=\"bloque-titulo\">Del lazo cerrado al lazo que aprende</p><p>Los dos primeros tipos ya conviven en muchos hogares: el termostato reactivo apaga y enciende; el de memoria limitada aprende la rutina. Los dos últimos son metas de investigación. Casi toda la IA que se usa hoy en control es de <strong>memoria limitada</strong>.</p></div>\n<div class=\"bloque bloque-nota\"><p class=\"bloque-titulo\">Otra clasificación: ANI, AGI y ASI</p><p>Además de por su capacidad, la IA también se clasifica por su <strong>alcance</strong>: la <strong>IA estrecha o limitada (ANI)</strong> resuelve una sola tarea concreta (traducir, recomendar, conducir) y es la única que existe hoy; la <strong>IA general (AGI)</strong>, de propósito general, abordaría cualquier tarea intelectual humana y aún no se ha logrado; y la <strong>superinteligencia artificial (ASI)</strong> superaría a la inteligencia humana y es, por ahora, hipotética.</p></div>"}]]></jsonProperties>
+          <odeComponentsOrder>0</odeComponentsOrder>
+          <odeComponentsProperties>
+            <odeComponentsProperty>
+              <key>visibility</key>
+              <value>true</value>
+            </odeComponentsProperty>
+            <odeComponentsProperty>
+              <key>teacherOnly</key>
+              <value>false</value>
+            </odeComponentsProperty>
+            <odeComponentsProperty>
+              <key>cssClass</key>
+              <value></value>
+            </odeComponentsProperty>
+          </odeComponentsProperties>
+        </odeComponent>
+      </odeComponents>
+    </odePagStructure>
+    <odePagStructure>
+      <odePageId>page-pemrgfc2-a1m7npl96</odePageId>
+      <odeBlockId>block-pemrgfc2-ml7k3n2p9</odeBlockId>
+      <blockName>Machine learning y redes neuronales</blockName>
+      <iconName></iconName>
+      <odePagStructureOrder>2</odePagStructureOrder>
+      <odePagStructureProperties>
+        <odePagStructureProperty>
+          <key>visibility</key>
+          <value>true</value>
+        </odePagStructureProperty>
+        <odePagStructureProperty>
+          <key>teacherOnly</key>
+          <value>false</value>
+        </odePagStructureProperty>
+        <odePagStructureProperty>
+          <key>allowToggle</key>
+          <value>true</value>
+        </odePagStructureProperty>
+        <odePagStructureProperty>
+          <key>minimized</key>
+          <value>false</value>
+        </odePagStructureProperty>
+        <odePagStructureProperty>
+          <key>cssClass</key>
+          <value></value>
+        </odePagStructureProperty>
+      </odePagStructureProperties>
+      <odeComponents>
+        <odeComponent>
+          <odePageId>page-pemrgfc2-a1m7npl96</odePageId>
+          <odeBlockId>block-pemrgfc2-ml7k3n2p9</odeBlockId>
+          <odeIdeviceId>idevice-pemrgfc2-ml7k3n2p9</odeIdeviceId>
+          <odeIdeviceTypeName>text</odeIdeviceTypeName>
+          <htmlView><![CDATA[<div class="bloque bloque-teoria"><p class="bloque-titulo">De la programación clásica al aprendizaje automático</p><p>En la <strong>programación clásica</strong> el programador da a la máquina los <strong>datos</strong> y las <strong>reglas</strong>, y esta calcula las <strong>respuestas</strong>. En el <strong>aprendizaje automático</strong> (<em>machine learning</em>) se invierte: se le dan los <strong>datos</strong> y las <strong>respuestas</strong>, y es la máquina la que deduce las <strong>reglas</strong>. Así puede decidir por sí sola si un dato nuevo encaja o no.</p></div>
+<div class="bloque bloque-teoria"><p class="bloque-titulo">Qué es el machine learning</p><p>El <strong>aprendizaje automático</strong> es un método de IA que, a partir de <strong>muchos datos</strong> y de un algoritmo, genera un <strong>modelo</strong> y lo usa para hacer <strong>predicciones</strong> con las que resolver un problema o tomar decisiones. Es la técnica que hay detrás de la IA de <em>memoria limitada</em> que vimos antes: el mantenimiento predictivo de un motor aprende de su histórico de vibraciones.</p></div>
+<div class="bloque bloque-teoria"><p class="bloque-titulo">Aprendizaje supervisado y no supervisado</p>
+<ul>
+<li><strong>Supervisado.</strong> Se entrena con datos de entrada y sus salidas <strong>etiquetadas</strong> (pares entrada → salida, normalmente etiquetados a mano). Ya entrenado, deduce la salida de entradas nuevas. Se usa cuando el <strong>resultado es conocido</strong> y hay datos etiquetados: marcar correo como spam, predecir una avería.</li>
+<li><strong>No supervisado.</strong> Se dan solo datos de entrada, <strong>sin etiquetar</strong>, y el algoritmo descubre por sí mismo <strong>patrones y relaciones</strong>. Se usa cuando no hay etiquetas y se busca <strong>agrupar o detectar anomalías</strong>: segmentar clientes, detectar una medida anómala en una planta.</li>
+</ul></div>
+<div class="bloque bloque-nota"><p class="bloque-titulo">Redes neuronales</p><p>Una <strong>red neuronal</strong> es un tipo de algoritmo —usado tanto en aprendizaje supervisado como no supervisado— que <strong>imita de forma simplificada el funcionamiento del cerebro</strong>: muchas «neuronas» conectadas que se ajustan durante el entrenamiento. Son la base del <em>aprendizaje profundo</em> y de buena parte de la IA actual.</p></div>]]></htmlView>
+          <jsonProperties><![CDATA[{"textTextarea":"<div class=\"bloque bloque-teoria\"><p class=\"bloque-titulo\">De la programación clásica al aprendizaje automático</p><p>En la <strong>programación clásica</strong> el programador da a la máquina los <strong>datos</strong> y las <strong>reglas</strong>, y esta calcula las <strong>respuestas</strong>. En el <strong>aprendizaje automático</strong> (<em>machine learning</em>) se invierte: se le dan los <strong>datos</strong> y las <strong>respuestas</strong>, y es la máquina la que deduce las <strong>reglas</strong>. Así puede decidir por sí sola si un dato nuevo encaja o no.</p></div>\n<div class=\"bloque bloque-teoria\"><p class=\"bloque-titulo\">Qué es el machine learning</p><p>El <strong>aprendizaje automático</strong> es un método de IA que, a partir de <strong>muchos datos</strong> y de un algoritmo, genera un <strong>modelo</strong> y lo usa para hacer <strong>predicciones</strong> con las que resolver un problema o tomar decisiones. Es la técnica que hay detrás de la IA de <em>memoria limitada</em> que vimos antes: el mantenimiento predictivo de un motor aprende de su histórico de vibraciones.</p></div>\n<div class=\"bloque bloque-teoria\"><p class=\"bloque-titulo\">Aprendizaje supervisado y no supervisado</p>\n<ul>\n<li><strong>Supervisado.</strong> Se entrena con datos de entrada y sus salidas <strong>etiquetadas</strong> (pares entrada → salida, normalmente etiquetados a mano). Ya entrenado, deduce la salida de entradas nuevas. Se usa cuando el <strong>resultado es conocido</strong> y hay datos etiquetados: marcar correo como spam, predecir una avería.</li>\n<li><strong>No supervisado.</strong> Se dan solo datos de entrada, <strong>sin etiquetar</strong>, y el algoritmo descubre por sí mismo <strong>patrones y relaciones</strong>. Se usa cuando no hay etiquetas y se busca <strong>agrupar o detectar anomalías</strong>: segmentar clientes, detectar una medida anómala en una planta.</li>\n</ul></div>\n<div class=\"bloque bloque-nota\"><p class=\"bloque-titulo\">Redes neuronales</p><p>Una <strong>red neuronal</strong> es un tipo de algoritmo —usado tanto en aprendizaje supervisado como no supervisado— que <strong>imita de forma simplificada el funcionamiento del cerebro</strong>: muchas «neuronas» conectadas que se ajustan durante el entrenamiento. Son la base del <em>aprendizaje profundo</em> y de buena parte de la IA actual.</p></div>"}]]></jsonProperties>
           <odeComponentsOrder>0</odeComponentsOrder>
           <odeComponentsProperties>
             <odeComponentsProperty>
@@ -2755,7 +2817,7 @@ MathJax.Hub.Config({
       <odeBlockId>block-pemrgfc2-lrteiuimi</odeBlockId>
       <blockName>Big data: las 7 uves</blockName>
       <iconName></iconName>
-      <odePagStructureOrder>2</odePagStructureOrder>
+      <odePagStructureOrder>3</odePagStructureOrder>
       <odePagStructureProperties>
         <odePagStructureProperty>
           <key>visibility</key>
@@ -2820,7 +2882,7 @@ MathJax.Hub.Config({
       <odeBlockId>block-pemrgfc2-g37e0zb4z</odeBlockId>
       <blockName>Ciberseguridad</blockName>
       <iconName></iconName>
-      <odePagStructureOrder>3</odePagStructureOrder>
+      <odePagStructureOrder>4</odePagStructureOrder>
       <odePagStructureProperties>
         <odePagStructureProperty>
           <key>visibility</key>
@@ -2854,7 +2916,9 @@ MathJax.Hub.Config({
 <ul>
 <li><strong>Malware.</strong> Software malicioso (virus, gusanos, troyanos) que se infiltra para dañar o espiar.</li>
 <li><strong>Ransomware.</strong> Malware que cifra los datos y exige un rescate para liberarlos; puede paralizar una organización entera.</li>
-<li><strong>Phishing.</strong> Engaño mediante correos o sitios web falsos que suplantan a una entidad de confianza para robar contraseñas o datos personales.</li>
+<li><strong>Phishing.</strong> Engaño mediante correos o sitios web falsos que suplantan a una entidad de confianza para robar contraseñas o datos personales. Si se hace por SMS se llama <em>smishing</em>.</li>
+<li><strong>Ingeniería social.</strong> Manipular a las personas ganándose su confianza —a menudo haciéndose pasar por una entidad fiable— para que revelen datos confidenciales. El phishing es un caso particular.</li>
+<li><strong>Pharming.</strong> Redirigir una dirección web (URL) legítima al sitio falso del atacante —por ejemplo, suplantando la web de un banco— para robar las claves de la víctima.</li>
 <li><strong>Ataques a sistemas de control.</strong> Dirigidos a la automatización industrial (sistemas SCADA) o a la domótica: buscan manipular sensores y actuadores. El caso más conocido, <em>Stuxnet</em>, saboteó centrifugadoras industriales alterando su sistema de control.</li>
 <li><strong>Ataques a dispositivos conectados (IoT).</strong> Cámaras, termostatos o sensores con seguridad débil que se secuestran para atacar otros sistemas.</li>
 </ul></div>
@@ -2865,9 +2929,11 @@ MathJax.Hub.Config({
 <li>Hacer <strong>copias de seguridad</strong> periódicas: la mejor defensa frente al ransomware.</li>
 <li><strong>Cifrar</strong> la información sensible para que, si se roba, no sea legible.</li>
 <li>Instalar solo software de <strong>fuentes fiables</strong> y desconfiar de enlaces y adjuntos inesperados.</li>
+<li>Instalar y mantener actualizado un <strong>antivirus / antimalware</strong> y activar el <strong>cortafuegos</strong> (firewall), que filtra el tráfico de red.</li>
+<li>En una red, un <strong>servidor proxy</strong> puede intermediar y filtrar las conexiones, añadiendo una capa de control.</li>
 <li>En sistemas de control, <strong>separar la red</strong> industrial de la red general y limitar quién accede a cada parte.</li>
 </ul></div>]]></htmlView>
-          <jsonProperties><![CDATA[{"textTextarea":"<div class=\"bloque bloque-teoria\"><p class=\"bloque-titulo\">Qué es la ciberseguridad</p><p>La <strong>ciberseguridad</strong> es el conjunto de medidas que protegen los sistemas informáticos, las redes y los datos frente a accesos no autorizados, daños o robos. En un sistema de control conectado a la red, un fallo de seguridad no solo compromete datos: puede <strong>alterar el proceso físico</strong> —parar una planta, falsear una medida o abrir una válvula—.</p></div>\n<div class=\"bloque bloque-teoria\"><p class=\"bloque-titulo\">Principales amenazas</p>\n<ul>\n<li><strong>Malware.</strong> Software malicioso (virus, gusanos, troyanos) que se infiltra para dañar o espiar.</li>\n<li><strong>Ransomware.</strong> Malware que cifra los datos y exige un rescate para liberarlos; puede paralizar una organización entera.</li>\n<li><strong>Phishing.</strong> Engaño mediante correos o sitios web falsos que suplantan a una entidad de confianza para robar contraseñas o datos personales.</li>\n<li><strong>Ataques a sistemas de control.</strong> Dirigidos a la automatización industrial (sistemas SCADA) o a la domótica: buscan manipular sensores y actuadores. El caso más conocido, <em>Stuxnet</em>, saboteó centrifugadoras industriales alterando su sistema de control.</li>\n<li><strong>Ataques a dispositivos conectados (IoT).</strong> Cámaras, termostatos o sensores con seguridad débil que se secuestran para atacar otros sistemas.</li>\n</ul></div>\n<div class=\"bloque bloque-teoria\"><p class=\"bloque-titulo\">Medidas básicas de protección</p>\n<ul>\n<li>Usar <strong>contraseñas robustas</strong> y distintas para cada servicio, y verificación en dos pasos.</li>\n<li>Mantener <strong>actualizados</strong> el sistema y las aplicaciones (los parches cierran agujeros ya conocidos).</li>\n<li>Hacer <strong>copias de seguridad</strong> periódicas: la mejor defensa frente al ransomware.</li>\n<li><strong>Cifrar</strong> la información sensible para que, si se roba, no sea legible.</li>\n<li>Instalar solo software de <strong>fuentes fiables</strong> y desconfiar de enlaces y adjuntos inesperados.</li>\n<li>En sistemas de control, <strong>separar la red</strong> industrial de la red general y limitar quién accede a cada parte.</li>\n</ul></div>"}]]></jsonProperties>
+          <jsonProperties><![CDATA[{"textTextarea":"<div class=\"bloque bloque-teoria\"><p class=\"bloque-titulo\">Qué es la ciberseguridad</p><p>La <strong>ciberseguridad</strong> es el conjunto de medidas que protegen los sistemas informáticos, las redes y los datos frente a accesos no autorizados, daños o robos. En un sistema de control conectado a la red, un fallo de seguridad no solo compromete datos: puede <strong>alterar el proceso físico</strong> —parar una planta, falsear una medida o abrir una válvula—.</p></div>\n<div class=\"bloque bloque-teoria\"><p class=\"bloque-titulo\">Principales amenazas</p>\n<ul>\n<li><strong>Malware.</strong> Software malicioso (virus, gusanos, troyanos) que se infiltra para dañar o espiar.</li>\n<li><strong>Ransomware.</strong> Malware que cifra los datos y exige un rescate para liberarlos; puede paralizar una organización entera.</li>\n<li><strong>Phishing.</strong> Engaño mediante correos o sitios web falsos que suplantan a una entidad de confianza para robar contraseñas o datos personales. Si se hace por SMS se llama <em>smishing</em>.</li>\n<li><strong>Ingeniería social.</strong> Manipular a las personas ganándose su confianza —a menudo haciéndose pasar por una entidad fiable— para que revelen datos confidenciales. El phishing es un caso particular.</li>\n<li><strong>Pharming.</strong> Redirigir una dirección web (URL) legítima al sitio falso del atacante —por ejemplo, suplantando la web de un banco— para robar las claves de la víctima.</li>\n<li><strong>Ataques a sistemas de control.</strong> Dirigidos a la automatización industrial (sistemas SCADA) o a la domótica: buscan manipular sensores y actuadores. El caso más conocido, <em>Stuxnet</em>, saboteó centrifugadoras industriales alterando su sistema de control.</li>\n<li><strong>Ataques a dispositivos conectados (IoT).</strong> Cámaras, termostatos o sensores con seguridad débil que se secuestran para atacar otros sistemas.</li>\n</ul></div>\n<div class=\"bloque bloque-teoria\"><p class=\"bloque-titulo\">Medidas básicas de protección</p>\n<ul>\n<li>Usar <strong>contraseñas robustas</strong> y distintas para cada servicio, y verificación en dos pasos.</li>\n<li>Mantener <strong>actualizados</strong> el sistema y las aplicaciones (los parches cierran agujeros ya conocidos).</li>\n<li>Hacer <strong>copias de seguridad</strong> periódicas: la mejor defensa frente al ransomware.</li>\n<li><strong>Cifrar</strong> la información sensible para que, si se roba, no sea legible.</li>\n<li>Instalar solo software de <strong>fuentes fiables</strong> y desconfiar de enlaces y adjuntos inesperados.</li>\n<li>Instalar y mantener actualizado un <strong>antivirus / antimalware</strong> y activar el <strong>cortafuegos</strong> (firewall), que filtra el tráfico de red.</li>\n<li>En una red, un <strong>servidor proxy</strong> puede intermediar y filtrar las conexiones, añadiendo una capa de control.</li>\n<li>En sistemas de control, <strong>separar la red</strong> industrial de la red general y limitar quién accede a cada parte.</li>\n</ul></div>"}]]></jsonProperties>
           <odeComponentsOrder>0</odeComponentsOrder>
           <odeComponentsProperties>
             <odeComponentsProperty>
@@ -2891,7 +2957,7 @@ MathJax.Hub.Config({
       <odeBlockId>block-pemrgfc2-mjkhptv75</odeBlockId>
       <blockName>Para repasar</blockName>
       <iconName></iconName>
-      <odePagStructureOrder>4</odePagStructureOrder>
+      <odePagStructureOrder>5</odePagStructureOrder>
       <odePagStructureProperties>
         <odePagStructureProperty>
           <key>visibility</key>
