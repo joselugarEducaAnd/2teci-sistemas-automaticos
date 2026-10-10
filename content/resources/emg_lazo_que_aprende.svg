@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 470" role="img" aria-labelledby="t">
+<title id="t">Comparación entre un lazo de control clásico y un lazo que aprende</title>
+<defs>
+  <marker id="f" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10z" fill="#24313a"/></marker>
+  <marker id="fm" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10z" fill="#e67e22"/></marker>
+</defs>
+<g font-family="system-ui, -apple-system, Segoe UI, sans-serif" fill="#24313a">
+  <text x="20" y="26" font-size="15" font-weight="700" fill="#0e5a63">Lazo de control clásico</text>
+  <text x="20" y="46" font-size="12.5" fill="#5d6b74">las reglas están fijadas de antemano y no cambian nunca</text>
+
+  <text x="20" y="96" font-size="14" font-weight="700">r</text>
+  <line x1="32" y1="90" x2="70" y2="90" stroke="#24313a" stroke-width="2" marker-end="url(#f)"/>
+  <circle cx="86" cy="90" r="15" fill="#fff" stroke="#24313a" stroke-width="2"/>
+  <text x="86" y="96" text-anchor="middle" font-size="16">+</text>
+  <text x="68" y="116" font-size="13">−</text>
+  <line x1="101" y1="90" x2="146" y2="90" stroke="#24313a" stroke-width="2" marker-end="url(#f)"/>
+  <rect x="148" y="66" width="126" height="48" rx="8" fill="#e6f1f2" stroke="#0e5a63" stroke-width="2"/>
+  <text x="211" y="88" text-anchor="middle" font-size="13.5" font-weight="700">Controlador</text>
+  <text x="211" y="105" text-anchor="middle" font-size="11" fill="#5d6b74">reglas fijas</text>
+  <line x1="274" y1="90" x2="318" y2="90" stroke="#24313a" stroke-width="2" marker-end="url(#f)"/>
+  <rect x="320" y="66" width="126" height="48" rx="8" fill="#fdefe2" stroke="#e67e22" stroke-width="2"/>
+  <text x="383" y="95" text-anchor="middle" font-size="13.5" font-weight="700">Planta</text>
+  <line x1="446" y1="90" x2="650" y2="90" stroke="#24313a" stroke-width="2" marker-end="url(#f)"/>
+  <text x="658" y="96" font-size="14" font-weight="700">c</text>
+  <circle cx="560" cy="90" r="4" fill="#24313a"/>
+  <line x1="560" y1="90" x2="560" y2="150" stroke="#24313a" stroke-width="2"/>
+  <line x1="560" y1="150" x2="452" y2="150" stroke="#24313a" stroke-width="2" marker-end="url(#f)"/>
+  <rect x="320" y="128" width="126" height="44" rx="8" fill="#ecf6ef" stroke="#2c7a3e" stroke-width="2"/>
+  <text x="383" y="155" text-anchor="middle" font-size="13.5" font-weight="700">Sensor</text>
+  <line x1="320" y1="150" x2="86" y2="150" stroke="#24313a" stroke-width="2"/>
+  <line x1="86" y1="150" x2="86" y2="107" stroke="#24313a" stroke-width="2" marker-end="url(#f)"/>
+
+  <line x1="20" y1="196" x2="880" y2="196" stroke="#c3dde0" stroke-width="1.5" stroke-dasharray="7 6"/>
+
+  <text x="20" y="234" font-size="15" font-weight="700" fill="#e67e22">Lazo que aprende</text>
+  <text x="20" y="254" font-size="12.5" fill="#5d6b74">el mismo lazo más un bloque que ajusta las reglas con el histórico de lo que ya ha pasado</text>
+
+  <text x="20" y="306" font-size="14" font-weight="700">r</text>
+  <line x1="32" y1="300" x2="70" y2="300" stroke="#24313a" stroke-width="2" marker-end="url(#f)"/>
+  <circle cx="86" cy="300" r="15" fill="#fff" stroke="#24313a" stroke-width="2"/>
+  <text x="86" y="306" text-anchor="middle" font-size="16">+</text>
+  <text x="68" y="326" font-size="13">−</text>
+  <line x1="101" y1="300" x2="146" y2="300" stroke="#24313a" stroke-width="2" marker-end="url(#f)"/>
+  <rect x="148" y="276" width="126" height="48" rx="8" fill="#e6f1f2" stroke="#0e5a63" stroke-width="2"/>
+  <text x="211" y="298" text-anchor="middle" font-size="13.5" font-weight="700">Controlador</text>
+  <text x="211" y="315" text-anchor="middle" font-size="11" fill="#5d6b74">reglas ajustables</text>
+  <line x1="274" y1="300" x2="318" y2="300" stroke="#24313a" stroke-width="2" marker-end="url(#f)"/>
+  <rect x="320" y="276" width="126" height="48" rx="8" fill="#fdefe2" stroke="#e67e22" stroke-width="2"/>
+  <text x="383" y="305" text-anchor="middle" font-size="13.5" font-weight="700">Planta</text>
+  <line x1="446" y1="300" x2="650" y2="300" stroke="#24313a" stroke-width="2" marker-end="url(#f)"/>
+  <text x="658" y="306" font-size="14" font-weight="700">c</text>
+  <circle cx="560" cy="300" r="4" fill="#24313a"/>
+  <line x1="560" y1="300" x2="560" y2="360" stroke="#24313a" stroke-width="2"/>
+  <line x1="560" y1="360" x2="452" y2="360" stroke="#24313a" stroke-width="2" marker-end="url(#f)"/>
+  <rect x="320" y="338" width="126" height="44" rx="8" fill="#ecf6ef" stroke="#2c7a3e" stroke-width="2"/>
+  <text x="383" y="365" text-anchor="middle" font-size="13.5" font-weight="700">Sensor</text>
+  <line x1="320" y1="360" x2="86" y2="360" stroke="#24313a" stroke-width="2"/>
+  <line x1="86" y1="360" x2="86" y2="317" stroke="#24313a" stroke-width="2" marker-end="url(#f)"/>
+
+  <rect x="640" y="352" width="250" height="62" rx="10" fill="#fdefe2" stroke="#e67e22" stroke-width="2.5"/>
+  <text x="765" y="376" text-anchor="middle" font-size="13.5" font-weight="700" fill="#8a4f12">Modelo que aprende</text>
+  <text x="765" y="396" text-anchor="middle" font-size="11" fill="#8a4f12">histórico de medidas y decisiones</text>
+
+  <circle cx="600" cy="300" r="4" fill="#e67e22"/>
+  <path d="M 600 300 V 336 H 700 V 348" fill="none" stroke="#e67e22" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#fm)"/>
+  <text x="612" y="330" font-size="11" fill="#8a4f12">aprende de lo medido</text>
+
+  <path d="M 660 414 V 442 H 211 V 328" fill="none" stroke="#e67e22" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#fm)"/>
+  <text x="400" y="436" text-anchor="middle" font-size="11.5" fill="#8a4f12">ajusta las reglas del controlador</text>
+</g>
+</svg>

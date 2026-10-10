@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Error en régimen permanente de un lazo cerrado</title>
+<style>
+  :root{
+    color-scheme: light;
+    --navy:#0e5a63; --navy-2:#084049; --blue:#2f6fb0; --teal:#0f8a8f;
+    --orange:#e67e22; --red:#b23b3b; --verde:#2c7a3e; --ink:#24313a; --muted:#5d6b74;
+    --line:#d6dbe5; --paper:#fff; --wash:#f2f7f8; --focus:#ffd166;
+    font-family: system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:transparent;color:var(--ink)}
+  body{padding:8px}
+  .lab{max-width:1120px;margin:0 auto;overflow:hidden;border:1px solid #cfd9db;
+       border-radius:16px;background:var(--paper);box-shadow:0 8px 24px rgb(14 90 99 / 12%)}
+  .lab-header{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;
+       padding:18px 22px;color:#fff;background:linear-gradient(125deg,var(--navy-2),var(--navy))}
+  .lab-header h1{margin:0 0 4px;font-size:clamp(1.16rem,2.2vw,1.5rem);line-height:1.2}
+  .lab-header p{max-width:760px;margin:0;color:#dcecee;font-size:.92rem;line-height:1.45}
+  .badge{flex:0 0 auto;padding:6px 10px;border:1px solid rgb(255 255 255/32%);
+       border-radius:999px;background:rgb(255 255 255/10%);font-size:.78rem;white-space:nowrap}
+  .readout{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;
+       padding:14px 18px;border-bottom:1px solid var(--line);background:var(--wash)}
+  .metric{padding:10px 12px;border:1px solid #dbe4e6;border-radius:10px;background:#fff}
+  .metric .label{display:block;margin-bottom:2px;color:var(--muted);font-size:.7rem;
+       font-weight:700;letter-spacing:.055em;text-transform:uppercase}
+  .metric output{display:block;color:var(--navy-2);font-size:1.02rem;font-weight:750}
+  .metric.destacada{border-left:5px solid var(--orange)}
+  .cuerpo{display:grid;grid-template-columns:minmax(300px,1fr) minmax(260px,320px);gap:0}
+  @media (max-width:600px){.cuerpo{grid-template-columns:1fr}}
+  .escena{padding:12px 18px 18px}
+  .panel{padding:16px 18px;border-left:1px solid var(--line);background:#fbfdfd}
+  @media (max-width:600px){.panel{border-left:0;border-top:1px solid var(--line)}}
+  .campo{margin-bottom:14px}
+  .campo label{display:block;margin-bottom:4px;font-size:.82rem;font-weight:600;color:var(--navy-2)}
+  .campo .valor{float:right;font-weight:700;color:var(--blue)}
+  input[type=range]{width:100%;accent-color:var(--blue)}
+  select{width:100%;padding:6px 8px;border:1px solid var(--line);border-radius:8px;
+       background:#fff;font:inherit;color:inherit}
+  input:focus-visible,select:focus-visible,button:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+  .formula{margin:2px 0 14px;padding:10px 12px;border:1.5px solid var(--orange);
+       border-radius:10px;background:#fef6ec;color:#8a4f12;font-size:.95rem;text-align:center;line-height:1.7}
+  .botones{display:flex;gap:8px;flex-wrap:wrap}
+  button.accion{padding:8px 14px;border:1px solid var(--navy);border-radius:8px;background:var(--navy);
+       color:#fff;font:inherit;font-weight:600;cursor:pointer}
+  button.sec{background:#fff;color:var(--navy)}
+  .aviso{margin-top:12px;padding:8px 10px;border-left:4px solid var(--teal);background:#eaf6f6;
+       color:#0a5f63;font-size:.85rem;border-radius:6px}
+  .aviso.mal{border-left-color:var(--red);background:#fbeceb;color:#7d2a2a}
+  .aviso.bien{border-left-color:var(--verde);background:#ecf6ef;color:#1d5b2e}
+  .aviso[hidden]{display:none}
+  .nota{margin:10px 18px 16px;color:var(--muted);font-size:.8rem;line-height:1.5}
+  svg{display:block;width:100%;height:auto}
+  table.barras{width:100%;border-collapse:collapse;margin-top:6px;font-size:.86rem}
+  table.barras th{text-align:left;padding:4px 6px;color:var(--muted);font-size:.72rem;
+       text-transform:uppercase;letter-spacing:.05em}
+  table.barras td{padding:4px 6px;border-top:1px solid var(--line);vertical-align:middle}
+  table.barras td.n{text-align:right;font-variant-numeric:tabular-nums;font-weight:650;white-space:nowrap}
+  .barra{height:14px;border-radius:7px;background:#e4ecee;overflow:hidden}
+  .barra span{display:block;height:100%;border-radius:7px;background:var(--teal)}
+  .barra.err span{background:var(--red)}
+  [hidden]{display:none !important}
+</style>
+</head>
+<body>
+<div class="lab">
+  <div class="lab-header">
+    <div>
+      <h1>Error en régimen permanente</h1>
+      <p>El lazo cerrado no copia la consigna: se queda cerca. Mueve las ganancias y mira
+         cuánto vale la salida, cuánto vale el error y qué hace falta para que el error baje.</p>
+    </div>
+    <span class="badge">Bloque F</span>
+  </div>
+
+  <div class="readout">
+    <div class="metric"><span class="label">c / r</span><output id="oCr">—</output></div>
+    <div class="metric"><span class="label">Salida c</span><output id="oC">—</output></div>
+    <div class="metric"><span class="label">Realimentación b</span><output id="oB">—</output></div>
+    <div class="metric"><span class="label">Error e</span><output id="oE">—</output></div>
+    <div class="metric destacada"><span class="label">Error e / r</span><output id="oEr">—</output></div>
+  </div>
+
+  <div class="cuerpo">
+    <div class="escena">
+      <svg viewBox="0 0 640 250" role="img" aria-labelledby="tituloDiag">
+        <title id="tituloDiag">Diagrama de bloques del lazo cerrado con las señales r, e, c y b</title>
+        <defs>
+          <marker id="flecha" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="#24313a"/>
+          </marker>
+        </defs>
+        <g font-family="system-ui, sans-serif" font-size="15" fill="#24313a">
+          <text x="18" y="78" font-weight="700">r</text>
+          <text x="18" y="98" font-size="12" fill="#5d6b74" id="etqR">100</text>
+          <line x1="34" y1="72" x2="76" y2="72" stroke="#24313a" stroke-width="2" marker-end="url(#flecha)"/>
+          <circle cx="92" cy="72" r="16" fill="#fff" stroke="#24313a" stroke-width="2"/>
+          <text x="92" y="78" text-anchor="middle" font-size="17">+</text>
+          <text x="74" y="98" font-size="14" id="signo">−</text>
+          <line x1="108" y1="72" x2="168" y2="72" stroke="#24313a" stroke-width="2" marker-end="url(#flecha)"/>
+          <text x="126" y="62" font-size="13" font-weight="700" fill="#b23b3b">e</text>
+          <rect x="170" y="46" width="104" height="52" rx="8" fill="#e6f1f2" stroke="#0e5a63" stroke-width="2"/>
+          <text x="222" y="70" text-anchor="middle" font-weight="700">G₁</text>
+          <text x="222" y="88" text-anchor="middle" font-size="12" fill="#5d6b74" id="etqG1">5</text>
+          <line x1="274" y1="72" x2="330" y2="72" stroke="#24313a" stroke-width="2" marker-end="url(#flecha)"/>
+          <rect x="332" y="46" width="104" height="52" rx="8" fill="#fdefe2" stroke="#e67e22" stroke-width="2"/>
+          <text x="384" y="70" text-anchor="middle" font-weight="700">G₂</text>
+          <text x="384" y="88" text-anchor="middle" font-size="12" fill="#5d6b74" id="etqG2">4</text>
+          <line x1="436" y1="72" x2="600" y2="72" stroke="#24313a" stroke-width="2" marker-end="url(#flecha)"/>
+          <text x="606" y="78" font-weight="700">c</text>
+          <text x="560" y="62" font-size="12" fill="#5d6b74" id="etqC">95,2</text>
+          <circle cx="520" cy="72" r="4" fill="#24313a"/>
+          <line x1="520" y1="72" x2="520" y2="176" stroke="#24313a" stroke-width="2"/>
+          <line x1="520" y1="176" x2="440" y2="176" stroke="#24313a" stroke-width="2" marker-end="url(#flecha)"/>
+          <rect x="332" y="150" width="104" height="52" rx="8" fill="#ecf6ef" stroke="#2c7a3e" stroke-width="2"/>
+          <text x="384" y="174" text-anchor="middle" font-weight="700">H</text>
+          <text x="384" y="192" text-anchor="middle" font-size="12" fill="#5d6b74" id="etqH">1</text>
+          <line x1="332" y1="176" x2="92" y2="176" stroke="#24313a" stroke-width="2"/>
+          <line x1="92" y1="176" x2="92" y2="90" stroke="#24313a" stroke-width="2" marker-end="url(#flecha)"/>
+          <text x="200" y="168" font-size="13" font-weight="700" fill="#2c7a3e">b</text>
+          <text x="150" y="196" font-size="12" fill="#5d6b74" id="etqB">95,2</text>
+        </g>
+      </svg>
+
+      <table class="barras">
+        <thead><tr><th>Señal</th><th style="width:52%">Comparada con la consigna</th><th class="n">Valor</th></tr></thead>
+        <tbody>
+          <tr><td>consigna r</td><td><div class="barra"><span id="bR" style="width:100%"></span></div></td><td class="n" id="nR">—</td></tr>
+          <tr><td>salida c</td><td><div class="barra"><span id="bC"></span></div></td><td class="n" id="nC">—</td></tr>
+          <tr><td>error e</td><td><div class="barra err"><span id="bE"></span></div></td><td class="n" id="nE">—</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="panel">
+      <div class="formula" id="formula">c/r = G₁·G₂ / (1 + G₁·G₂·H)<br>e/r = 1 / (1 + G₁·G₂·H)</div>
+
+      <div class="campo">
+        <label for="g1">Ganancia del controlador G₁ <span class="valor" id="vG1">5,0</span></label>
+        <input type="range" id="g1" min="0" max="20" step="0.25" value="5">
+      </div>
+      <div class="campo">
+        <label for="g2">Ganancia de la planta G₂ <span class="valor" id="vG2">4,0</span></label>
+        <input type="range" id="g2" min="0" max="10" step="0.25" value="4">
+      </div>
+      <div class="campo">
+        <label for="h">Ganancia del sensor H <span class="valor" id="vH">1,00</span></label>
+        <input type="range" id="h" min="0" max="2" step="0.05" value="1">
+      </div>
+      <div class="campo">
+        <label for="r">Consigna r <span class="valor" id="vR">100</span></label>
+        <input type="range" id="r" min="0" max="200" step="5" value="100">
+      </div>
+      <div class="campo">
+        <label for="signoRealim">Realimentación</label>
+        <select id="signoRealim">
+          <option value="-1" selected>Negativa (resta)</option>
+          <option value="1">Positiva (suma)</option>
+        </select>
+      </div>
+
+      <div class="botones">
+        <button class="accion" id="btnReto">Reto: error &lt; 2 %</button>
+        <button class="accion sec" id="btnReset">Valores del ejemplo</button>
+      </div>
+
+      <div class="aviso" id="aviso" hidden></div>
+    </div>
+  </div>
+
+  <p class="nota">Con realimentación negativa, subir la ganancia reduce el error pero no lo
+     anula nunca: haría falta una ganancia infinita. Con realimentación positiva ocurre lo
+     contrario, y si G₁·G₂·H llega a 1 el denominador se anula y el sistema se dispara.</p>
+</div>
+
+<script>
+/* ---------- cálculo (función pura, verificable fuera del navegador) ---------- */
+function calcular(p){
+  var G1 = p.G1, G2 = p.G2, H = p.H, r = p.r, s = p.signo;   // s = -1 negativa, +1 positiva
+  var lazo = G1 * G2 * H;
+  var den  = 1 - s * lazo;                 // negativa: 1 + G1G2H · positiva: 1 - G1G2H
+  var degenerado = Math.abs(den) < 1e-9;
+  var cr = degenerado ? Infinity : (G1 * G2) / den;
+  var er = degenerado ? Infinity : 1 / den;
+  var c  = cr * r;
+  var e  = er * r;
+  var b  = H * c;
+  return {lazo:lazo, den:den, cr:cr, er:er, c:c, e:e, b:b,
+          degenerado:degenerado, inestable: s > 0 && lazo >= 1};
+}
+
+/* Umbral exacto de G1 para que |e/r| baje de un valor dado, realimentación negativa.
+   e/r = 1/(1+G1·G2·H) < u  <=>  G1 > (1/u - 1)/(G2·H).
+   `exacta` es la frontera (donde el error vale EXACTAMENTE u) y `paso` el primer
+   valor del deslizador que la supera de verdad, que es lo que hay que fijar. */
+function g1Minima(G2, H, umbral){
+  if (G2 <= 0 || H <= 0 || umbral <= 0) return null;
+  var exacta = (1 / umbral - 1) / (G2 * H);
+  var paso = (Math.floor(exacta * 4 + 1e-9) + 1) / 4;   // deslizador de 0,25 en 0,25
+  return {exacta: exacta, paso: paso};
+}
+
+if (typeof module !== "undefined" && module.exports){ module.exports = {calcular:calcular, g1Minima:g1Minima}; }
+
+/* ---------- interfaz ---------- */
+if (typeof document !== "undefined") (function(){
+  var $ = function(id){ return document.getElementById(id); };
+  var num = function(x, d){
+    if (!isFinite(x)) return "∞";
+    return x.toLocaleString("es-ES", {minimumFractionDigits:d, maximumFractionDigits:d});
+  };
+
+  function leer(){
+    return {G1:+$("g1").value, G2:+$("g2").value, H:+$("h").value,
+            r:+$("r").value, signo:+$("signoRealim").value};
+  }
+
+  function pintar(){
+    var p = leer(), q = calcular(p), neg = p.signo < 0;
+
+    $("vG1").textContent = num(p.G1,2); $("vG2").textContent = num(p.G2,2);
+    $("vH").textContent  = num(p.H,2);  $("vR").textContent  = num(p.r,0);
+
+    var sg = neg ? "+" : "−";
+    $("formula").innerHTML = "c/r = G₁·G₂ / (1 " + sg + " G₁·G₂·H)<br>e/r = 1 / (1 " + sg + " G₁·G₂·H)";
+
+    // Con el denominador nulo o negativo la fórmula sigue dando números, pero ya no
+    // describen nada físico: mostrarlos induce a leerlos como la salida real.
+    var sinSentido = q.degenerado || q.inestable;
+    var cif = function(v, d){ return sinSentido ? "—" : num(v, d); };
+    $("oCr").textContent = cif(q.cr,4);
+    $("oC").textContent  = cif(q.c,2);
+    $("oB").textContent  = cif(q.b,2);
+    $("oE").textContent  = cif(q.e,2);
+    $("oEr").textContent = sinSentido ? "—" : isFinite(q.er) ? num(q.er*100,2) + " %" : "∞";
+
+    $("etqR").textContent = num(p.r,0);
+    $("etqG1").textContent = num(p.G1,2);
+    $("etqG2").textContent = num(p.G2,2);
+    $("etqH").textContent = num(p.H,2);
+    $("etqC").textContent = cif(q.c,1);
+    $("etqB").textContent = cif(q.b,1);
+    $("signo").textContent = neg ? "−" : "+";
+
+    var esc = Math.max(p.r, Math.abs(q.c), 1e-9);
+    var pct = function(v){ return Math.max(0, Math.min(100, 100*Math.abs(v)/esc)).toFixed(1) + "%"; };
+    $("bR").style.width = pct(p.r);
+    $("bC").style.width = isFinite(q.c) ? pct(q.c) : "100%";
+    $("bE").style.width = isFinite(q.e) ? pct(q.e) : "100%";
+    $("nR").textContent = num(p.r,1);
+    $("nC").textContent = cif(q.c,2);
+    $("nE").textContent = cif(q.e,2);
+
+    var a = $("aviso");
+    a.className = "aviso";
+    if (q.degenerado){
+      a.hidden = false; a.classList.add("mal");
+      a.textContent = "G₁·G₂·H = 1 con realimentación positiva: el denominador se anula y la salida se dispara. El sistema es inestable.";
+    } else if (q.inestable){
+      a.hidden = false; a.classList.add("mal");
+      a.textContent = "Realimentación positiva con G₁·G₂·H = " + num(q.lazo,2) +
+        ": el denominador es negativo y la fórmula da un valor que ya no describe nada físico. " +
+        "Lo que ocurre en realidad es que la salida crece sin límite hasta el tope del actuador: el sistema es inestable.";
+    } else if (p.G1 === 0 || p.G2 === 0){
+      a.hidden = false;
+      a.textContent = "Con una ganancia a cero no llega nada a la salida: el error es toda la consigna.";
+    } else if (neg && isFinite(q.er) && Math.abs(q.er) < 0.02){
+      a.hidden = false; a.classList.add("bien");
+      a.textContent = "Error del " + num(Math.abs(q.er)*100,2) + " %: por debajo del 2 %. " +
+        "Fíjate en que sigue sin ser cero.";
+    } else if (neg && isFinite(q.er) && Math.abs(q.er) < 0.05){
+      a.hidden = false; a.classList.add("bien");
+      a.textContent = "Error del " + num(Math.abs(q.er)*100,2) + " %: por debajo del 5 %, " +
+        "pero todavía no del 2 %.";
+    } else { a.hidden = true; }
+  }
+
+  $("btnReto").addEventListener("click", function(){
+    var p = leer();
+    if (p.signo > 0){ $("signoRealim").value = "-1"; p.signo = -1; }
+    var g = g1Minima(p.G2, p.H, 0.02);
+    var a = $("aviso"); a.className = "aviso"; a.hidden = false;
+    if (g === null){
+      a.classList.add("mal");
+      a.textContent = "Con G₂ o H a cero no hay lazo que cerrar: sube alguna de las dos y vuelve a intentarlo.";
+      return;
+    }
+    if (g.paso > 20){
+      a.classList.add("mal");
+      a.textContent = "Haría falta G₁ > " + num(g.exacta,2) + ", más de lo que da el deslizador. " +
+        "Sube G₂ o H: lo que manda es el producto G₁·G₂·H.";
+      return;
+    }
+    $("g1").value = g.paso; pintar();
+    var g5 = g1Minima(p.G2, p.H, 0.05);
+    a = $("aviso"); a.className = "aviso bien"; a.hidden = false;
+    a.textContent = "El error baja del 2 % cuando G₁·G₂·H pasa de 49, es decir con G₁ > " +
+      num(g.exacta,2) + "; te he puesto el primer valor del deslizador que lo cumple, G₁ = " +
+      num(g.paso,2) + ". Para conformarse con el 5 % bastaba con G₁ > " + num(g5.exacta,2) + ".";
+  });
+
+  $("btnReset").addEventListener("click", function(){
+    $("g1").value = 5; $("g2").value = 4; $("h").value = 1; $("r").value = 100;
+    $("signoRealim").value = "-1"; pintar();
+  });
+
+  ["g1","g2","h","r","signoRealim"].forEach(function(id){
+    $(id).addEventListener("input", pintar);
+    $(id).addEventListener("change", pintar);
+  });
+  pintar();
+})();
+</script>
+</body>
+</html>

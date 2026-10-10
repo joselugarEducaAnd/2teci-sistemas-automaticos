@@ -2,37 +2,18 @@
 <html lang="es" id="exe-page-pemrgfc2-a1m7npl96">
 <head>
 <meta charset="utf-8">
-<meta name="generator" content="eXeLearning v4.0.3">
+<meta name="generator" content="eXeLearning v4.0.5">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="license" type="text/html" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
 <title>Sistemas informáticos emergentes: IA, big data y ciberseguridad | Sistemas automáticos</title>
 <link rel="icon" type="image/x-icon" href="../libs/favicon.ico">
 <meta name="description" content="Sistemas automáticos. Tecnología e Ingeniería II.">
-<script>document.querySelector("html").classList.add("js");</script><script src="../libs/jquery/jquery.min.js"> </script><script src="../libs/common_i18n.js"> </script><script src="../libs/common.js"> </script><script src="../libs/exe_export.js"> </script><script>window.exeXapi={"odeId":"202607071318528B17JD","packageTitle":"Sistemas automáticos","language":"es"};</script><script src="../libs/xapi/exe_xapi.js"> </script><script src="../libs/bootstrap/bootstrap.bundle.min.js"> </script><link rel="stylesheet" href="../libs/bootstrap/bootstrap.min.css">
+<script>document.querySelector("html").classList.add("js");</script><script src="../libs/jquery/jquery.min.js"> </script><script src="../libs/common_i18n.js"> </script><script src="../libs/common.js"> </script><script src="../libs/exe_export.js"> </script><script src="../libs/bootstrap/bootstrap.bundle.min.js"> </script><link rel="stylesheet" href="../libs/bootstrap/bootstrap.min.css">
 <script src="../idevices/text/text.js"></script><link rel="stylesheet" href="../idevices/text/text.css">
-<link rel="stylesheet" href="../content/css/base.css"><script src="../theme/style.js"> </script>
-<script src="../theme/zzz-majuelo.js"> </script><link rel="stylesheet" href="../theme/style.css"><link rel="stylesheet" href="../theme/zzz-majuelo.css">
+<script src="../libs/exe_effects/exe_effects.js"> </script>
+<link rel="stylesheet" href="../libs/exe_effects/exe_effects.css">
+<link rel="stylesheet" href="../content/css/base.css"><script src="../theme/style.js"> </script><script src="../theme/zzz-majuelo.js"> </script><link rel="stylesheet" href="../theme/style.css"><link rel="stylesheet" href="../theme/zzz-majuelo.css">
 <script src="../libs/exe_math/tex-mml-svg.js"> </script>
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    extensions: ["tex2jax.js"],
-    jax: ["input/TeX", "output/HTML-CSS"],
-    tex2jax: {
- inlineMath: [ ['$','$'], ["\\(","\\)"] ],
- displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
- processEscapes: true
-    },
-    "HTML-CSS": { fonts: ["TeX"] }
-  });
-</script>
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-  TeX: { equationNumbers: { autoNumber: "AMS" } }
-});
-</script>
-<script type="text/javascript"
-   src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=default">
-</script>
 </head>
 <body class="exe-export exe-web-site">
 <script>document.body.className+=" js"</script>
@@ -52,7 +33,11 @@ MathJax.Hub.Config({
 </li>
 </ul>
 </li>
-<li> <a href="../html/componentes-de-un-sistema-de-control.html" class="no-ch">Componentes de un sistema de control</a>
+<li> <a href="../html/componentes-de-un-sistema-de-control.html" class="daddy">Componentes de un sistema de control</a>
+<ul class="other-section">
+<li> <a href="../html/catalogo-de-sensores.html" class="no-ch">Catálogo de sensores</a>
+</li>
+</ul>
 </li>
 <li class="active"> <a href="../html/sistemas-informaticos-emergentes-ia-big-data-y-cib.html" class="active no-ch">Sistemas informáticos emergentes: IA, big data y ciberseguridad</a>
 </li>
@@ -69,7 +54,7 @@ MathJax.Hub.Config({
 </button></header>
 <div class="box-content">
 <div id="idevice-pemrgfc2-gftxv9km8" class="idevice_node text" data-idevice-path="../idevices/text/" data-idevice-type="text" data-idevice-component-type="json" data-idevice-json-data="{&quot;ideviceId&quot;:&quot;idevice-pemrgfc2-gftxv9km8&quot;}">
-<div class="bloque bloque-nota"><p class="bloque-titulo">Sesión 9</p></div>
+<style>.exe-content{--chrome:#0e5a63;--chrome-osc:#084049;--chrome-tinte:#e6f1f2;--chrome-linea:#c3dde0;}</style>
 <p>En esta unidad has modelado sistemas de control en <strong>lazo cerrado</strong>: un sensor mide la salida, se compara con la consigna y el regulador corrige. Ese esquema —sensor, controlador, actuador, realimentación— es la base de toda la automatización. El control actual va un paso más allá: los reguladores <em>aprenden</em> del comportamiento del sistema, procesan <em>torrentes de datos</em> de miles de sensores y, al estar conectados a la red, pueden ser <em>atacados</em>.</p>
 <p>Esta píldora presenta tres tecnologías que ya forman parte del control inteligente: la <strong>inteligencia artificial</strong>, el <strong>big data</strong> y la <strong>ciberseguridad</strong>. El objetivo es <strong>conocer</strong> los conceptos, no calcular con ellos.</p>
 <div class="bloque bloque-nota"><p class="bloque-titulo">¿Entra en la PAU?</p><p>El bloque de tecnologías digitales <strong>no puntúa como problema</strong> en la prueba de acceso, pero sí <strong>contextualiza los enunciados</strong>: un problema de estructuras o de control puede ambientarse en una fábrica «inteligente», un sistema domótico o una planta con mantenimiento predictivo. Reconocer estos términos te ayuda a entender el enunciado.</p></div>
@@ -77,13 +62,18 @@ MathJax.Hub.Config({
 </div>
 </article><article id="block-pemrgfc2-m6lmzlind" class="box">
 <header class="box-head no-icon">
-<h1 class="box-title">Inteligencia artificial (IA)</h1>
+<h1 class="box-title">Tres tecnologías del control inteligente</h1>
 <button class="box-toggle box-toggle-on" title="Toggle content">
 <span>Toggle content</span>
 </button></header>
 <div class="box-content">
 <div id="idevice-pemrgfc2-avkqhkmrv" class="idevice_node text" data-idevice-path="../idevices/text/" data-idevice-type="text" data-idevice-component-type="json" data-idevice-json-data="{&quot;ideviceId&quot;:&quot;idevice-pemrgfc2-avkqhkmrv&quot;}">
-<div class="bloque bloque-teoria"><p class="bloque-titulo">Qué es la IA</p><p>La <strong>inteligencia artificial (IA)</strong> es el conjunto de técnicas que permiten a una máquina realizar tareas que, hechas por una persona, requerirían inteligencia: percibir, razonar, aprender de la experiencia o tomar decisiones. En el control inteligente, la IA permite que un sistema <em>mejore su respuesta</em> a medida que acumula datos de funcionamiento.</p></div>
+<div class="exe-fx exe-tabs">
+<h2>Inteligencia artificial</h2>
+<div class="bloque bloque-teoria"><p class="bloque-titulo">Qué es la IA</p>
+<p><img src="../content/resources/emg_lazo_que_aprende.svg" alt="Comparación entre un lazo de control clásico, con las reglas fijas, y un lazo que aprende, en el que un modelo ajusta las reglas del controlador a partir del histórico de medidas y decisiones." width="920" height="470" style="display: block; margin-left: auto; margin-right: auto; max-width: 100%; height: auto;"></p>
+<p style="text-align: center;"><em>Del lazo de siempre al lazo que aprende: lo que cambia no es el esquema, es quién fija las reglas.</em></p>
+<p>La <strong>inteligencia artificial (IA)</strong> es el conjunto de técnicas que permiten a una máquina realizar tareas que, hechas por una persona, requerirían inteligencia: percibir, razonar, aprender de la experiencia o tomar decisiones. En el control inteligente, la IA permite que un sistema <em>mejore su respuesta</em> a medida que acumula datos de funcionamiento.</p></div>
 <p>Una forma habitual de clasificar la IA es según su <strong>capacidad</strong>, en cuatro tipos de complejidad creciente:</p>
 <div class="bloque bloque-teoria"><p class="bloque-titulo">Los cuatro tipos de IA</p>
 <ul>
@@ -94,17 +84,11 @@ MathJax.Hub.Config({
 </ul></div>
 <div class="bloque bloque-nota"><p class="bloque-titulo">Del lazo cerrado al lazo que aprende</p><p>Los dos primeros tipos ya conviven en muchos hogares: el termostato reactivo apaga y enciende; el de memoria limitada aprende la rutina. Los dos últimos son metas de investigación. Casi toda la IA que se usa hoy en control es de <strong>memoria limitada</strong>.</p></div>
 <div class="bloque bloque-nota"><p class="bloque-titulo">Otra clasificación: ANI, AGI y ASI</p><p>Además de por su capacidad, la IA también se clasifica por su <strong>alcance</strong>: la <strong>IA estrecha o limitada (ANI)</strong> resuelve una sola tarea concreta (traducir, recomendar, conducir) y es la única que existe hoy; la <strong>IA general (AGI)</strong>, de propósito general, abordaría cualquier tarea intelectual humana y aún no se ha logrado; y la <strong>superinteligencia artificial (ASI)</strong> superaría a la inteligencia humana y es, por ahora, hipotética.</p></div>
-</div>
-</div>
-</article><article id="block-pemrgfc2-ml7k3n2p9" class="box">
-<header class="box-head no-icon">
-<h1 class="box-title">Machine learning y redes neuronales</h1>
-<button class="box-toggle box-toggle-on" title="Toggle content">
-<span>Toggle content</span>
-</button></header>
-<div class="box-content">
-<div id="idevice-pemrgfc2-ml7k3n2p9" class="idevice_node text" data-idevice-path="../idevices/text/" data-idevice-type="text" data-idevice-component-type="json" data-idevice-json-data="{&quot;ideviceId&quot;:&quot;idevice-pemrgfc2-ml7k3n2p9&quot;}">
-<div class="bloque bloque-teoria"><p class="bloque-titulo">De la programación clásica al aprendizaje automático</p><p>En la <strong>programación clásica</strong> el programador da a la máquina los <strong>datos</strong> y las <strong>reglas</strong>, y esta calcula las <strong>respuestas</strong>. En el <strong>aprendizaje automático</strong> (<em>machine learning</em>) se invierte: se le dan los <strong>datos</strong> y las <strong>respuestas</strong>, y es la máquina la que deduce las <strong>reglas</strong>. Así puede decidir por sí sola si un dato nuevo encaja o no.</p></div>
+<h2>Machine learning</h2>
+<div class="bloque bloque-teoria"><p class="bloque-titulo">De la programación clásica al aprendizaje automático</p>
+<p><img src="../content/resources/emg_red_neuronal.svg" alt="Esquema de una red neuronal con una capa de entrada de tres neuronas, dos capas ocultas de tres neuronas cada una y una capa de salida de dos, todas conectadas entre capas consecutivas." width="680" height="330" style="display: block; margin-left: auto; margin-right: auto; max-width: 100%; height: auto;"></p>
+<p style="text-align: center;"><em>Cómo se organiza una red neuronal por capas.</em></p>
+<p>En la <strong>programación clásica</strong> el programador da a la máquina los <strong>datos</strong> y las <strong>reglas</strong>, y esta calcula las <strong>respuestas</strong>. En el <strong>aprendizaje automático</strong> (<em>machine learning</em>) se invierte: se le dan los <strong>datos</strong> y las <strong>respuestas</strong>, y es la máquina la que deduce las <strong>reglas</strong>. Así puede decidir por sí sola si un dato nuevo encaja o no.</p></div>
 <div class="bloque bloque-teoria"><p class="bloque-titulo">Qué es el machine learning</p><p>El <strong>aprendizaje automático</strong> es un método de IA que, a partir de <strong>muchos datos</strong> y de un algoritmo, genera un <strong>modelo</strong> y lo usa para hacer <strong>predicciones</strong> con las que resolver un problema o tomar decisiones. Es la técnica que hay detrás de la IA de <em>memoria limitada</em> que vimos antes: el mantenimiento predictivo de un motor aprende de su histórico de vibraciones.</p></div>
 <div class="bloque bloque-teoria"><p class="bloque-titulo">Aprendizaje supervisado y no supervisado</p>
 <ul>
@@ -112,17 +96,11 @@ MathJax.Hub.Config({
 <li><strong>No supervisado.</strong> Se dan solo datos de entrada, <strong>sin etiquetar</strong>, y el algoritmo descubre por sí mismo <strong>patrones y relaciones</strong>. Se usa cuando no hay etiquetas y se busca <strong>agrupar o detectar anomalías</strong>: segmentar clientes, detectar una medida anómala en una planta.</li>
 </ul></div>
 <div class="bloque bloque-nota"><p class="bloque-titulo">Redes neuronales</p><p>Una <strong>red neuronal</strong> es un tipo de algoritmo —usado tanto en aprendizaje supervisado como no supervisado— que <strong>imita de forma simplificada el funcionamiento del cerebro</strong>: muchas «neuronas» conectadas que se ajustan durante el entrenamiento. Son la base del <em>aprendizaje profundo</em> y de buena parte de la IA actual.</p></div>
-</div>
-</div>
-</article><article id="block-pemrgfc2-lrteiuimi" class="box">
-<header class="box-head no-icon">
-<h1 class="box-title">Big data: las 7 uves</h1>
-<button class="box-toggle box-toggle-on" title="Toggle content">
-<span>Toggle content</span>
-</button></header>
-<div class="box-content">
-<div id="idevice-pemrgfc2-svjf0k519" class="idevice_node text" data-idevice-path="../idevices/text/" data-idevice-type="text" data-idevice-component-type="json" data-idevice-json-data="{&quot;ideviceId&quot;:&quot;idevice-pemrgfc2-svjf0k519&quot;}">
-<div class="bloque bloque-teoria"><p class="bloque-titulo">Qué es el big data</p><p>Llamamos <strong>big data</strong> al tratamiento de conjuntos de datos tan grandes, rápidos y variados que las herramientas tradicionales no bastan para almacenarlos y analizarlos. Un sistema de control moderno genera big data: miles de sensores enviando medidas cada fracción de segundo. Para que esos datos sirvan, deben cumplir una serie de características que se resumen en las <strong>siete uves</strong>.</p></div>
+<h2>Big data</h2>
+<div class="bloque bloque-teoria"><p class="bloque-titulo">Qué es el big data</p>
+<p><img src="../content/resources/emg_siete_uves.svg" alt="Las siete uves del big data en fichas: volumen, velocidad y variedad describen los datos; veracidad, viabilidad y visualización, cómo se pueden tratar; y el valor, destacado aparte, es lo que se saca de todo lo anterior." width="760" height="420" style="display: block; margin-left: auto; margin-right: auto; max-width: 100%; height: auto;"></p>
+<p style="text-align: center;"><em>Las siete uves, y por qué el valor es la que las justifica todas.</em></p>
+<p>Llamamos <strong>big data</strong> al tratamiento de conjuntos de datos tan grandes, rápidos y variados que las herramientas tradicionales no bastan para almacenarlos y analizarlos. Un sistema de control moderno genera big data: miles de sensores enviando medidas cada fracción de segundo. Para que esos datos sirvan, deben cumplir una serie de características que se resumen en las <strong>siete uves</strong>.</p></div>
 <div class="bloque bloque-teoria"><p class="bloque-titulo">Las 7 uves</p>
 <ul>
 <li><strong>Volumen.</strong> La cantidad de datos, de gigabytes a petabytes. Ejemplo: el histórico completo de los sensores de una fábrica.</li>
@@ -134,17 +112,11 @@ MathJax.Hub.Config({
 <li><strong>Valor.</strong> El beneficio que se obtiene: sin valor, almacenar datos solo cuesta. Ejemplo: predecir una avería y evitar una parada de producción.</li>
 </ul></div>
 <div class="bloque bloque-nota"><p class="bloque-titulo">Bases de datos distribuidas</p><p>Tanto dato no cabe en un solo ordenador: se reparte entre muchos servidores conectados que trabajan como si fueran uno. Es una <strong>base de datos distribuida</strong>. Aporta capacidad y tolerancia a fallos, pero también amplía la superficie que hay que proteger… lo que enlaza con la ciberseguridad.</p></div>
-</div>
-</div>
-</article><article id="block-pemrgfc2-g37e0zb4z" class="box">
-<header class="box-head no-icon">
-<h1 class="box-title">Ciberseguridad</h1>
-<button class="box-toggle box-toggle-on" title="Toggle content">
-<span>Toggle content</span>
-</button></header>
-<div class="box-content">
-<div id="idevice-pemrgfc2-4pgicl3yn" class="idevice_node text" data-idevice-path="../idevices/text/" data-idevice-type="text" data-idevice-component-type="json" data-idevice-json-data="{&quot;ideviceId&quot;:&quot;idevice-pemrgfc2-4pgicl3yn&quot;}">
-<div class="bloque bloque-teoria"><p class="bloque-titulo">Qué es la ciberseguridad</p><p>La <strong>ciberseguridad</strong> es el conjunto de medidas que protegen los sistemas informáticos, las redes y los datos frente a accesos no autorizados, daños o robos. En un sistema de control conectado a la red, un fallo de seguridad no solo compromete datos: puede <strong>alterar el proceso físico</strong> —parar una planta, falsear una medida o abrir una válvula—.</p></div>
+<h2>Ciberseguridad</h2>
+<div class="bloque bloque-teoria"><p class="bloque-titulo">Qué es la ciberseguridad</p>
+<p><img src="../content/resources/emg_ingenieria_social.svg" alt="Cadena de cuatro pasos de un ataque de ingeniería social —recopilar información, ganar confianza, meter prisa y conseguir el acceso— y un recuadro que explica que basta con romper un eslabón para cortarla." width="840" height="330" style="display: block; margin-left: auto; margin-right: auto; max-width: 100%; height: auto;"></p>
+<p style="text-align: center;"><em>El ataque encadena cuatro pasos, y basta con romper uno.</em></p>
+<p>La <strong>ciberseguridad</strong> es el conjunto de medidas que protegen los sistemas informáticos, las redes y los datos frente a accesos no autorizados, daños o robos. En un sistema de control conectado a la red, un fallo de seguridad no solo compromete datos: puede <strong>alterar el proceso físico</strong> —parar una planta, falsear una medida o abrir una válvula—.</p></div>
 <div class="bloque bloque-teoria"><p class="bloque-titulo">Principales amenazas</p>
 <ul>
 <li><strong>Malware.</strong> Software malicioso (virus, gusanos, troyanos) que se infiltra para dañar o espiar.</li>
@@ -168,6 +140,7 @@ MathJax.Hub.Config({
 </ul></div>
 </div>
 </div>
+</div>
 </article><article id="block-pemrgfc2-mjkhptv75" class="box">
 <header class="box-head no-icon">
 <h1 class="box-title">Para repasar</h1>
@@ -182,7 +155,7 @@ MathJax.Hub.Config({
 </div>
 </article>
 </div></main><div class="nav-buttons">
-<a href="../html/componentes-de-un-sistema-de-control.html" title="Anterior" class="nav-button nav-button-left"><span>Anterior</span></a>
+<a href="../html/catalogo-de-sensores.html" title="Anterior" class="nav-button nav-button-left"><span>Anterior</span></a>
 <span class="nav-button nav-button-right" aria-hidden="true"><span>Siguiente</span></span>
 </div>
 <footer id="siteFooter"><div id="siteFooterContent"> <div id="packageLicense" class="cc cc-by-nc-sa"> <p> <span class="license-label">Licencia: </span><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="license">Creative Commons: Reconocimiento - no comercial - compartir igual 4.0</a></p>

@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 330" role="img" aria-labelledby="t">
+<title id="t">Cadena de un ataque de ingeniería social, de la recogida de información al acceso, y dónde se corta</title>
+<defs>
+  <marker id="fr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10z" fill="#b23b3b"/></marker>
+</defs>
+<g font-family="system-ui, -apple-system, Segoe UI, sans-serif" fill="#24313a">
+  <text x="20" y="26" font-size="15" font-weight="700" fill="#0e5a63">Cómo encadena sus pasos un ataque de ingeniería social</text>
+  <text x="20" y="46" font-size="12.5" fill="#5d6b74">el objetivo no es el ordenador: es la persona que lo usa</text>
+
+  <rect x="20"  y="80" width="180" height="80" rx="10" fill="#fff" stroke="#b23b3b" stroke-width="2"/>
+  <text x="110" y="105" text-anchor="middle" font-size="13" font-weight="700" fill="#7d2a2a">1 · Recopilar</text>
+  <text x="110" y="126" text-anchor="middle" font-size="11.5">nombres y cargos</text>
+  <text x="110" y="143" text-anchor="middle" font-size="11.5">de fuentes públicas</text>
+
+  <rect x="226" y="80" width="180" height="80" rx="10" fill="#fff" stroke="#b23b3b" stroke-width="2"/>
+  <text x="316" y="105" text-anchor="middle" font-size="13" font-weight="700" fill="#7d2a2a">2 · Ganar confianza</text>
+  <text x="316" y="126" text-anchor="middle" font-size="11.5">se hace pasar por</text>
+  <text x="316" y="143" text-anchor="middle" font-size="11.5">alguien conocido</text>
+
+  <rect x="432" y="80" width="180" height="80" rx="10" fill="#fff" stroke="#b23b3b" stroke-width="2"/>
+  <text x="522" y="105" text-anchor="middle" font-size="13" font-weight="700" fill="#7d2a2a">3 · Meter prisa</text>
+  <text x="522" y="126" text-anchor="middle" font-size="11.5">una urgencia para</text>
+  <text x="522" y="143" text-anchor="middle" font-size="11.5">que no se compruebe</text>
+
+  <rect x="638" y="80" width="180" height="80" rx="10" fill="#fbeceb" stroke="#b23b3b" stroke-width="2.5"/>
+  <text x="728" y="105" text-anchor="middle" font-size="13" font-weight="700" fill="#7d2a2a">4 · Conseguir</text>
+  <text x="728" y="126" text-anchor="middle" font-size="11.5">la contraseña, el pago</text>
+  <text x="728" y="143" text-anchor="middle" font-size="11.5">o el archivo abierto</text>
+
+  <line x1="200" y1="120" x2="222" y2="120" stroke="#b23b3b" stroke-width="2.5" marker-end="url(#fr)"/>
+  <line x1="406" y1="120" x2="428" y2="120" stroke="#b23b3b" stroke-width="2.5" marker-end="url(#fr)"/>
+  <line x1="612" y1="120" x2="634" y2="120" stroke="#b23b3b" stroke-width="2.5" marker-end="url(#fr)"/>
+
+  <rect x="20" y="198" width="798" height="102" rx="10" fill="#ecf6ef" stroke="#2c7a3e" stroke-width="2.5"/>
+  <text x="42" y="226" font-size="14" font-weight="700" fill="#1d5b2e">Dónde se corta la cadena</text>
+  <text x="42" y="250" font-size="12.5">Basta con romper un eslabón, y el más fácil es el tercero: <tspan font-weight="700">comprobar por otro canal</tspan> antes de</text>
+  <text x="42" y="270" font-size="12.5">hacer nada cuando alguien mete prisa. La verificación en dos pasos corta el cuarto, aunque la</text>
+  <text x="42" y="290" font-size="12.5">contraseña ya se haya entregado.</text>
+</g>
+</svg>

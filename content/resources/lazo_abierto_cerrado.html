@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lazo abierto frente a lazo cerrado ante una perturbación</title>
+<style>
+  :root{
+    color-scheme: light;
+    --navy:#0e5a63; --navy-2:#084049; --blue:#2f6fb0; --teal:#0f8a8f;
+    --orange:#e67e22; --red:#b23b3b; --verde:#2c7a3e; --ink:#24313a; --muted:#5d6b74;
+    --line:#d6dbe5; --paper:#fff; --wash:#f2f7f8; --focus:#ffd166;
+    font-family: system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:transparent;color:var(--ink)}
+  body{padding:8px}
+  .lab{max-width:1120px;margin:0 auto;overflow:hidden;border:1px solid #cfd9db;
+       border-radius:16px;background:var(--paper);box-shadow:0 8px 24px rgb(14 90 99 / 12%)}
+  .lab-header{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;
+       padding:18px 22px;color:#fff;background:linear-gradient(125deg,var(--navy-2),var(--navy))}
+  .lab-header h1{margin:0 0 4px;font-size:clamp(1.16rem,2.2vw,1.5rem);line-height:1.2}
+  .lab-header p{max-width:760px;margin:0;color:#dcecee;font-size:.92rem;line-height:1.45}
+  .badge{flex:0 0 auto;padding:6px 10px;border:1px solid rgb(255 255 255/32%);
+       border-radius:999px;background:rgb(255 255 255/10%);font-size:.78rem;white-space:nowrap}
+  .readout{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;
+       padding:14px 18px;border-bottom:1px solid var(--line);background:var(--wash)}
+  .metric{padding:10px 12px;border:1px solid #dbe4e6;border-radius:10px;background:#fff}
+  .metric .label{display:block;margin-bottom:2px;color:var(--muted);font-size:.7rem;
+       font-weight:700;letter-spacing:.055em;text-transform:uppercase}
+  .metric output{display:block;color:var(--navy-2);font-size:1.02rem;font-weight:750}
+  .metric.ab{border-left:5px solid var(--red)}
+  .metric.ce{border-left:5px solid var(--verde)}
+  .metric.destacada{border-left:5px solid var(--orange)}
+  .cuerpo{display:grid;grid-template-columns:minmax(320px,1fr) minmax(250px,300px);gap:0}
+  @media (max-width:600px){.cuerpo{grid-template-columns:1fr}}
+  .escena{padding:10px 18px 18px}
+  .panel{padding:16px 18px;border-left:1px solid var(--line);background:#fbfdfd}
+  @media (max-width:600px){.panel{border-left:0;border-top:1px solid var(--line)}}
+  .campo{margin-bottom:14px}
+  .campo label{display:block;margin-bottom:4px;font-size:.82rem;font-weight:600;color:var(--navy-2)}
+  .campo .valor{float:right;font-weight:700;color:var(--blue)}
+  input[type=range]{width:100%;accent-color:var(--blue)}
+  input:focus-visible,button:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+  .botones{display:flex;gap:8px;flex-wrap:wrap;margin-top:4px}
+  button.accion{padding:8px 14px;border:1px solid var(--navy);border-radius:8px;background:var(--navy);
+       color:#fff;font:inherit;font-weight:600;cursor:pointer}
+  button.sec{background:#fff;color:var(--navy)}
+  .aviso{margin-top:12px;padding:9px 11px;border-left:4px solid var(--teal);background:#eaf6f6;
+       color:#0a5f63;font-size:.85rem;border-radius:6px;line-height:1.45}
+  .aviso[hidden]{display:none}
+  .diagramas{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  @media (max-width:620px){.diagramas{grid-template-columns:1fr}}
+  .diag h2{margin:0 0 2px;font-size:.86rem;letter-spacing:.03em;text-transform:uppercase}
+  .diag.ab h2{color:var(--red)} .diag.ce h2{color:var(--verde)}
+  .leyenda{display:flex;gap:16px;flex-wrap:wrap;margin:8px 0 0;font-size:.82rem;color:var(--muted)}
+  .leyenda i{display:inline-block;width:22px;height:0;border-top-width:3px;border-top-style:solid;
+       vertical-align:middle;margin-right:5px}
+  svg{display:block;width:100%;height:auto}
+  .nota{margin:0 18px 16px;color:var(--muted);font-size:.8rem;line-height:1.5}
+  [hidden]{display:none !important}
+</style>
+</head>
+<body>
+<div class="lab">
+  <div class="lab-header">
+    <div>
+      <h1>¿Por qué realimentar? Las perturbaciones</h1>
+      <p>El mismo proceso gobernado de dos maneras, los dos ajustados para dar la consigna
+         cuando no pasa nada. Mete una perturbación y mira cuánto se desvía cada uno.</p>
+    </div>
+    <span class="badge">Bloque F</span>
+  </div>
+
+  <div class="readout">
+    <div class="metric ab"><span class="label">Lazo abierto · salida</span><output id="oCa">—</output></div>
+    <div class="metric ab"><span class="label">Se desvía</span><output id="oDa">—</output></div>
+    <div class="metric ce"><span class="label">Lazo cerrado · salida</span><output id="oCc">—</output></div>
+    <div class="metric ce"><span class="label">Se desvía</span><output id="oDc">—</output></div>
+    <div class="metric destacada"><span class="label">La perturbación se divide entre</span><output id="oFac">—</output></div>
+  </div>
+
+  <div class="cuerpo">
+    <div class="escena">
+      <div class="diagramas">
+        <div class="diag ab">
+          <h2>Lazo abierto</h2>
+          <svg viewBox="0 0 320 130" role="img" aria-labelledby="tAb">
+            <title id="tAb">Lazo abierto: la consigna entra al proceso y la salida no vuelve a ninguna parte</title>
+            <defs><marker id="fa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#24313a"/></marker>
+            <marker id="fp" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#b23b3b"/></marker></defs>
+            <g font-family="system-ui, sans-serif" font-size="13" fill="#24313a">
+              <text x="6" y="82" font-weight="700">r</text>
+              <line x1="18" y1="76" x2="106" y2="76" stroke="#24313a" stroke-width="2" marker-end="url(#fa)"/>
+              <rect x="108" y="54" width="96" height="44" rx="8" fill="#fdefe2" stroke="#e67e22" stroke-width="2"/>
+              <text x="156" y="75" text-anchor="middle" font-weight="700">K</text>
+              <text x="156" y="89" text-anchor="middle" font-size="10" fill="#5d6b74">proceso</text>
+              <line x1="204" y1="76" x2="292" y2="76" stroke="#24313a" stroke-width="2" marker-end="url(#fa)"/>
+              <text x="298" y="82" font-weight="700">c</text>
+              <line x1="156" y1="16" x2="156" y2="50" stroke="#b23b3b" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#fp)"/>
+              <text x="164" y="22" font-size="12" font-weight="700" fill="#b23b3b">p</text>
+              <text x="108" y="120" font-size="11" fill="#5d6b74">nadie mira la salida</text>
+            </g>
+          </svg>
+        </div>
+        <div class="diag ce">
+          <h2>Lazo cerrado</h2>
+          <svg viewBox="0 0 320 130" role="img" aria-labelledby="tCe">
+            <title id="tCe">Lazo cerrado: la salida se mide y se resta de la consigna antes de entrar al proceso</title>
+            <g font-family="system-ui, sans-serif" font-size="13" fill="#24313a">
+              <text x="6" y="82" font-weight="700">r</text>
+              <line x1="18" y1="76" x2="46" y2="76" stroke="#24313a" stroke-width="2" marker-end="url(#fa)"/>
+              <circle cx="62" cy="76" r="14" fill="#fff" stroke="#24313a" stroke-width="2"/>
+              <text x="62" y="82" text-anchor="middle" font-size="15">+</text>
+              <text x="47" y="99" font-size="12">−</text>
+              <line x1="76" y1="76" x2="106" y2="76" stroke="#24313a" stroke-width="2" marker-end="url(#fa)"/>
+              <rect x="108" y="54" width="96" height="44" rx="8" fill="#fdefe2" stroke="#e67e22" stroke-width="2"/>
+              <text x="156" y="75" text-anchor="middle" font-weight="700">K</text>
+              <text x="156" y="89" text-anchor="middle" font-size="10" fill="#5d6b74">proceso</text>
+              <line x1="204" y1="76" x2="292" y2="76" stroke="#24313a" stroke-width="2" marker-end="url(#fa)"/>
+              <text x="298" y="82" font-weight="700">c</text>
+              <line x1="156" y1="16" x2="156" y2="50" stroke="#b23b3b" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#fp)"/>
+              <text x="164" y="22" font-size="12" font-weight="700" fill="#b23b3b">p</text>
+              <circle cx="250" cy="76" r="3.5" fill="#24313a"/>
+              <line x1="250" y1="76" x2="250" y2="112" stroke="#24313a" stroke-width="2"/>
+              <line x1="250" y1="112" x2="212" y2="112" stroke="#24313a" stroke-width="2" marker-end="url(#fa)"/>
+              <rect x="128" y="100" width="82" height="24" rx="6" fill="#ecf6ef" stroke="#2c7a3e" stroke-width="2"/>
+              <text x="169" y="117" text-anchor="middle" font-weight="700" font-size="12">H</text>
+              <line x1="128" y1="112" x2="62" y2="112" stroke="#24313a" stroke-width="2"/>
+              <line x1="62" y1="112" x2="62" y2="92" stroke="#24313a" stroke-width="2" marker-end="url(#fa)"/>
+            </g>
+          </svg>
+        </div>
+      </div>
+
+      <svg viewBox="0 0 640 300" role="img" aria-labelledby="tGraf" style="margin-top:10px">
+        <title id="tGraf">Evolución de la salida en el tiempo para los dos lazos, con la perturbación entrando a los 8 segundos</title>
+        <g font-family="system-ui, sans-serif" font-size="12" fill="#5d6b74">
+          <rect x="54" y="14" width="566" height="228" fill="#fbfdfd" stroke="#e3ebec"/>
+          <g id="rejilla"></g>
+          <line x1="54" y1="242" x2="620" y2="242" stroke="#24313a" stroke-width="1.5"/>
+          <line x1="54" y1="14" x2="54" y2="242" stroke="#24313a" stroke-width="1.5"/>
+          <text x="337" y="270" text-anchor="middle">tiempo (s)</text>
+          <text x="16" y="128" text-anchor="middle" transform="rotate(-90 16 128)">salida c</text>
+          <g id="ejes"></g>
+          <line id="lineaR" x1="54" x2="620" stroke="#5d6b74" stroke-width="1.4" stroke-dasharray="6 5"/>
+          <text id="etqR" x="624" y="0" font-size="11" fill="#5d6b74">r</text>
+          <line id="lineaP" y1="14" y2="242" stroke="#b23b3b" stroke-width="1" stroke-dasharray="3 3" opacity=".7"/>
+          <text id="etqP" y="28" font-size="11" fill="#b23b3b" text-anchor="middle">entra p</text>
+          <polyline id="trazaAb" fill="none" stroke="#b23b3b" stroke-width="2.6" stroke-linejoin="round"/>
+          <polyline id="trazaCe" fill="none" stroke="#2c7a3e" stroke-width="2.6" stroke-linejoin="round"/>
+        </g>
+      </svg>
+
+      <p class="leyenda">
+        <span><i style="border-top-color:#b23b3b"></i>lazo abierto</span>
+        <span><i style="border-top-color:#2c7a3e"></i>lazo cerrado</span>
+        <span><i style="border-top-color:#5d6b74;border-top-style:dashed"></i>consigna r</span>
+      </p>
+    </div>
+
+    <div class="panel">
+      <div class="campo">
+        <label for="r">Consigna r <span class="valor" id="vR">60</span></label>
+        <input type="range" id="r" min="0" max="100" step="5" value="60">
+      </div>
+      <div class="campo">
+        <label for="k">Ganancia del proceso K <span class="valor" id="vK">10,0</span></label>
+        <input type="range" id="k" min="0" max="20" step="0.5" value="10">
+      </div>
+      <div class="campo">
+        <label for="h">Ganancia del sensor H <span class="valor" id="vH">1,00</span></label>
+        <input type="range" id="h" min="0.5" max="1.5" step="0.05" value="1">
+      </div>
+      <div class="campo">
+        <label for="p">Perturbación p <span class="valor" id="vP">0</span></label>
+        <input type="range" id="p" min="-40" max="40" step="2" value="0">
+      </div>
+      <div class="botones">
+        <button class="accion" id="btnP">Aplicar perturbación</button>
+        <button class="accion sec" id="btnReset">Reiniciar</button>
+      </div>
+      <div class="aviso" id="aviso" hidden></div>
+    </div>
+  </div>
+
+  <p class="nota">Los dos sistemas están ajustados para dar la consigna cuando no hay
+     perturbación: así la comparación es limpia. El lazo abierto no falla por calcular mal, falla
+     porque <strong>no se entera</strong>: nadie mide la salida, así que la perturbación entra
+     entera. El lazo cerrado la ve reflejada en el error y reacciona, y por eso la desviación le
+     queda dividida entre 1 + K·H — y por eso, además, se recupera antes.</p>
+</div>
+
+<script>
+/* ---------- simulación (función pura, verificable fuera del navegador) ----------
+   LOS DOS LAZOS ESTÁN AJUSTADOS para dar exactamente la consigna cuando no hay
+   perturbación: así lo único que los separa es cómo encajan la perturbación, que es
+   justo lo que esta actividad compara. (El error en régimen permanente del lazo
+   cerrado se trabaja aparte, en su propia actividad.)
+
+   Proceso de primer orden con constante de tiempo TAU:
+     lazo abierto :  TAU·dc/dt + c = r + p
+        el ajuste compensa la ganancia del proceso, pero la perturbación entra ENTERA
+        porque nadie mide la salida  →  régimen: c = r + p
+     lazo cerrado :  TAU·dc/dt + (1+K·H)·c = (1+K·H)·r + p
+        el lazo ve la desviación en el error y la corrige  →  régimen: c = r + p/(1+K·H)
+        y de paso responde más rápido: su constante de tiempo es TAU/(1+K·H). */
+var TAU = 1.8, T_FIN = 20, T_PERT = 8, N = 400;
+
+function tramo(c0, cFin, tau, t){ return cFin + (c0 - cFin) * Math.exp(-t / tau); }
+
+function simular(p){
+  var K = p.K, H = p.H, r = p.r, pert = p.p;
+  var lazo   = 1 + K * H;
+  var abSinP = r,   abConP = r + pert;
+  var ceSinP = r,   ceConP = r + pert / lazo;
+  var tauCe  = TAU / lazo;
+
+  var ab = [], ce = [], t, cAb, cCe, cAbP = 0, cCeP = 0;
+  for (var i = 0; i <= N; i++){
+    t = T_FIN * i / N;
+    if (t < T_PERT){
+      cAb = tramo(0, abSinP, TAU,   t);
+      cCe = tramo(0, ceSinP, tauCe, t);
+      cAbP = cAb; cCeP = cCe;                       // estado justo al entrar la perturbación
+    } else {
+      cAb = tramo(cAbP, abConP, TAU,   t - T_PERT);
+      cCe = tramo(cCeP, ceConP, tauCe, t - T_PERT);
+    }
+    ab.push([t, cAb]); ce.push([t, cCe]);
+  }
+  return {ab:ab, ce:ce, abSinP:abSinP, abConP:abConP, ceSinP:ceSinP, ceConP:ceConP,
+          desvAb: abConP - abSinP,          // lo que mueve la perturbación en lazo abierto = p
+          desvCe: ceConP - ceSinP,          // ... y en lazo cerrado = p / (1+K·H)
+          lazo:lazo, tauCe:tauCe};
+}
+
+if (typeof module !== "undefined" && module.exports){ module.exports = {simular:simular, TAU:TAU, T_FIN:T_FIN, T_PERT:T_PERT}; }
+
+/* ---------- interfaz ---------- */
+if (typeof document !== "undefined") (function(){
+  var $ = function(id){ return document.getElementById(id); };
+  var num = function(x,d){ return x.toLocaleString("es-ES",{minimumFractionDigits:d,maximumFractionDigits:d}); };
+  var X0 = 54, X1 = 620, Y0 = 242, Y1 = 14;
+
+  function leer(){ return {r:+$("r").value, K:+$("k").value, H:+$("h").value, p:+$("p").value}; }
+
+  function pintar(){
+    var s = leer(), q = simular(s);
+
+    $("vR").textContent = num(s.r,0); $("vK").textContent = num(s.K,1);
+    $("vH").textContent = num(s.H,2); $("vP").textContent = num(s.p,0);
+
+    $("oCa").textContent  = num(q.abConP,1);
+    $("oDa").textContent  = (q.desvAb >= 0 ? "+" : "") + num(q.desvAb,1);
+    $("oCc").textContent  = num(q.ceConP,1);
+    $("oDc").textContent  = (q.desvCe >= 0 ? "+" : "") + num(q.desvCe,2);
+    $("oFac").textContent = num(q.lazo,2);
+
+    /* escala vertical común a las dos trazas, para que la comparación sea honesta */
+    var vals = q.ab.concat(q.ce).map(function(d){ return d[1]; }).concat([s.r, 0]);
+    var vmin = Math.min.apply(null, vals), vmax = Math.max.apply(null, vals);
+    if (vmax - vmin < 1e-6) vmax = vmin + 1;
+    var m = 0.08 * (vmax - vmin); vmin -= m; vmax += m;
+    var px = function(t){ return X0 + (X1 - X0) * t / 20; };
+    var py = function(v){ return Y0 - (Y0 - Y1) * (v - vmin) / (vmax - vmin); };
+    var pts = function(a){ return a.map(function(d){ return px(d[0]).toFixed(1) + "," + py(d[1]).toFixed(1); }).join(" "); };
+
+    $("trazaAb").setAttribute("points", pts(q.ab));
+    $("trazaCe").setAttribute("points", pts(q.ce));
+    $("lineaR").setAttribute("y1", py(s.r)); $("lineaR").setAttribute("y2", py(s.r));
+    $("etqR").setAttribute("y", py(s.r) + 4);
+    $("lineaP").setAttribute("x1", px(8)); $("lineaP").setAttribute("x2", px(8));
+    $("etqP").setAttribute("x", px(8));
+
+    var ejes = "";
+    for (var t = 0; t <= 20; t += 5){
+      ejes += '<line x1="' + px(t) + '" y1="' + Y0 + '" x2="' + px(t) + '" y2="' + (Y0+5) + '" stroke="#24313a"/>' +
+              '<text x="' + px(t) + '" y="' + (Y0+18) + '" text-anchor="middle">' + t + '</text>';
+    }
+    for (var j = 0; j <= 4; j++){
+      var v = vmin + (vmax - vmin) * j / 4;
+      ejes += '<line x1="' + (X0-5) + '" y1="' + py(v) + '" x2="' + X0 + '" y2="' + py(v) + '" stroke="#24313a"/>' +
+              '<text x="' + (X0-9) + '" y="' + (py(v)+4) + '" text-anchor="end">' + num(v,0) + '</text>' +
+              '<line x1="' + X0 + '" y1="' + py(v) + '" x2="' + X1 + '" y2="' + py(v) + '" stroke="#e9eff0"/>';
+    }
+    $("ejes").innerHTML = ejes;
+
+    var a = $("aviso");
+    if (s.p === 0){
+      a.hidden = false;
+      a.textContent = "Sin perturbación los dos se quedan quietos, cada uno donde le toca. Mueve p o pulsa el botón para ver la diferencia.";
+    } else {
+      a.hidden = false;
+      a.textContent = (q.lazo <= 1.0000001)
+        ? "Con la ganancia del lazo a cero no hay realimentación que valga: el lazo cerrado se " +
+          "comporta igual que el abierto y la perturbación mueve la salida lo mismo en los dos, " +
+          num(Math.abs(q.desvAb),1) + ". Sube K para ver la diferencia."
+        : "La misma perturbación mueve la salida " + num(Math.abs(q.desvAb),1) +
+          " en lazo abierto y solo " + num(Math.abs(q.desvCe),2) + " en lazo cerrado: " +
+          num(q.lazo,2) + " veces menos. Y además el lazo cerrado se recupera antes, porque su constante de tiempo también se divide entre " + num(q.lazo,2) + ".";
+    }
+  }
+
+  $("btnP").addEventListener("click", function(){
+    $("p").value = (+$("p").value === 0) ? 30 : 0; pintar();
+  });
+  $("btnReset").addEventListener("click", function(){
+    $("r").value = 60; $("k").value = 10; $("h").value = 1; $("p").value = 0; pintar();
+  });
+  ["r","k","h","p"].forEach(function(id){ $(id).addEventListener("input", pintar); });
+  pintar();
+})();
+</script>
+</body>
+</html>

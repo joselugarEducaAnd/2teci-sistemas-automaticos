@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Acciones P, I y D en un control de crucero</title>
+<style>
+  :root{
+    color-scheme: light;
+    --navy:#0e5a63; --navy-2:#084049; --blue:#2f6fb0; --teal:#0f8a8f;
+    --orange:#e67e22; --red:#b23b3b; --verde:#2c7a3e; --morado:#6a4c93;
+    --ink:#24313a; --muted:#5d6b74; --line:#d6dbe5; --paper:#fff; --wash:#f2f7f8; --focus:#ffd166;
+    font-family: system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:transparent;color:var(--ink)}
+  body{padding:8px}
+  .lab{max-width:1120px;margin:0 auto;overflow:hidden;border:1px solid #cfd9db;
+       border-radius:16px;background:var(--paper);box-shadow:0 8px 24px rgb(14 90 99 / 12%)}
+  .lab-header{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;
+       padding:18px 22px;color:#fff;background:linear-gradient(125deg,var(--navy-2),var(--navy))}
+  .lab-header h1{margin:0 0 4px;font-size:clamp(1.16rem,2.2vw,1.5rem);line-height:1.2}
+  .lab-header p{max-width:760px;margin:0;color:#dcecee;font-size:.92rem;line-height:1.45}
+  .badge{flex:0 0 auto;padding:6px 10px;border:1px solid rgb(255 255 255/32%);
+       border-radius:999px;background:rgb(255 255 255/10%);font-size:.78rem;white-space:nowrap}
+  .readout{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;
+       padding:14px 18px;border-bottom:1px solid var(--line);background:var(--wash)}
+  .metric{padding:10px 12px;border:1px solid #dbe4e6;border-radius:10px;background:#fff}
+  .metric .label{display:block;margin-bottom:2px;color:var(--muted);font-size:.7rem;
+       font-weight:700;letter-spacing:.055em;text-transform:uppercase}
+  .metric output{display:block;color:var(--navy-2);font-size:1.02rem;font-weight:750}
+  .metric.destacada{border-left:5px solid var(--orange)}
+  .cuerpo{display:grid;grid-template-columns:minmax(320px,1fr) minmax(240px,290px);gap:0}
+  @media (max-width:600px){.cuerpo{grid-template-columns:1fr}}
+  .escena{padding:10px 18px 14px}
+  .panel{padding:16px 18px;border-left:1px solid var(--line);background:#fbfdfd}
+  @media (max-width:600px){.panel{border-left:0;border-top:1px solid var(--line)}}
+  .campo{margin-bottom:12px}
+  .campo label{display:block;margin-bottom:4px;font-size:.82rem;font-weight:600;color:var(--navy-2)}
+  .campo .valor{float:right;font-weight:700;color:var(--blue)}
+  .campo[data-off=true]{opacity:.42}
+  input[type=range]{width:100%;accent-color:var(--blue)}
+  .chk{display:flex;gap:6px;margin-bottom:12px}
+  .chk button{flex:1;padding:8px 4px;border:1.5px solid var(--line);border-radius:9px;background:#fff;
+       color:var(--muted);font:inherit;font-weight:700;cursor:pointer}
+  .chk button[aria-pressed=true]{border-color:var(--navy);background:var(--navy);color:#fff}
+  input:focus-visible,button:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+  .botones{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}
+  button.accion{padding:8px 12px;border:1px solid var(--navy);border-radius:8px;background:var(--navy);
+       color:#fff;font:inherit;font-weight:600;cursor:pointer;font-size:.88rem}
+  button.sec{background:#fff;color:var(--navy)}
+  .aviso{margin-top:12px;padding:9px 11px;border-left:4px solid var(--teal);background:#eaf6f6;
+       color:#0a5f63;font-size:.85rem;border-radius:6px;line-height:1.45}
+  .amp{margin:0 18px 10px;padding:8px 11px;border-left:4px solid var(--orange);background:#fef6ec;
+       color:#8a4f12;font-size:.84rem;border-radius:6px;line-height:1.45}
+  .leyenda{display:flex;gap:14px;flex-wrap:wrap;margin:4px 0 10px;font-size:.8rem;color:var(--muted)}
+  .leyenda i{display:inline-block;width:20px;height:0;border-top-width:3px;border-top-style:solid;
+       vertical-align:middle;margin-right:5px}
+  svg{display:block;width:100%;height:auto}
+  .nota{margin:0 18px 16px;color:var(--muted);font-size:.8rem;line-height:1.5}
+  [hidden]{display:none !important}
+</style>
+</head>
+<body>
+<div class="lab">
+  <div class="lab-header">
+    <div>
+      <h1>Las acciones P, I y D</h1>
+      <p>Un control de crucero que sube a 100 km/h y luego se encuentra una cuesta.
+         Enciende y apaga cada acción y mira qué aporta cada una.</p>
+    </div>
+    <span class="badge">Ampliación</span>
+  </div>
+
+  <p class="amp"><strong>Ampliación.</strong> Para el bloque F basta con reconocer cada regulador
+     por su comportamiento: cuál anula el error y cuál se anticipa. Los números de aquí sirven
+     para verlo, no para calcularlos.</p>
+
+  <div class="readout">
+    <div class="metric"><span class="label">Regulador</span><output id="oTipo">—</output></div>
+    <div class="metric"><span class="label">Error al estabilizarse</span><output id="oErr">—</output></div>
+    <div class="metric"><span class="label">Error tras la cuesta</span><output id="oErrP">—</output></div>
+    <div class="metric destacada"><span class="label">Sobrepasamiento</span><output id="oSob">—</output></div>
+  </div>
+
+  <div class="cuerpo">
+    <div class="escena">
+      <svg viewBox="0 0 640 250" role="img" aria-labelledby="tVel">
+        <title id="tVel">Velocidad del coche frente al tiempo, comparada con la velocidad de consigna</title>
+        <g font-family="system-ui, sans-serif" font-size="12" fill="#5d6b74">
+          <rect x="52" y="12" width="570" height="190" fill="#fbfdfd" stroke="#e3ebec"/>
+          <rect id="bandaErr" x="52" width="570" height="0" fill="#b23b3b" opacity=".10"/>
+          <g id="ejes1"></g>
+          <line x1="52" y1="202" x2="622" y2="202" stroke="#24313a" stroke-width="1.5"/>
+          <line x1="52" y1="12" x2="52" y2="202" stroke="#24313a" stroke-width="1.5"/>
+          <text x="337" y="232" text-anchor="middle">tiempo (s)</text>
+          <text x="14" y="107" text-anchor="middle" transform="rotate(-90 14 107)">velocidad (km/h)</text>
+          <polyline id="trazaR" fill="none" stroke="#5d6b74" stroke-width="1.6" stroke-dasharray="6 5"/>
+          <polyline id="trazaC" fill="none" stroke="#0e5a63" stroke-width="2.6" stroke-linejoin="round"/>
+          <line id="lineaCuesta" y1="12" y2="202" stroke="#b23b3b" stroke-width="1" stroke-dasharray="3 3" opacity=".7"/>
+          <text id="etqCuesta" y="26" font-size="11" fill="#b23b3b" text-anchor="middle">la cuesta</text>
+        </g>
+      </svg>
+      <p class="leyenda">
+        <span><i style="border-top-color:#0e5a63"></i>velocidad real c</span>
+        <span><i style="border-top-color:#5d6b74;border-top-style:dashed"></i>consigna r</span>
+      </p>
+
+      <svg viewBox="0 0 640 210" role="img" aria-labelledby="tMando">
+        <title id="tMando">Señal manipulada total y su descomposición en las partes proporcional, integral y derivativa</title>
+        <g font-family="system-ui, sans-serif" font-size="12" fill="#5d6b74">
+          <rect x="52" y="12" width="570" height="150" fill="#fbfdfd" stroke="#e3ebec"/>
+          <g id="ejes2"></g>
+          <line id="cero2" x1="52" x2="622" stroke="#24313a" stroke-width="1.2"/>
+          <line x1="52" y1="12" x2="52" y2="162" stroke="#24313a" stroke-width="1.5"/>
+          <text x="337" y="192" text-anchor="middle">tiempo (s)</text>
+          <text x="14" y="87" text-anchor="middle" transform="rotate(-90 14 87)">señal manipulada m</text>
+          <polyline id="trazaMP" fill="none" stroke="#2f6fb0" stroke-width="2" stroke-linejoin="round"/>
+          <polyline id="trazaMI" fill="none" stroke="#2c7a3e" stroke-width="2" stroke-linejoin="round"/>
+          <polyline id="trazaMD" fill="none" stroke="#6a4c93" stroke-width="2" stroke-linejoin="round"/>
+          <polyline id="trazaM"  fill="none" stroke="#24313a" stroke-width="2.6" stroke-linejoin="round"/>
+        </g>
+      </svg>
+      <p class="leyenda">
+        <span><i style="border-top-color:#24313a"></i>m total</span>
+        <span><i style="border-top-color:#2f6fb0"></i>parte P</span>
+        <span><i style="border-top-color:#2c7a3e"></i>parte I</span>
+        <span><i style="border-top-color:#6a4c93"></i>parte D</span>
+      </p>
+    </div>
+
+    <div class="panel">
+      <div class="chk">
+        <button id="bP" aria-pressed="true">P</button>
+        <button id="bI" aria-pressed="false">I</button>
+        <button id="bD" aria-pressed="false">D</button>
+      </div>
+      <div class="campo" id="cKp">
+        <label for="kp">K<sub>p</sub> <span class="valor" id="vKp">2,0</span></label>
+        <input type="range" id="kp" min="0" max="10" step="0.2" value="2">
+      </div>
+      <div class="campo" id="cKi" data-off="true">
+        <label for="ki">K<sub>i</sub> <span class="valor" id="vKi">2,0</span></label>
+        <input type="range" id="ki" min="0" max="5" step="0.1" value="2">
+      </div>
+      <div class="campo" id="cKd" data-off="true">
+        <label for="kd">K<sub>d</sub> <span class="valor" id="vKd">1,0</span></label>
+        <input type="range" id="kd" min="0" max="3" step="0.1" value="1">
+      </div>
+      <div class="campo">
+        <label for="cuesta">Pendiente de la cuesta <span class="valor" id="vCu">−15</span></label>
+        <input type="range" id="cuesta" min="-40" max="0" step="1" value="-15">
+      </div>
+      <div class="botones">
+        <button class="accion" id="btnPID">Poner un PID</button>
+        <button class="accion sec" id="btnSoloP">Solo P</button>
+      </div>
+      <div class="aviso" id="aviso"></div>
+    </div>
+  </div>
+
+  <p class="nota">Fíjate en el segundo gráfico: la parte P copia la forma del error, la parte I
+     va acumulando mientras quede error (por eso acaba tirando de la señal hasta que el error es
+     cero) y la parte D solo asoma cuando el error <em>cambia</em>, que es lo que le permite
+     adelantarse.</p>
+</div>
+
+<script>
+/* ---------- simulación (función pura, verificable fuera del navegador) ----------
+   Planta de primer orden (el coche):  TAU·dc/dt + c = K_PLANTA·m + p(t)
+   Regulador:  m = Kp·e + Ki·∫e·dt + Kd·(de/dt),  con e = r − c
+
+   Dos detalles que no son adorno:
+   · la consigna sube en RAMPA corta en vez de en escalón, para que de/dt sea finita y
+     la acción D dé un pulso visible en vez de un pico infinito;
+   · la derivada va FILTRADA con una constante T_FILTRO, como en cualquier regulador
+     real. Sin filtro, la derivada pura amplifica el escalón de integración y la
+     simulación se dispara: no es física, es el método numérico. */
+var TAU = 3.0, K_PLANTA = 4.0, DT = 0.004, T_FILTRO = 0.25, T_FIN = 30,
+    T_SUBE = 1.0, RAMPA = 0.6, T_CUESTA = 16, RAMPA_CUESTA = 2.0, R_FIN = 100;
+
+function consigna(t){
+  if (t < T_SUBE) return 0;
+  if (t < T_SUBE + RAMPA) return R_FIN * (t - T_SUBE) / RAMPA;
+  return R_FIN;
+}
+function perturbacion(t, valor){
+  if (t < T_CUESTA) return 0;
+  if (t < T_CUESTA + RAMPA_CUESTA) return valor * (t - T_CUESTA) / RAMPA_CUESTA;
+  return valor;
+}
+
+function simular(o){
+  var Kp = o.usaP ? o.Kp : 0, Ki = o.usaI ? o.Ki : 0, Kd = o.usaD ? o.Kd : 0;
+  var n = Math.round(T_FIN / DT), c = 0, integral = 0, eAnt = consigna(0) - 0, dFiltrada = 0;
+  var serie = [], maxC = 0, errAntesCuesta = 0, errFinal = 0;
+  for (var i = 0; i <= n; i++){
+    var t = i * DT, r = consigna(t), e = r - c;
+    dFiltrada += (DT / T_FILTRO) * ((e - eAnt) / DT - dFiltrada);
+    integral += e * DT;
+    if (Ki > 0){ var tope = 400 / Ki; if (integral > tope) integral = tope; if (integral < -tope) integral = -tope; }
+    var mP = Kp * e, mI = Ki * integral, mD = Kd * dFiltrada, m = mP + mI + mD;
+    if (i % 25 === 0) serie.push([t, c, r, m, mP, mI, mD]);
+    if (t > T_SUBE && c > maxC) maxC = c;
+    if (Math.abs(t - (T_CUESTA - 0.05)) < DT/2) errAntesCuesta = e;
+    eAnt = e;
+    c += DT * (K_PLANTA * m + perturbacion(t, o.cuesta) - c) / TAU;
+  }
+  errFinal = consigna(T_FIN) - c;
+  var sobre = maxC > R_FIN ? 100 * (maxC - R_FIN) / R_FIN : 0;
+  var tipo = (Kp > 0 ? "P" : "") + (Ki > 0 ? "I" : "") + (Kd > 0 ? "D" : "");
+  if (tipo === "PD") tipo = "PD"; if (tipo === "PI") tipo = "PI";
+  return {serie:serie, errAntesCuesta:errAntesCuesta, errFinal:errFinal,
+          sobre:sobre, tipo: tipo || "ninguno", maxC:maxC};
+}
+
+if (typeof module !== "undefined" && module.exports){
+  module.exports = {simular:simular, consigna:consigna, perturbacion:perturbacion, R_FIN:R_FIN, T_FIN:T_FIN};
+}
+
+/* ---------- interfaz ---------- */
+if (typeof document !== "undefined") (function(){
+  var $ = function(id){ return document.getElementById(id); };
+  var num = function(x,d){
+    if (Math.abs(x) < 0.5 * Math.pow(10, -d)) x = 0;      // evita el feo "−0,00"
+    return x.toLocaleString("es-ES",{minimumFractionDigits:d,maximumFractionDigits:d});
+  };
+  var usa = {P:true, I:false, D:false};
+
+  function leer(){
+    return {usaP:usa.P, usaI:usa.I, usaD:usa.D, Kp:+$("kp").value, Ki:+$("ki").value,
+            Kd:+$("kd").value, cuesta:+$("cuesta").value};
+  }
+
+  function eje(g, X0, X1, Y0, Y1, vmin, vmax, px, py, dec){
+    var h = "";
+    for (var t = 0; t <= 30; t += 5){
+      h += '<line x1="'+px(t)+'" y1="'+Y0+'" x2="'+px(t)+'" y2="'+(Y0+5)+'" stroke="#24313a"/>' +
+           '<text x="'+px(t)+'" y="'+(Y0+18)+'" text-anchor="middle">'+t+'</text>';
+    }
+    // Marcas en valores redondos (paso 1, 2 o 5 por potencia de 10), no en cuartos del rango.
+    var bruto = (vmax - vmin) / 5, e10 = Math.pow(10, Math.floor(Math.log(bruto) / Math.LN10)),
+        f = bruto / e10, paso = (f < 1.5 ? 1 : f < 3.5 ? 2 : f < 7.5 ? 5 : 10) * e10,
+        dm = Math.max(dec, paso < 1 ? Math.round(-Math.log(paso) / Math.LN10 + 0.49) : 0);
+    for (var k = Math.ceil(vmin / paso - 1e-9); k * paso <= vmax + 1e-9; k++){
+      var v = k === 0 ? 0 : k * paso;
+      h += '<line x1="'+(X0-5)+'" y1="'+py(v)+'" x2="'+X0+'" y2="'+py(v)+'" stroke="#24313a"/>' +
+           '<text x="'+(X0-9)+'" y="'+(py(v)+4)+'" text-anchor="end">'+num(v,dm)+'</text>' +
+           '<line x1="'+X0+'" y1="'+py(v)+'" x2="'+X1+'" y2="'+py(v)+'" stroke="#eef3f4"/>';
+    }
+    $(g).innerHTML = h;
+  }
+
+  function pintar(){
+    var o = leer(), q = simular(o);
+    ["P","I","D"].forEach(function(k){ $("b"+k).setAttribute("aria-pressed", usa[k] ? "true" : "false"); });
+    $("cKp").dataset.off = !usa.P; $("cKi").dataset.off = !usa.I; $("cKd").dataset.off = !usa.D;
+    $("vKp").textContent = num(o.Kp,1); $("vKi").textContent = num(o.Ki,1);
+    $("vKd").textContent = num(o.Kd,1); $("vCu").textContent = num(o.cuesta,0);
+
+    $("oTipo").textContent = q.tipo;
+    $("oErr").textContent  = num(q.errAntesCuesta,2) + " km/h";
+    $("oErrP").textContent = num(q.errFinal,2) + " km/h";
+    $("oSob").textContent  = q.sobre > 0.05 ? num(q.sobre,1) + " %" : "sin sobrepasar";
+
+    /* gráfico 1 · velocidad */
+    var X0=52, X1=622, Y0=202, Y1=12;
+    var cs = q.serie.map(function(d){ return d[1]; });
+    var vmin = Math.min(0, Math.min.apply(null, cs)), vmax = Math.max(R_FIN_UI, Math.max.apply(null, cs));
+    var m1 = 0.08*(vmax-vmin); vmin -= m1; vmax += m1;
+    var px = function(t){ return X0 + (X1-X0)*t/30; };
+    var py = function(v){ return Y0 - (Y0-Y1)*(v-vmin)/(vmax-vmin); };
+    var pts = function(k){ return q.serie.map(function(d){ return px(d[0]).toFixed(1)+","+py(d[k]).toFixed(1); }).join(" "); };
+    $("trazaC").setAttribute("points", pts(1));
+    $("trazaR").setAttribute("points", pts(2));
+    eje("ejes1", X0, X1, Y0, Y1, vmin, vmax, px, py, 0);
+    var yTop = py(R_FIN_UI*1.02), yBot = py(R_FIN_UI*0.98);
+    $("bandaErr").setAttribute("y", yTop.toFixed(1));
+    $("bandaErr").setAttribute("height", Math.max(0,(yBot-yTop)).toFixed(1));
+    $("lineaCuesta").setAttribute("x1", px(16)); $("lineaCuesta").setAttribute("x2", px(16));
+    $("etqCuesta").setAttribute("x", px(16));
+
+    /* gráfico 2 · señal manipulada */
+    var Y0b=162, Y1b=12;
+    var ms = [];
+    q.serie.forEach(function(d){ ms.push(d[3], d[4], d[5], d[6]); });
+    var mmin = Math.min.apply(null, ms), mmax = Math.max.apply(null, ms);
+    if (mmax - mmin < 1e-6) mmax = mmin + 1;
+    var m2 = 0.10*(mmax-mmin); mmin -= m2; mmax += m2;
+    var py2 = function(v){ return Y0b - (Y0b-Y1b)*(v-mmin)/(mmax-mmin); };
+    var pts2 = function(k){ return q.serie.map(function(d){ return px(d[0]).toFixed(1)+","+py2(d[k]).toFixed(1); }).join(" "); };
+    $("trazaM").setAttribute("points",  pts2(3));
+    $("trazaMP").setAttribute("points", pts2(4));
+    $("trazaMI").setAttribute("points", pts2(5));
+    $("trazaMD").setAttribute("points", pts2(6));
+    $("cero2").setAttribute("y1", py2(0)); $("cero2").setAttribute("y2", py2(0));
+    eje("ejes2", X0, X1, Y0b, Y1b, mmin, mmax, px, py2, 0);
+
+    /* lectura */
+    var a = $("aviso"), txt;
+    if (!usa.P && !usa.I && !usa.D) txt = "Sin ninguna acción encendida la señal manipulada es nula: el coche no arranca.";
+    else if (usa.I && usa.D) txt = "PID: el error acaba en cero gracias a la parte I, y la parte D recorta el sobrepasamiento que la I provoca al empujar de más. Apaga la D y compara el sobrepasamiento.";
+    else if (usa.I) txt = "Con acción integral el error acaba en cero, también después de la cuesta: la parte I sigue acumulando mientras quede algo de error. A cambio, empuja de más y aparece sobrepasamiento.";
+    else if (usa.D) txt = (usa.P ? "P y D no anulan el error" : "La acción D sola no anula el error") + ", pero la parte D se adelanta: reacciona a que el error CAMBIA. Con esta planta el proporcional ya entra sin sobrepasar, así que su efecto se ve encendiendo la I y comparando con y sin D.";
+    else txt = "Solo con P queda siempre un error: la parte P necesita un error para actuar, así que no puede anularlo. Sube Kp y verás que baja, pero no llega a cero.";
+    a.textContent = txt;
+  }
+  var R_FIN_UI = 100;
+
+  ["P","I","D"].forEach(function(k){
+    $("b"+k).addEventListener("click", function(){ usa[k] = !usa[k]; pintar(); });
+  });
+  $("btnPID").addEventListener("click", function(){ usa.P = usa.I = usa.D = true; pintar(); });
+  $("btnSoloP").addEventListener("click", function(){ usa.P = true; usa.I = usa.D = false; pintar(); });
+  ["kp","ki","kd","cuesta"].forEach(function(id){ $(id).addEventListener("input", pintar); });
+  pintar();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reductor de diagramas de bloques</title>
+<style>
+  :root{
+    color-scheme: light;
+    --navy:#0e5a63; --navy-2:#084049; --blue:#2f6fb0; --teal:#0f8a8f;
+    --orange:#e67e22; --red:#b23b3b; --verde:#2c7a3e;
+    --ink:#24313a; --muted:#5d6b74; --line:#d6dbe5; --paper:#fff; --wash:#f2f7f8; --focus:#ffd166;
+    font-family: system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:transparent;color:var(--ink)}
+  body{padding:8px}
+  .lab{max-width:1120px;margin:0 auto;overflow:hidden;border:1px solid #cfd9db;
+       border-radius:16px;background:var(--paper);box-shadow:0 8px 24px rgb(14 90 99 / 12%)}
+  .lab-header{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;
+       padding:18px 22px;color:#fff;background:linear-gradient(125deg,var(--navy-2),var(--navy))}
+  .lab-header h1{margin:0 0 4px;font-size:clamp(1.16rem,2.2vw,1.5rem);line-height:1.2}
+  .lab-header p{max-width:760px;margin:0;color:#dcecee;font-size:.92rem;line-height:1.45}
+  .badge{flex:0 0 auto;padding:6px 10px;border:1px solid rgb(255 255 255/32%);
+       border-radius:999px;background:rgb(255 255 255/10%);font-size:.78rem;white-space:nowrap}
+  .pasos{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:12px 18px;
+       border-bottom:1px solid var(--line);background:var(--wash)}
+  .pasos button{padding:7px 13px;border:1px solid var(--navy);border-radius:8px;background:var(--navy);
+       color:#fff;font:inherit;font-weight:700;cursor:pointer}
+  .pasos button.sec{background:#fff;color:var(--navy)}
+  .pasos button[disabled]{opacity:.35;cursor:default}
+  .pasos input[type=range]{flex:1;min-width:140px;accent-color:var(--blue)}
+  .cont{font-weight:700;color:var(--navy-2);white-space:nowrap;font-size:.92rem}
+  .regla{display:inline-block;margin-left:2px;padding:3px 9px;border-radius:999px;font-size:.76rem;
+       font-weight:700;letter-spacing:.02em}
+  .r-serie{background:#e6f1f2;color:#0b4c54} .r-paralelo{background:#ecf6ef;color:#1d5b2e}
+  .r-realim{background:#fdefe2;color:#8a4f12} .r-transp{background:#f3eef9;color:#4a3470}
+  .r-partida{background:#eef2f3;color:#44525a}
+  .cuerpo{display:grid;grid-template-columns:minmax(320px,1fr) minmax(250px,300px);gap:0}
+  @media (max-width:600px){.cuerpo{grid-template-columns:1fr}}
+  .escena{padding:12px 18px 16px}
+  .panel{padding:16px 18px;border-left:1px solid var(--line);background:#fbfdfd}
+  @media (max-width:600px){.panel{border-left:0;border-top:1px solid var(--line)}}
+  .expl{margin:0 0 10px;font-size:.93rem;line-height:1.5}
+  .fdt{margin:10px 0 0;padding:12px 14px;border:1.5px solid var(--orange);border-radius:10px;
+       background:#fef6ec;color:#8a4f12;text-align:center}
+  .fdt .frac{display:inline-block;vertical-align:middle;text-align:center;font-size:.94rem;line-height:1.35}
+  .fdt .frac span{display:block;padding:0 6px}
+  .fdt .frac span.num{border-bottom:1.5px solid currentColor}
+  .fdt .val{display:block;margin-top:8px;font-size:.86rem;color:#6b4110}
+  .campo{margin-bottom:10px}
+  .campo label{display:block;margin-bottom:3px;font-size:.82rem;font-weight:600;color:var(--navy-2)}
+  .campo .valor{float:right;font-weight:700;color:var(--blue)}
+  input[type=range]{width:100%;accent-color:var(--blue)}
+  input:focus-visible,button:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+  .botones{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+  button.accion{padding:8px 12px;border:1px solid var(--navy);border-radius:8px;background:var(--navy);
+       color:#fff;font:inherit;font-weight:600;cursor:pointer;font-size:.88rem}
+  button.sec{background:#fff;color:var(--navy)}
+  button.accion[aria-pressed=true]{background:var(--orange);border-color:var(--orange)}
+  .aviso{margin-top:12px;padding:9px 11px;border-left:4px solid var(--teal);background:#eaf6f6;
+       color:#0a5f63;font-size:.84rem;border-radius:6px;line-height:1.45}
+  svg{display:block;width:100%;height:auto}
+  .nota{margin:0 18px 16px;color:var(--muted);font-size:.8rem;line-height:1.5}
+  [hidden]{display:none !important}
+</style>
+</head>
+<body>
+<div class="lab">
+  <div class="lab-header">
+    <div>
+      <h1>Reductor de diagramas de bloques</h1>
+      <p>El ejemplo resuelto de la unidad, paso a paso. En cada paso se aplica una sola regla
+         y la función de transferencia se recalcula: fíjate en que el valor no cambia nunca.</p>
+    </div>
+    <span class="badge">Bloque F</span>
+  </div>
+
+  <div class="pasos">
+    <button class="sec" id="btnAnt">‹ Anterior</button>
+    <span class="cont" id="cont">Paso 1 de 8</span>
+    <input type="range" id="slider" min="0" max="7" step="1" value="0" aria-label="Paso de la simplificación">
+    <button id="btnSig">Siguiente ›</button>
+    <span id="reglaChip"></span>
+  </div>
+
+  <div class="cuerpo">
+    <div class="escena">
+      <p class="expl" id="expl"></p>
+      <svg id="diag" viewBox="0 0 720 260" role="img" aria-labelledby="tDiag">
+        <title id="tDiag">Diagrama de bloques del paso actual de la simplificación</title>
+        <defs>
+          <marker id="fl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="#24313a"/>
+          </marker>
+          <marker id="flh" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="#e67e22"/>
+          </marker>
+        </defs>
+        <g id="capa"></g>
+      </svg>
+      <div class="fdt" id="fdt"></div>
+    </div>
+
+    <div class="panel">
+      <div class="campo"><label for="g1">G₁ <span class="valor" id="vg1">2,0</span></label><input type="range" id="g1" min="0.5" max="5" step="0.1" value="2"></div>
+      <div class="campo"><label for="g2">G₂ <span class="valor" id="vg2">3,0</span></label><input type="range" id="g2" min="0.5" max="5" step="0.1" value="3"></div>
+      <div class="campo"><label for="g3">G₃ <span class="valor" id="vg3">1,5</span></label><input type="range" id="g3" min="0.5" max="5" step="0.1" value="1.5"></div>
+      <div class="campo"><label for="g4">G₄ <span class="valor" id="vg4">2,0</span></label><input type="range" id="g4" min="0.5" max="5" step="0.1" value="2"></div>
+      <div class="campo"><label for="h1">H₁ <span class="valor" id="vh1">0,50</span></label><input type="range" id="h1" min="0" max="1.5" step="0.05" value="0.5"></div>
+      <div class="campo"><label for="h2">H₂ <span class="valor" id="vh2">0,40</span></label><input type="range" id="h2" min="0" max="1.5" step="0.05" value="0.4"></div>
+      <div class="campo"><label for="h3">H₃ <span class="valor" id="vh3">0,25</span></label><input type="range" id="h3" min="0" max="1.5" step="0.05" value="0.25"></div>
+      <div class="botones">
+        <button class="accion" id="btnLazo" aria-pressed="false">Resaltar el lazo</button>
+        <button class="accion sec" id="btnIni">Volver al principio</button>
+      </div>
+      <div class="aviso" id="aviso"></div>
+    </div>
+  </div>
+
+  <p class="nota">La transposición no la pide la PAU por ahora, pero en el curso sí se exige: cuando
+     dos lazos se solapan no se pueden reducir por turnos, y hay que mover un punto de suma o de
+     bifurcación y, si hace falta, reordenar los comparadores. El bloque que se cruza aparece en la
+     rama que se ha movido.</p>
+</div>
+
+<script>
+/* ===================== núcleo: álgebra de bloques (función pura) =====================
+   Diagrama de partida (el «Ejemplo resuelto» de la unidad):
+     E1 = R − H1·C ;  E2 = G1·E1 − H2·E4 ;  E3 = G2·E2 − H3·C ;  E4 = G3·E3 ;  C = G4·E4
+   Resolviendo el sistema:
+     C/R = G1G2G3G4 / (1 + G2G3H2 + G3G4H3 + G1G2G3G4H1)
+   Cada paso de la secuencia aplica UNA regla y no puede cambiar ese valor: esa es la
+   invariante que se comprueba abajo. */
+
+function fdtExacta(v){
+  var num = v.G1 * v.G2 * v.G3 * v.G4;
+  var den = 1 + v.G2 * v.G3 * v.H2 + v.G3 * v.G4 * v.H3 + v.G1 * v.G2 * v.G3 * v.G4 * v.H1;
+  return num / den;
+}
+
+/* Los bloques que se van formando. Se calculan UNA vez y los usan las dos funciones
+   siguientes. */
+function reducciones(v){
+  var A  = v.G3 / (1 + v.G3 * v.G2 * v.H2);   // paso 4: lazo de H2 cerrado
+  var B  = A * v.G4;                          // paso 5: serie con G4
+  var Cc = B / (1 + B * v.H3);                // paso 6: lazo de H3 cerrado
+  var D  = v.G1 * v.G2 * Cc;                  // paso 7: serie con G1G2
+  var E  = D / (1 + D * v.H1);                // paso 8: lazo de H1 cerrado -> C/R
+  return {G2H2: v.G2 * v.H2, G1G2: v.G1 * v.G2, A: A, B: B, Cc: Cc, D: D, E: E};
+}
+
+/* C/R del diagrama tal y como está en el paso i, calculada CERRANDO LOS LAZOS QUE
+   QUEDEN en ese paso. Cada paso llega al mismo número por un camino distinto, y ahí
+   está la gracia: la invariante se demuestra en vez de afirmarse.
+   Antes esta función ignoraba `i` y devolvía siempre la misma cadena de cierres, así
+   que el aviso «vale lo mismo en los ocho pasos» era una tautología (repaso de calidad
+   del 2026-09-14, mejora M3). */
+function fdtDelPaso(i, v){
+  var r = reducciones(v);
+  if (i <= 1){
+    // Pasos 1 y 2: los lazos de H2 y H3 todavía se solapan —la transposición sola no los
+    // separa, hace falta además intercambiar los dos comparadores—, así que no se pueden
+    // cerrar por turnos y se resuelve el sistema de ecuaciones, que es un camino
+    // independiente.
+    return fdtExacta(v);
+  }
+  if (i === 2){ var d2 = r.G1G2 * r.A * v.G4 / (1 + r.A * v.G4 * v.H3); return d2 / (1 + d2 * v.H1); }
+  if (i === 3){ var d3 = r.G1G2 * r.A * v.G4 / (1 + r.A * v.G4 * v.H3); return d3 / (1 + d3 * v.H1); }
+  if (i === 4){ var d4 = r.G1G2 * r.B / (1 + r.B * v.H3);               return d4 / (1 + d4 * v.H1); }
+  if (i === 5){ var d5 = r.G1G2 * r.Cc;                                  return d5 / (1 + d5 * v.H1); }
+  if (i === 6){ return r.D / (1 + r.D * v.H1); }
+  return r.E;
+}
+
+/* El bloque que ACABA DE FORMARSE en cada paso, con la misma expresión que lleva
+   rotulada en el dibujo y con su valor. En el paso de partida todavía no hay ninguno. */
+function bloqueDelPaso(i, v){
+  var r = reducciones(v);
+  var t = [
+    null,
+    {num:"G₂H₂",      den:"",                                          val:r.G2H2, que:"la rama de H₂ al cruzar G₂"},
+    {num:"G₁G₂",      den:"",                                          val:r.G1G2, que:"G₁ y G₂ en serie"},
+    {num:"G₃",        den:"1 + G₃G₂H₂",                                val:r.A,    que:"el lazo interior de H₂"},
+    {num:"G₃G₄",      den:"1 + G₃G₂H₂",                                val:r.B,    que:"ese bloque en serie con G₄"},
+    {num:"G₃G₄",      den:"1 + G₃G₂H₂ + G₃G₄H₃",                       val:r.Cc,   que:"el lazo de H₃ cerrado"},
+    {num:"G₁G₂G₃G₄",  den:"1 + G₂G₃H₂ + G₃G₄H₃",                       val:r.D,    que:"todo el camino directo"},
+    {num:"G₁G₂G₃G₄",  den:"1 + G₂G₃H₂ + G₃G₄H₃ + G₁G₂G₃G₄H₁",          val:r.E,    que:"el sistema entero: esto ya es C/R"}
+  ];
+  return t[i];
+}
+
+var PASOS = [
+  {regla:"partida", chip:"Diagrama de partida",
+   expl:"El diagrama tal y como viene: cuatro bloques en el camino directo y tres realimentaciones. Los lazos de H₂ y H₃ <strong>se solapan</strong>, así que todavía no se puede reducir ninguno por separado."},
+  {regla:"transp", chip:"Transposición",
+   expl:"Se mueve el punto de suma de H₂ al otro lado de G₂. Al cruzarlo, la rama de H₂ se lleva un G₂ consigo. Los dos lazos <strong>siguen solapados</strong>: eso se arregla en el paso siguiente."},
+  {regla:"serie", chip:"Serie",
+   expl:"G₁ y G₂ están uno detrás de otro sin nada en medio: se funden multiplicando. Y, de paso, se <strong>intercambian los dos comparadores</strong>, que van seguidos y por tanto pueden cambiar de orden sin alterar el resultado: así el lazo de H₂ queda <strong>dentro</strong> del de H₃ y ya se pueden cerrar por turnos."},
+  {regla:"realim", chip:"Realimentación",
+   expl:"El lazo interior: G₃ realimentado por G₂·H₂. Queda G₃ / (1 + G₃·G₂·H₂)."},
+  {regla:"serie", chip:"Serie",
+   expl:"El bloque que acaba de salir y G₄ están en serie: se multiplican."},
+  {regla:"realim", chip:"Realimentación",
+   expl:"Ahora se cierra el lazo de H₃ sobre ese bloque."},
+  {regla:"serie", chip:"Serie",
+   expl:"Quedan dos bloques en serie en el camino directo: G₁G₂ y el que arrastramos."},
+  {regla:"realim", chip:"Realimentación",
+   expl:"Solo queda el lazo de H₁. Al cerrarlo aparece la función de transferencia de todo el sistema."}
+];
+
+/* descripción del diagrama de cada paso, para el dibujante */
+function diagramaDe(i){
+  var B = function(etq, ancho){ return {t:"b", etq:etq, w:ancho || 64}; };
+  var S = function(){ return {t:"s"}; };
+  var F = function(desde, hasta, etq, arriba, nivel, extra){
+    return {desde:desde, hasta:hasta, etq:etq, arriba:!!arriba, nivel:nivel || 1, extra:extra || null};
+  };
+  var d = [
+    {cad:[S(), B("G₁"), S(), B("G₂"), S(), B("G₃"), B("G₄")],
+     re:[F(6,4,"H₃",true,1), F(5,2,"H₂",false,1), F(6,0,"H₁",false,2)]},
+    {cad:[S(), B("G₁"), B("G₂"), S(), S(), B("G₃"), B("G₄")],
+     re:[F(6,4,"H₃",true,1), F(5,3,"H₂",false,1,"G₂"), F(6,0,"H₁",false,2)]},
+    {cad:[S(), B("G₁G₂",78), S(), S(), B("G₃"), B("G₄")],
+     re:[F(5,2,"H₃",true,1), F(4,3,"H₂",false,1,"G₂"), F(5,0,"H₁",false,2)]},
+    {cad:[S(), B("G₁G₂",78), S(), B("G₃ / (1+G₃G₂H₂)",150), B("G₄")],
+     re:[F(4,2,"H₃",true,1), F(4,0,"H₁",false,1)]},
+    {cad:[S(), B("G₁G₂",78), S(), B("G₃G₄ / (1+G₃G₂H₂)",168)],
+     re:[F(3,2,"H₃",true,1), F(3,0,"H₁",false,1)]},
+    {cad:[S(), B("G₁G₂",78), B("G₃G₄ / (1+G₃G₂H₂+G₃G₄H₃)",236)],
+     re:[F(2,0,"H₁",false,1)]},
+    {cad:[S(), B("G₁G₂G₃G₄ / (1+G₂G₃H₂+G₃G₄H₃)",270)],
+     re:[F(1,0,"H₁",false,1)]},
+    {cad:[B("G₁G₂G₃G₄ / (1+G₂G₃H₂+G₃G₄H₃+G₁G₂G₃G₄H₁)",400)], re:[]}
+  ];
+  return d[i];
+}
+
+if (typeof module !== "undefined" && module.exports){
+  module.exports = {fdtExacta:fdtExacta, fdtDelPaso:fdtDelPaso, bloqueDelPaso:bloqueDelPaso,
+                    reducciones:reducciones, PASOS:PASOS, diagramaDe:diagramaDe};
+}
+
+/* ===================== interfaz ===================== */
+if (typeof document !== "undefined") (function(){
+  var $ = function(id){ return document.getElementById(id); };
+  var num = function(x,d){ return x.toLocaleString("es-ES",{minimumFractionDigits:d,maximumFractionDigits:d}); };
+  var paso = 0, resalta = false;
+
+  function valores(){
+    return {G1:+$("g1").value, G2:+$("g2").value, G3:+$("g3").value, G4:+$("g4").value,
+            H1:+$("h1").value, H2:+$("h2").value, H3:+$("h3").value};
+  }
+
+  /* --- dibujante ---------------------------------------------------------------
+     Coloca la cadena de izquierda a derecha y cuelga cada realimentación en su
+     propio carril. Reglas que hay que respetar para que no se solape nada:
+       · la derivación se toma SOBRE EL CABLE, después del bloque, nunca encima de él;
+       · cada realimentación tiene un carril propio (nivel), arriba o abajo;
+       · las cajas del camino de vuelta van centradas en su carril, entre la
+         derivación y el sumador al que entran;
+       · la flecha entra al sumador por su borde, no por su centro.                */
+  function dibujar(d){
+    var Y = 96, X = 46, GAP = 30, RS = 16, ALTO_B = 42;
+    var pos = [], h = "";
+    d.cad.forEach(function(n){
+      if (n.t === "s"){ pos.push({x:X + RS, w:2*RS, tipo:"s"}); X += 2*RS + GAP; }
+      else { pos.push({x:X + n.w/2, w:n.w, tipo:"b", etq:n.etq}); X += n.w + GAP; }
+    });
+    var total = X - GAP + 64;
+
+    /* carriles: se reservan antes de dibujar, para poder medir el lienzo */
+    var carril = function(f){ return f.arriba ? (Y - 52 - 40*(f.nivel-1)) : (Y + 54 + 42*(f.nivel-1)); };
+    var yMin = Y - ALTO_B/2, yMax = Y + ALTO_B/2;
+    d.re.forEach(function(f){ var y = carril(f); if (y-18 < yMin) yMin = y-18; if (y+18 > yMax) yMax = y+18; });
+    var margen = 16;
+    var alto = (yMax - yMin) + 2*margen;
+    var dy = margen - yMin;                       // desplazamiento para que todo entre
+    $("diag").setAttribute("viewBox", "0 0 " + Math.max(total, 420) + " " + Math.round(alto));
+    var YY = Y + dy;
+
+    /* cable principal */
+    h += '<line x1="10" y1="'+YY+'" x2="'+(pos[0].x - pos[0].w/2 - 5)+'" y2="'+YY+'" stroke="#24313a" stroke-width="2" marker-end="url(#fl)"/>';
+    h += '<text x="10" y="'+(YY-10)+'" font-weight="700" font-size="14">R</text>';
+    for (var i = 0; i < pos.length - 1; i++){
+      h += '<line x1="'+(pos[i].x + pos[i].w/2)+'" y1="'+YY+'" x2="'+(pos[i+1].x - pos[i+1].w/2 - 5)+'" y2="'+YY+'" stroke="#24313a" stroke-width="2" marker-end="url(#fl)"/>';
+    }
+    var ult = pos[pos.length-1];
+    h += '<line x1="'+(ult.x + ult.w/2)+'" y1="'+YY+'" x2="'+(total-30)+'" y2="'+YY+'" stroke="#24313a" stroke-width="2" marker-end="url(#fl)"/>';
+    h += '<text x="'+(total-24)+'" y="'+(YY+5)+'" font-weight="700" font-size="14">C</text>';
+
+    /* realimentaciones: primero los cables, para que las cajas queden encima */
+    d.re.forEach(function(f){
+      var col = resalta ? "#e67e22" : "#24313a", gr = resalta ? 2.6 : 2;
+      var mk  = resalta ? "url(#flh)" : "url(#fl)";
+      var y   = carril(f) + dy;
+      var xa  = pos[f.desde].x + pos[f.desde].w/2 + 14;     // SOBRE el cable, tras el bloque
+      var xb  = pos[f.hasta].x;
+      var yEntra = f.arriba ? (YY - RS - 1) : (YY + RS + 1);
+      h += '<circle cx="'+xa+'" cy="'+YY+'" r="3.6" fill="'+col+'"/>';
+      h += '<path d="M '+xa+' '+YY+' V '+y+' H '+xb+' V '+yEntra+'" fill="none" stroke="'+col+'" stroke-width="'+gr+'" marker-end="'+mk+'"/>';
+      h += '<text x="'+(xb + (f.arriba ? 9 : 9))+'" y="'+(f.arriba ? YY-RS-5 : YY+RS+17)+'" font-size="13" fill="#24313a">−</text>';
+      f._x = [xa, xb]; f._y = y;
+    });
+    d.re.forEach(function(f){
+      var cajas = f.extra ? [f.etq, f.extra] : [f.etq];     // orden de recorrido: desde la derivación
+      var ancho = 56, sep = 14;
+      var ancTot = cajas.length*ancho + (cajas.length-1)*sep;
+      var centro = (f._x[0] + f._x[1]) / 2;
+      var xIni = centro + ancTot/2 - ancho/2;               // la primera, la más a la derecha
+      cajas.forEach(function(etq, j){
+        var cx = xIni - j*(ancho + sep);
+        h += '<rect x="'+(cx-ancho/2)+'" y="'+(f._y-14)+'" width="'+ancho+'" height="28" rx="6" fill="#fdefe2" stroke="#e67e22" stroke-width="2"/>' +
+             '<text x="'+cx+'" y="'+(f._y+5)+'" text-anchor="middle" font-size="12" font-weight="700">'+etq+'</text>';
+      });
+    });
+
+    /* bloques y sumadores, al final para que tapen los cables que pasen por detrás */
+    pos.forEach(function(p){
+      if (p.tipo === "s"){
+        h += '<circle cx="'+p.x+'" cy="'+YY+'" r="'+RS+'" fill="#fff" stroke="#24313a" stroke-width="2"/>' +
+             '<text x="'+p.x+'" y="'+(YY+5)+'" text-anchor="middle" font-size="15">+</text>';
+      } else {
+        var fs = p.etq.length > 22 ? 10 : (p.etq.length > 14 ? 11.5 : 13);
+        h += '<rect x="'+(p.x - p.w/2)+'" y="'+(YY-ALTO_B/2)+'" width="'+p.w+'" height="'+ALTO_B+'" rx="7" fill="#e6f1f2" stroke="#0e5a63" stroke-width="2"/>' +
+             '<text x="'+p.x+'" y="'+(YY+5)+'" text-anchor="middle" font-size="'+fs+'" font-weight="700">'+p.etq+'</text>';
+      }
+    });
+    $("capa").innerHTML = h;
+  }
+
+  function pintar(){
+    var v = valores(), p = PASOS[paso];
+    $("vg1").textContent = num(v.G1,1); $("vg2").textContent = num(v.G2,1);
+    $("vg3").textContent = num(v.G3,1); $("vg4").textContent = num(v.G4,1);
+    $("vh1").textContent = num(v.H1,2); $("vh2").textContent = num(v.H2,2);
+    $("vh3").textContent = num(v.H3,2);
+
+    $("cont").textContent = "Paso " + (paso+1) + " de " + PASOS.length;
+    $("slider").value = paso;
+    $("btnAnt").disabled = paso === 0;
+    $("btnSig").disabled = paso === PASOS.length - 1;
+    $("reglaChip").innerHTML = '<span class="regla r-' + p.regla + '">' + p.chip + '</span>';
+    $("expl").innerHTML = p.expl;
+
+    dibujar(diagramaDe(paso));
+
+    var bloque = bloqueDelPaso(paso, v);
+    var valor = fdtDelPaso(paso, v), exacto = fdtExacta(v);
+
+    if (bloque === null){
+      $("fdt").innerHTML = '<span class="val">Todavía no se ha reducido nada: los lazos de H₂ y H₃ ' +
+                           'se solapan.</span>';
+    } else if (bloque.den === ""){
+      $("fdt").innerHTML = '<div class="frac"><span class="num">' + bloque.num + '</span></div>' +
+        '<span class="val">' + bloque.que + ' = ' + num(bloque.val,4) + '</span>';
+    } else {
+      $("fdt").innerHTML = '<div class="frac"><span class="num">' + bloque.num + '</span><span>' +
+        bloque.den + '</span></div>' +
+        '<span class="val">' + bloque.que + ' = ' + num(bloque.val,4) + '</span>';
+    }
+
+    $("aviso").textContent = (Math.abs(valor - exacto) < 1e-9)
+      ? "Con el diagrama de este paso, C/R = " + num(valor,4) + ", cerrando los lazos que todavía quedan. Es el mismo número en los ocho pasos: simplificar no cambia el sistema, solo lo escribe más corto."
+      : "Aviso: el valor de este paso no coincide con el del sistema completo.";
+  }
+
+  $("btnAnt").addEventListener("click", function(){ if (paso > 0){ paso--; pintar(); } });
+  $("btnSig").addEventListener("click", function(){ if (paso < PASOS.length-1){ paso++; pintar(); } });
+  $("slider").addEventListener("input", function(){ paso = +this.value; pintar(); });
+  $("btnIni").addEventListener("click", function(){ paso = 0; pintar(); });
+  $("btnLazo").addEventListener("click", function(){
+    resalta = !resalta; this.setAttribute("aria-pressed", resalta ? "true" : "false"); pintar();
+  });
+  ["g1","g2","g3","g4","h1","h2","h3"].forEach(function(id){ $(id).addEventListener("input", pintar); });
+  pintar();
+})();
+</script>
+</body>
+</html>

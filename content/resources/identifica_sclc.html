@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Identifica los elementos de un sistema de control en lazo cerrado</title>
+<style>
+  :root{
+    color-scheme: light;
+    --navy:#0e5a63; --navy-2:#084049; --blue:#2f6fb0; --teal:#0f8a8f;
+    --orange:#e67e22; --red:#b23b3b; --verde:#2c7a3e; --ink:#24313a; --muted:#5d6b74;
+    --line:#d6dbe5; --paper:#fff; --wash:#f2f7f8; --focus:#ffd166;
+    font-family: system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:transparent;color:var(--ink)}
+  body{padding:8px}
+  .lab{max-width:1120px;margin:0 auto;overflow:hidden;border:1px solid #cfd9db;
+       border-radius:16px;background:var(--paper);box-shadow:0 8px 24px rgb(14 90 99 / 12%)}
+  .lab-header{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;
+       padding:18px 22px;color:#fff;background:linear-gradient(125deg,var(--navy-2),var(--navy))}
+  .lab-header h1{margin:0 0 4px;font-size:clamp(1.16rem,2.2vw,1.5rem);line-height:1.2}
+  .lab-header p{max-width:760px;margin:0;color:#dcecee;font-size:.92rem;line-height:1.45}
+  .badge{flex:0 0 auto;padding:6px 10px;border:1px solid rgb(255 255 255/32%);
+       border-radius:999px;background:rgb(255 255 255/10%);font-size:.78rem;white-space:nowrap}
+  .barra-esc{display:flex;gap:8px;flex-wrap:wrap;padding:14px 18px;border-bottom:1px solid var(--line);
+       background:var(--wash);align-items:center}
+  .barra-esc > span{margin-right:4px;color:var(--muted);font-size:.72rem;font-weight:700;
+       letter-spacing:.055em;text-transform:uppercase}
+  .barra-esc button{padding:7px 14px;border:1px solid var(--navy);border-radius:999px;
+       background:#fff;color:var(--navy);font:inherit;font-weight:600;cursor:pointer}
+  .barra-esc button[aria-pressed=true]{background:var(--navy);color:#fff}
+  .enunciado{padding:14px 18px 4px;font-size:.95rem;line-height:1.55}
+  .enunciado strong{color:var(--navy-2)}
+  .cuerpo{display:grid;grid-template-columns:minmax(300px,1fr) minmax(280px,360px);gap:0}
+  @media (max-width:600px){.cuerpo{grid-template-columns:1fr}}
+  .escena{padding:6px 18px 18px}
+  .panel{padding:16px 18px;border-left:1px solid var(--line);background:#fbfdfd}
+  @media (max-width:600px){.panel{border-left:0;border-top:1px solid var(--line)}}
+  .ranura{margin-bottom:12px}
+  .ranura label{display:block;margin-bottom:4px;font-size:.82rem;font-weight:600;color:var(--navy-2)}
+  .ranura label .papel{font-weight:500;color:var(--muted)}
+  select{width:100%;padding:7px 8px;border:1px solid var(--line);border-radius:8px;
+       background:#fff;font:inherit;font-size:.88rem;color:inherit}
+  select.bien{border-color:var(--verde);background:#f4fbf6}
+  select.mal{border-color:var(--red);background:#fdf4f3}
+  select:focus-visible,button:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+  .pista{margin-top:3px;font-size:.78rem;line-height:1.4}
+  .pista.bien{color:#1d5b2e}
+  .pista.mal{color:#7d2a2a}
+  .botones{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+  button.accion{padding:8px 14px;border:1px solid var(--navy);border-radius:8px;background:var(--navy);
+       color:#fff;font:inherit;font-weight:600;cursor:pointer}
+  button.sec{background:#fff;color:var(--navy)}
+  .aviso{margin-top:12px;padding:9px 11px;border-left:4px solid var(--teal);background:#eaf6f6;
+       color:#0a5f63;font-size:.86rem;border-radius:6px;line-height:1.45}
+  .aviso.bien{border-left-color:var(--verde);background:#ecf6ef;color:#1d5b2e}
+  .aviso.mal{border-left-color:var(--red);background:#fbeceb;color:#7d2a2a}
+  .aviso[hidden]{display:none}
+  .senales{margin:12px 18px 16px;padding:0;list-style:none;display:grid;
+       grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:6px 16px;font-size:.84rem}
+  .senales li{padding-left:0;color:var(--muted)}
+  .senales b{color:var(--navy-2)}
+  svg{display:block;width:100%;height:auto}
+  .nota{margin:0 18px 16px;color:var(--muted);font-size:.8rem;line-height:1.5}
+  [hidden]{display:none !important}
+</style>
+</head>
+<body>
+<div class="lab">
+  <div class="lab-header">
+    <div>
+      <h1>Identifica los elementos del sistema de control</h1>
+      <p>Cuatro sistemas de regulación reales. En cada uno, coloca cada pieza física en el
+         bloque que le toca del diagrama normalizado y comprueba si lo has acertado.</p>
+    </div>
+    <span class="badge">Bloque F</span>
+  </div>
+
+  <div class="barra-esc" id="barraEsc"><span>Sistema</span></div>
+
+  <p class="enunciado" id="enunciado"></p>
+
+  <div class="cuerpo">
+    <div class="escena">
+      <svg viewBox="0 0 660 250" role="img" aria-labelledby="tDiag">
+        <title id="tDiag">Diagrama de bloques normalizado con el transductor de consigna G3, el controlador G1, la planta G2, el sensor H y la perturbación p</title>
+        <defs>
+          <marker id="fl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="#24313a"/>
+          </marker>
+          <marker id="flr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="#b23b3b"/>
+          </marker>
+        </defs>
+        <g font-family="system-ui, sans-serif" font-size="14" fill="#24313a">
+          <text x="8" y="96" font-weight="700">r</text>
+          <line x1="20" y1="90" x2="52" y2="90" stroke="#24313a" stroke-width="2" marker-end="url(#fl)"/>
+          <rect id="cajaG3" x="54" y="66" width="86" height="48" rx="8" fill="#f2f7f8" stroke="#5d6b74" stroke-width="2"/>
+          <text x="97" y="88" text-anchor="middle" font-weight="700">G₃</text>
+          <text x="97" y="103" text-anchor="middle" font-size="10" fill="#5d6b74">consigna</text>
+          <line x1="140" y1="90" x2="176" y2="90" stroke="#24313a" stroke-width="2" marker-end="url(#fl)"/>
+          <circle cx="192" cy="90" r="15" fill="#fff" stroke="#24313a" stroke-width="2"/>
+          <text x="192" y="96" text-anchor="middle" font-size="16">+</text>
+          <text x="176" y="116" font-size="13">−</text>
+          <line x1="207" y1="90" x2="252" y2="90" stroke="#24313a" stroke-width="2" marker-end="url(#fl)"/>
+          <text x="222" y="81" font-size="12" font-weight="700" fill="#b23b3b">e</text>
+          <rect id="cajaG1" x="254" y="66" width="98" height="48" rx="8" fill="#e6f1f2" stroke="#0e5a63" stroke-width="2"/>
+          <text x="303" y="88" text-anchor="middle" font-weight="700">G₁</text>
+          <text x="303" y="103" text-anchor="middle" font-size="10" fill="#5d6b74">controlador</text>
+          <line x1="352" y1="90" x2="396" y2="90" stroke="#24313a" stroke-width="2" marker-end="url(#fl)"/>
+          <text x="368" y="81" font-size="12" font-weight="700">m</text>
+          <rect id="cajaG2" x="398" y="66" width="98" height="48" rx="8" fill="#fdefe2" stroke="#e67e22" stroke-width="2"/>
+          <text x="447" y="88" text-anchor="middle" font-weight="700">G₂</text>
+          <text x="447" y="103" text-anchor="middle" font-size="10" fill="#5d6b74">planta</text>
+          <line x1="496" y1="90" x2="624" y2="90" stroke="#24313a" stroke-width="2" marker-end="url(#fl)"/>
+          <text x="630" y="96" font-weight="700">c</text>
+          <line x1="447" y1="28" x2="447" y2="62" stroke="#b23b3b" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#flr)"/>
+          <text x="455" y="34" font-size="12" font-weight="700" fill="#b23b3b">p</text>
+          <circle cx="560" cy="90" r="4" fill="#24313a"/>
+          <line x1="560" y1="90" x2="560" y2="186" stroke="#24313a" stroke-width="2"/>
+          <line x1="560" y1="186" x2="506" y2="186" stroke="#24313a" stroke-width="2" marker-end="url(#fl)"/>
+          <rect id="cajaH" x="398" y="162" width="98" height="48" rx="8" fill="#ecf6ef" stroke="#2c7a3e" stroke-width="2"/>
+          <text x="447" y="184" text-anchor="middle" font-weight="700">H</text>
+          <text x="447" y="199" text-anchor="middle" font-size="10" fill="#5d6b74">sensor</text>
+          <line x1="398" y1="186" x2="192" y2="186" stroke="#24313a" stroke-width="2"/>
+          <line x1="192" y1="186" x2="192" y2="107" stroke="#24313a" stroke-width="2" marker-end="url(#fl)"/>
+          <text x="280" y="178" font-size="12" font-weight="700" fill="#2c7a3e">b</text>
+        </g>
+      </svg>
+
+      <ul class="senales">
+        <li><b>r</b> — consigna: lo que le pides al sistema</li>
+        <li><b>e</b> — error: lo que le falta o le sobra</li>
+        <li><b>m</b> — variable manipulada o de control, la que sale del controlador</li>
+        <li><b>c</b> — salida: lo que el sistema consigue de verdad</li>
+        <li><b>b</b> — realimentación: lo que mide el sensor</li>
+        <li><b>p</b> — perturbación: lo que estropea el resultado</li>
+      </ul>
+    </div>
+
+    <div class="panel" id="panel"></div>
+  </div>
+
+  <p class="nota">La consigna <b>r</b> y la salida <b>c</b> son la misma magnitud física: por eso
+     tiene sentido restarlas. Lo que el comparador resta de verdad son dos <em>señales</em>:
+     <b>b</b>, que es la salida ya convertida en señal por el sensor, y la consigna convertida
+     en señal por el transductor de consigna, que en este diagrama es <b>G₃</b>. Cuando el
+     diagrama no dibuja ese G₃ es porque se da por supuesto, y entonces se escribe
+     <b>e = r − b</b>.</p>
+</div>
+
+<script>
+/* ---------- datos y corrección (parte pura, verificable fuera del navegador) ---------- */
+var ESCENARIOS = [
+  { id:"horno", nombre:"Horno eléctrico",
+    enunciado:"Un <strong>horno eléctrico</strong> de cocina mantiene la temperatura que marcas en el mando, aunque abras la puerta a mitad del asado.",
+    piezas:[
+      {id:"mando",   texto:"El mando graduado en grados", ranura:"G3"},
+      {id:"termo",   texto:"El termostato electrónico",  ranura:"G1"},
+      {id:"resis",   texto:"La resistencia y el aire del horno",   ranura:"G2"},
+      {id:"sonda",   texto:"El termopar del interior",                 ranura:"H"},
+      {id:"puerta",  texto:"Abrir la puerta a mitad de la cocción",               ranura:"p"},
+      {id:"tempreal",texto:"La temperatura real del horno",             ranura:"c"}
+    ]},
+  { id:"crucero", nombre:"Control de crucero",
+    enunciado:"El <strong>control de crucero</strong> de un coche mantiene la velocidad que has fijado, también cuando la carretera empieza a subir.",
+    piezas:[
+      {id:"boton",  texto:"El botón del volante",             ranura:"G3"},
+      {id:"centra", texto:"La centralita del control de crucero",         ranura:"G1"},
+      {id:"motor",  texto:"El motor y la transmisión",                  ranura:"G2"},
+      {id:"captor", texto:"El captador de velocidad de rueda",                         ranura:"H"},
+      {id:"cuesta", texto:"Una cuesta arriba o el viento de cara",                          ranura:"p"},
+      {id:"velreal",texto:"La velocidad real del coche",               ranura:"c"}
+    ]},
+  { id:"deposito", nombre:"Depósito de agua",
+    enunciado:"Un <strong>depósito</strong> mantiene el nivel de agua que se le ha pedido mientras el riego va consumiendo por abajo.",
+    piezas:[
+      {id:"selec",  texto:"El selector de nivel",              ranura:"G3"},
+      {id:"circu",  texto:"El circuito que gobierna la bomba",              ranura:"G1"},
+      {id:"bomba",  texto:"La bomba y el propio depósito",           ranura:"G2"},
+      {id:"ultra",  texto:"El medidor de nivel por ultrasonidos",                           ranura:"H"},
+      {id:"riego",  texto:"El riego que vacía el depósito",        ranura:"p"},
+      {id:"nivel",  texto:"El nivel real de agua",              ranura:"c"}
+    ]},
+  { id:"invernadero", nombre:"Invernadero",
+    enunciado:"Un <strong>invernadero</strong> climatizado mantiene la temperatura programada mientras el sol de mediodía calienta el cristal.",
+    piezas:[
+      {id:"panel",  texto:"El panel de programación",        ranura:"G3"},
+      {id:"auto",   texto:"El autómata programable",            ranura:"G1"},
+      {id:"clima",  texto:"La calefacción y el aire del invernadero",     ranura:"G2"},
+      {id:"sondaT", texto:"La sonda de temperatura",              ranura:"H"},
+      {id:"sol",    texto:"El sol de mediodía sobre el cristal",                      ranura:"p"},
+      {id:"tempinv",texto:"La temperatura real del invernadero",             ranura:"c"}
+    ]}
+];
+
+var RANURAS = [
+  {id:"G3", etiqueta:"G₃ · transductor de consigna", papel:"convierte lo que pides en una señal que el sistema entiende"},
+  {id:"G1", etiqueta:"G₁ · controlador",             papel:"mira el error y decide qué hay que hacer"},
+  {id:"G2", etiqueta:"G₂ · planta o proceso",        papel:"es lo que se quiere gobernar, y lo que gasta la energía"},
+  {id:"H",  etiqueta:"H · sensor de realimentación", papel:"mide la salida y la devuelve al comparador"},
+  {id:"c",  etiqueta:"c · salida",                   papel:"la magnitud que el sistema consigue de verdad"},
+  {id:"p",  etiqueta:"p · perturbación",             papel:"lo de fuera que estropea el resultado"}
+];
+
+function corregir(escenario, asignacion){
+  var detalle = RANURAS.map(function(rn){
+    var elegido = asignacion[rn.id] || "";
+    var correcta = null;
+    for (var i = 0; i < escenario.piezas.length; i++){
+      if (escenario.piezas[i].ranura === rn.id) correcta = escenario.piezas[i].id;
+    }
+    return {ranura:rn.id, elegido:elegido, correcta:correcta,
+            vacia: elegido === "", acertada: elegido !== "" && elegido === correcta};
+  });
+  var aciertos = 0, vacias = 0;
+  detalle.forEach(function(d){ if (d.acertada) aciertos++; if (d.vacia) vacias++; });
+  var repetidas = {};
+  detalle.forEach(function(d){ if (d.elegido) repetidas[d.elegido] = (repetidas[d.elegido]||0) + 1; });
+  var duplicadas = Object.keys(repetidas).filter(function(k){ return repetidas[k] > 1; });
+  return {detalle:detalle, aciertos:aciertos, total:RANURAS.length, vacias:vacias,
+          duplicadas:duplicadas, completo: aciertos === RANURAS.length};
+}
+
+if (typeof module !== "undefined" && module.exports){
+  module.exports = {ESCENARIOS:ESCENARIOS, RANURAS:RANURAS, corregir:corregir};
+}
+
+/* ---------- interfaz ---------- */
+if (typeof document !== "undefined") (function(){
+  var $ = function(id){ return document.getElementById(id); };
+  var esc = 0, corregido = false;
+
+  function escapa(t){ return t.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+
+  function pintarBarra(){
+    var b = $("barraEsc");
+    b.querySelectorAll("button").forEach(function(x){ x.remove(); });
+    ESCENARIOS.forEach(function(e, i){
+      var btn = document.createElement("button");
+      btn.textContent = e.nombre;
+      btn.setAttribute("aria-pressed", i === esc ? "true" : "false");
+      btn.addEventListener("click", function(){ esc = i; corregido = false; pintarTodo(); });
+      b.appendChild(btn);
+    });
+  }
+
+  /* orden de las opciones: fijo por escenario, pero distinto del orden de las ranuras,
+     para que no se pueda acertar contestando de arriba abajo */
+  function opciones(e){
+    var o = e.piezas.slice();
+    var mezcla = [4, 1, 5, 0, 3, 2];
+    return mezcla.map(function(i){ return o[i]; });
+  }
+
+  function pintarPanel(){
+    var e = ESCENARIOS[esc];
+    var html = "";
+    RANURAS.forEach(function(rn){
+      html += '<div class="ranura"><label for="sel_' + rn.id + '">' + rn.etiqueta +
+              '<br><span class="papel">' + rn.papel + '</span></label>' +
+              '<select id="sel_' + rn.id + '"><option value="">— elige una pieza —</option>';
+      opciones(e).forEach(function(p){
+        html += '<option value="' + p.id + '" title="' + escapa(p.texto) + '">' + escapa(p.texto) + '</option>';
+      });
+      html += '</select><div class="pista" id="pista_' + rn.id + '"></div></div>';
+    });
+    html += '<div class="botones"><button class="accion" id="btnCorr">Comprobar</button>' +
+            '<button class="accion sec" id="btnLimpiar">Empezar de nuevo</button></div>' +
+            '<div class="aviso" id="aviso" hidden></div>';
+    $("panel").innerHTML = html;
+
+    RANURAS.forEach(function(rn){
+      $("sel_" + rn.id).addEventListener("change", function(){
+        if (corregido){ corregido = false; limpiarMarcas(); }
+      });
+    });
+    $("btnCorr").addEventListener("click", comprobar);
+    $("btnLimpiar").addEventListener("click", function(){
+      RANURAS.forEach(function(rn){ $("sel_" + rn.id).value = ""; });
+      corregido = false; limpiarMarcas(); $("aviso").hidden = true;
+    });
+  }
+
+  function limpiarMarcas(){
+    RANURAS.forEach(function(rn){
+      $("sel_" + rn.id).className = "";
+      $("pista_" + rn.id).textContent = "";
+      $("pista_" + rn.id).className = "pista";
+    });
+    ["cajaG3","cajaG1","cajaG2","cajaH"].forEach(function(id){
+      var c = $(id); if (c) c.setAttribute("stroke-width","2");
+    });
+  }
+
+  function comprobar(){
+    var e = ESCENARIOS[esc], asign = {};
+    RANURAS.forEach(function(rn){ asign[rn.id] = $("sel_" + rn.id).value; });
+    var r = corregir(e, asign);
+    corregido = true;
+    limpiarMarcas();
+
+    r.detalle.forEach(function(d){
+      var sel = $("sel_" + d.ranura), pista = $("pista_" + d.ranura);
+      if (d.vacia) return;
+      if (d.acertada){
+        sel.className = "bien";
+        pista.className = "pista bien"; pista.textContent = "Correcto.";
+        var caja = $("caja" + d.ranura);
+        if (caja) caja.setAttribute("stroke-width","4");
+      } else {
+        sel.className = "mal";
+        pista.className = "pista mal";
+        var suya = null;
+        e.piezas.forEach(function(p){ if (p.id === d.elegido) suya = p; });
+        var dondeVa = suya ? RANURAS.filter(function(x){ return x.id === suya.ranura; })[0] : null;
+        pista.textContent = dondeVa
+          ? "Esa pieza es la de " + dondeVa.etiqueta.split(" · ")[0] + "."
+          : "Ahí no va esa pieza.";
+      }
+    });
+
+    var a = $("aviso"); a.hidden = false; a.className = "aviso";
+    if (r.duplicadas.length){
+      a.classList.add("mal");
+      a.textContent = "Has puesto la misma pieza en dos bloques distintos. Cada pieza hace un solo papel en el lazo.";
+    } else if (r.vacias){
+      a.textContent = "Te faltan " + r.vacias + (r.vacias === 1 ? " bloque por" : " bloques por") +
+        " asignar. Llevas " + r.aciertos + " de " + r.total + ".";
+    } else if (r.completo){
+      a.classList.add("bien");
+      a.textContent = "Los seis en su sitio. Fíjate en el recorrido: la consigna entra por G₃, el error pasa por el controlador, la planta produce la salida y el sensor la devuelve para volver a comparar.";
+    } else {
+      a.classList.add("mal");
+      a.textContent = r.aciertos + " de " + r.total + ". Empieza por la planta: es la que gasta la energía y produce la magnitud que quieres controlar; el resto encaja detrás.";
+    }
+  }
+
+  function pintarTodo(){
+    pintarBarra();
+    $("enunciado").innerHTML = ESCENARIOS[esc].enunciado;
+    pintarPanel();
+  }
+
+  pintarTodo();
+})();
+</script>
+</body>
+</html>

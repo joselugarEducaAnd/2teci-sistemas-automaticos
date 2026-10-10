@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 420" role="img" aria-labelledby="t">
+<title id="t">Las siete uves del big data: volumen, velocidad, variedad, veracidad, viabilidad, visualización y valor</title>
+<g font-family="system-ui, -apple-system, Segoe UI, sans-serif" fill="#24313a">
+  <text x="20" y="26" font-size="15" font-weight="700" fill="#0e5a63">Las siete uves del big data</text>
+  <text x="20" y="46" font-size="12.5" fill="#5d6b74">las siete características que hacen que un conjunto de datos sea «big data»</text>
+
+  <g id="tarjetas">
+    <rect x="20"  y="66"  width="235" height="72" rx="10" fill="#e6f1f2" stroke="#0e5a63" stroke-width="2"/>
+    <text x="36"  y="92"  font-size="14.5" font-weight="700" fill="#0b4c54">Volumen</text>
+    <text x="36"  y="112" font-size="12" fill="#24313a">cuántos datos hay: se miden en</text>
+    <text x="36"  y="128" font-size="12" fill="#24313a">terabytes, no en hojas de cálculo</text>
+
+    <rect x="263" y="66"  width="235" height="72" rx="10" fill="#e6f1f2" stroke="#0e5a63" stroke-width="2"/>
+    <text x="279" y="92"  font-size="14.5" font-weight="700" fill="#0b4c54">Velocidad</text>
+    <text x="279" y="112" font-size="12" fill="#24313a">a qué ritmo llegan y con qué</text>
+    <text x="279" y="128" font-size="12" fill="#24313a">rapidez hay que responder</text>
+
+    <rect x="506" y="66"  width="235" height="72" rx="10" fill="#e6f1f2" stroke="#0e5a63" stroke-width="2"/>
+    <text x="522" y="92"  font-size="14.5" font-weight="700" fill="#0b4c54">Variedad</text>
+    <text x="522" y="112" font-size="12" fill="#24313a">de qué tipo son: números, textos,</text>
+    <text x="522" y="128" font-size="12" fill="#24313a">imágenes, sonido, posiciones</text>
+
+    <rect x="20"  y="150" width="235" height="72" rx="10" fill="#ecf6ef" stroke="#2c7a3e" stroke-width="2"/>
+    <text x="36"  y="176" font-size="14.5" font-weight="700" fill="#1d5b2e">Veracidad</text>
+    <text x="36"  y="196" font-size="12" fill="#24313a">si son fiables: datos con errores</text>
+    <text x="36"  y="212" font-size="12" fill="#24313a">llevan a decisiones equivocadas</text>
+
+    <rect x="263" y="150" width="235" height="72" rx="10" fill="#ecf6ef" stroke="#2c7a3e" stroke-width="2"/>
+    <text x="279" y="176" font-size="14.5" font-weight="700" fill="#1d5b2e">Viabilidad</text>
+    <text x="279" y="196" font-size="12" fill="#24313a">si de verdad se pueden tratar</text>
+    <text x="279" y="212" font-size="12" fill="#24313a">con los medios disponibles</text>
+
+    <rect x="506" y="150" width="235" height="72" rx="10" fill="#ecf6ef" stroke="#2c7a3e" stroke-width="2"/>
+    <text x="522" y="176" font-size="14.5" font-weight="700" fill="#1d5b2e">Visualización</text>
+    <text x="522" y="196" font-size="12" fill="#24313a">cómo se enseñan para que una</text>
+    <text x="522" y="212" font-size="12" fill="#24313a">persona los entienda de un vistazo</text>
+
+    <rect x="145" y="248" width="470" height="78" rx="10" fill="#fdefe2" stroke="#e67e22" stroke-width="2.5"/>
+    <text x="380" y="276" text-anchor="middle" font-size="15.5" font-weight="700" fill="#8a4f12">Valor</text>
+    <text x="380" y="298" text-anchor="middle" font-size="12.5" fill="#8a4f12">lo que se saca de todo lo anterior: si no sirve para decidir mejor,</text>
+    <text x="380" y="315" text-anchor="middle" font-size="12.5" fill="#8a4f12">las otras seis no valen de nada</text>
+  </g>
+  <text x="380" y="368" text-anchor="middle" font-size="12.5" fill="#5d6b74">En un sistema de control inteligente, los datos del sensor son el volumen y la velocidad;</text>
+  <text x="380" y="386" text-anchor="middle" font-size="12.5" fill="#5d6b74">la decisión que toma el regulador es el valor.</text>
+</g>
+</svg>

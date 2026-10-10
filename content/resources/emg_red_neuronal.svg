@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 330" role="img" aria-labelledby="t">
+<title id="t">Capas de una red neuronal: entrada, dos capas ocultas y salida</title>
+<g font-family="system-ui, -apple-system, Segoe UI, sans-serif" fill="#24313a">
+  <text x="20" y="26" font-size="15" font-weight="700" fill="#0e5a63">Cómo está organizada una red neuronal</text>
+  <text x="20" y="46" font-size="12.5" fill="#5d6b74">cada círculo recibe números, los combina y pasa el resultado a la capa siguiente</text>
+  <g stroke="#c3dde0" stroke-width="1.2" id="conex">
+    <line x1="110" y1="120" x2="250" y2="100"/><line x1="110" y1="120" x2="250" y2="165"/><line x1="110" y1="120" x2="250" y2="230"/>
+    <line x1="110" y1="180" x2="250" y2="100"/><line x1="110" y1="180" x2="250" y2="165"/><line x1="110" y1="180" x2="250" y2="230"/>
+    <line x1="110" y1="240" x2="250" y2="100"/><line x1="110" y1="240" x2="250" y2="165"/><line x1="110" y1="240" x2="250" y2="230"/>
+    <line x1="250" y1="100" x2="400" y2="100"/><line x1="250" y1="100" x2="400" y2="165"/><line x1="250" y1="100" x2="400" y2="230"/>
+    <line x1="250" y1="165" x2="400" y2="100"/><line x1="250" y1="165" x2="400" y2="165"/><line x1="250" y1="165" x2="400" y2="230"/>
+    <line x1="250" y1="230" x2="400" y2="100"/><line x1="250" y1="230" x2="400" y2="165"/><line x1="250" y1="230" x2="400" y2="230"/>
+    <line x1="400" y1="100" x2="550" y2="150"/><line x1="400" y1="100" x2="550" y2="210"/>
+    <line x1="400" y1="165" x2="550" y2="150"/><line x1="400" y1="165" x2="550" y2="210"/>
+    <line x1="400" y1="230" x2="550" y2="150"/><line x1="400" y1="230" x2="550" y2="210"/>
+  </g>
+  <g>
+    <circle cx="110" cy="120" r="19" fill="#e6f1f2" stroke="#0e5a63" stroke-width="2.5"/>
+    <circle cx="110" cy="180" r="19" fill="#e6f1f2" stroke="#0e5a63" stroke-width="2.5"/>
+    <circle cx="110" cy="240" r="19" fill="#e6f1f2" stroke="#0e5a63" stroke-width="2.5"/>
+    <circle cx="250" cy="100" r="19" fill="#fff" stroke="#5d6b74" stroke-width="2"/>
+    <circle cx="250" cy="165" r="19" fill="#fff" stroke="#5d6b74" stroke-width="2"/>
+    <circle cx="250" cy="230" r="19" fill="#fff" stroke="#5d6b74" stroke-width="2"/>
+    <circle cx="400" cy="100" r="19" fill="#fff" stroke="#5d6b74" stroke-width="2"/>
+    <circle cx="400" cy="165" r="19" fill="#fff" stroke="#5d6b74" stroke-width="2"/>
+    <circle cx="400" cy="230" r="19" fill="#fff" stroke="#5d6b74" stroke-width="2"/>
+    <circle cx="550" cy="150" r="19" fill="#fdefe2" stroke="#e67e22" stroke-width="2.5"/>
+    <circle cx="550" cy="210" r="19" fill="#fdefe2" stroke="#e67e22" stroke-width="2.5"/>
+  </g>
+  <text x="110" y="290" text-anchor="middle" font-size="13" font-weight="700" fill="#0e5a63">Capa de entrada</text>
+  <text x="110" y="308" text-anchor="middle" font-size="11.5" fill="#5d6b74">los datos que se miden</text>
+  <text x="325" y="290" text-anchor="middle" font-size="13" font-weight="700">Capas ocultas</text>
+  <text x="325" y="308" text-anchor="middle" font-size="11.5" fill="#5d6b74">donde se combinan los datos</text>
+  <text x="550" y="290" text-anchor="middle" font-size="13" font-weight="700" fill="#8a4f12">Capa de salida</text>
+  <text x="550" y="308" text-anchor="middle" font-size="11.5" fill="#5d6b74">la respuesta</text>
+  <text x="110" y="72" text-anchor="middle" font-size="11.5" fill="#5d6b74">temperatura, presión…</text>
+  <text x="550" y="122" text-anchor="middle" font-size="11.5" fill="#5d6b74">decisión</text>
+</g>
+</svg>
